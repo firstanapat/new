@@ -4,12 +4,14 @@
    image   : URL รูปหน้าจอ (เช่น "assets/img/cfo-collector.jpg") — ถ้าเว้นว่าง จะวาดภาพตัวอย่างให้
    url     : ลิงก์เว็บจริง — ถ้าเว้นว่าง จะไม่แสดงปุ่ม "เปิดเว็บ"
    sample  : true = ยังเป็นการ์ดตัวอย่าง (แสดงป้าย "ตัวอย่าง")
+   kicker  : ข้อความเล็กเหนือชื่อการ์ด
    layout  : รูปแบบภาพตัวอย่าง: "dashboard" | "upload" | "form" | "table" | "site"
    ⚠️ รูปหน้าจอต้องไม่มีข้อมูลจริงของนายจ้าง
    ========================================================================== */
 window.PRODUCTS = [
   {
     title: "CFO Data Collector",
+    kicker: "Web App / Google Apps Script",
     desc: "เว็บแอปให้แต่ละหน่วยงานอัปโหลดไฟล์ Excel บัญชีก๊าซเรือนกระจก แล้วดึงข้อมูลเข้าฐานข้อมูลกลางและสรุปเป็น Dashboard อัตโนมัติ",
     features: [
       "อัปโหลดไฟล์ .xlsx หลายหน่วยงานผ่านหน้าเว็บเดียว",
@@ -27,6 +29,7 @@ window.PRODUCTS = [
   },
   {
     title: "Farm EF Survey",
+    kicker: "Web Form / Field Data",
     desc: "แบบฟอร์มเก็บข้อมูล Life Cycle Inventory ระดับแปลงบนมือถือ พร้อมตรวจความสมเหตุสมผลของข้อมูลทันทีที่กรอก",
     features: [
       "กรอกได้ออฟไลน์ในพื้นที่สัญญาณอ่อน",
@@ -43,6 +46,7 @@ window.PRODUCTS = [
   },
   {
     title: "SROI Calculator",
+    kicker: "Tool / Social Impact",
     desc: "เครื่องมือคำนวณ SROI ที่ใส่ Indicator, Financial Proxy, Deadweight และ Attribution แล้วได้ผลพร้อม Sensitivity analysis",
     features: [
       "เทมเพลต Impact Map ตามหลัก Social Value",
@@ -59,6 +63,7 @@ window.PRODUCTS = [
   },
   {
     title: "ESG KPI Dashboard",
+    kicker: "Dashboard / ESG Reporting",
     desc: "Dashboard ติดตามตัวชี้วัด ESG รายเดือน — พลังงาน น้ำ ของเสีย และกิจกรรมชุมชน — สำหรับรายงานผู้บริหาร",
     features: [
       "การ์ด KPI พร้อมเทียบเป้าหมายรายปี",
@@ -75,6 +80,7 @@ window.PRODUCTS = [
   },
   {
     title: "Supplier GHG Portal",
+    kicker: "Portal / Scope 3",
     desc: "พอร์ทัลให้ซัพพลายเออร์ส่งข้อมูลการปล่อยก๊าซเรือนกระจกของตนเอง เพื่อนำไปใช้คำนวณ Scope 3 ของบริษัท",
     features: [
       "ซัพพลายเออร์ล็อกอินและส่งข้อมูลรายปี",
@@ -91,6 +97,7 @@ window.PRODUCTS = [
   },
   {
     title: "Portfolio Website",
+    kicker: "Website / HTML · CSS · JS",
     desc: "เว็บไซต์นี้ — HTML, CSS และ JavaScript ล้วน มี 3D carousel ที่เขียนเอง กราฟ Chart.js และ deploy อัตโนมัติด้วย Vercel",
     features: [
       "3D carousel ด้วย CSS 3D transforms รองรับลาก ปัด และคีย์บอร์ด",
