@@ -1,23 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Resume · Anapat Tantikulanon</title>
-  <meta name="description" content="Resume of Anapat Tantikulanon — Sustainability | ESG | GHG & Impact Assessment" />
+  <meta name="description" content="Resume ของ Anapat Tantikulanon — Sustainability | ESG | GHG & Impact Assessment" />
   <meta name="theme-color" content="#ffffff" />
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <script>
+    (function () { try {
+      var q = new URLSearchParams(location.search).get("lang"), s = null;
+      try { s = localStorage.getItem("lang"); } catch (e) {}
+      var l = (q === "th" || q === "en") ? q : (s === "th" || s === "en") ? s : ((navigator.language || "").toLowerCase().indexOf("th") === 0 ? "th" : "en");
+      if (l === "en") { var h = document.documentElement; h.classList.add("i18n-wait"); h.lang = "en"; setTimeout(function () { h.classList.remove("i18n-wait"); }, 1500); }
+    } catch (e) {} })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
+<body data-page="resume">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
       <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
       <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14m0 0-6-6m6 6 6-6"/></symbol>
-      <symbol id="i-up-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+      <symbol id="i-down-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7l10 10M17 8v9H8"/></symbol>
       <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
       <symbol id="i-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></symbol>
       <symbol id="i-print" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4a1 1 0 0 1-1-1v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1h-2"/><rect x="6" y="14" width="12" height="7" rx="1"/></symbol>
@@ -25,26 +33,31 @@
     </defs>
   </svg>
 
+  <a class="visually-hidden" href="#main" data-i18n="skip">ข้ามไปเนื้อหา</a>
+
   <div class="nav-wrap">
     <header class="nav">
-      <a class="brand" href="index.html" aria-label="ANAPAT home">
-        <span class="brand-photo"><img src="assets/img/profile.jpg" alt="" width="800" height="1000" /></span>
-        <span>ANAPAT<span class="dot-accent">.</span></span>
-      </a>
-      <button class="btn btn-outline btn-icon nav-toggle" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
-        <svg><use href="#i-menu"/></svg>
-      </button>
+      <a class="brand" href="index.html" aria-label="Anapat"><span class="brand-dot" aria-hidden="true"></span>ANAPAT</a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="index.html#intro">Web Products</a></li>
-        <li><a href="index.html#cases">Case Studies</a></li>
-        <li><a href="index.html#skills">ทักษะ</a></li>
+        <li><a href="index.html#work">Work</a></li>
+        <li><a href="index.html#about">About</a></li>
         <li><a href="resume.html" aria-current="page">Resume</a></li>
+        <li class="nav-links-cta"><a href="index.html#contact" data-i18n="nav.contact">ติดต่อ</a></li>
       </ul>
-      <a class="btn btn-dark nav-cta" href="assets/Anapat_Tantikulanon_Resume.pdf" download>Download PDF <svg><use href="#i-down"/></svg></a>
+      <div class="nav-right">
+        <div class="lang" role="group" aria-label="Language / ภาษา">
+          <button type="button" data-lang-btn="th" aria-pressed="true">TH</button>
+          <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn btn-dark nav-cta" href="index.html#contact"><span data-i18n="nav.contact">ติดต่อ</span> <svg><use href="#i-down-right"/></svg></a>
+        <button class="btn btn-outline btn-icon nav-toggle" aria-expanded="false" aria-controls="navLinks" aria-label="เปิดเมนู" data-i18n-aria="nav.menu">
+          <svg><use href="#i-menu"/></svg>
+        </button>
+      </div>
     </header>
   </div>
 
-  <main>
+  <main id="main">
     <section class="resume-top">
       <div class="container resume-top-inner">
         <div class="resume-id">
@@ -56,9 +69,9 @@
           </div>
         </div>
         <div class="resume-actions">
-          <a class="btn btn-outline" href="index.html"><svg><use href="#i-left"/></svg> Portfolio</a>
-          <button class="btn btn-outline" type="button" onclick="window.print()"><svg><use href="#i-print"/></svg> Print</button>
-          <a class="btn btn-accent" href="assets/Anapat_Tantikulanon_Resume.pdf" download>Download PDF <svg><use href="#i-down"/></svg></a>
+          <a class="btn btn-outline" href="index.html"><svg><use href="#i-left"/></svg> <span data-i18n="res.back">พอร์ตโฟลิโอ</span></a>
+          <button class="btn btn-outline" type="button" onclick="window.print()"><svg><use href="#i-print"/></svg> <span data-i18n="res.print">พิมพ์</span></button>
+          <a class="btn btn-accent" href="assets/Anapat_Tantikulanon_Resume.pdf" download><span data-i18n="res.download">ดาวน์โหลด PDF</span> <svg><use href="#i-down"/></svg></a>
         </div>
       </div>
     </section>
@@ -67,7 +80,7 @@
       <div class="resume">
         <aside>
           <div class="r-block">
-            <h2>Contact</h2>
+            <h2 data-i18n="res.contact">ติดต่อ</h2>
             <ul class="r-contact">
               <li><svg><use href="#i-pin"/></svg> Bangkok, Thailand</li>
               <li><svg><use href="#i-mail"/></svg> <a href="mailto:anapat.t@outlook.com">anapat.t@outlook.com</a></li>
@@ -75,74 +88,73 @@
           </div>
 
           <div class="r-block">
-            <h2>Core Expertise</h2>
+            <h2 data-i18n="res.expertise">ความเชี่ยวชาญหลัก</h2>
             <div class="r-skill">
               <h3>GHG &amp; Carbon Assessment</h3>
-              <p>Carbon Footprint for Organization (CFO), Scope 1, Scope 2 &amp; selected Scope 3, Life Cycle Inventory (LCI), emission factor assessment, system boundary setting, IPCC AR5 GWP100</p>
+              <p data-i18n="res.s1">คาร์บอนฟุตพริ้นท์องค์กร (CFO), Scope 1, Scope 2 และ Scope 3 ที่เลือก, Life Cycle Inventory (LCI), การประเมิน Emission Factor, การกำหนด System Boundary, IPCC AR5 GWP100</p>
             </div>
             <div class="r-skill">
               <h3>Social Impact Assessment</h3>
-              <p>Social Return on Investment (SROI), questionnaire design, field data collection</p>
+              <p data-i18n="res.s2">ผลตอบแทนทางสังคมจากการลงทุน (SROI), ออกแบบแบบสอบถาม, เก็บข้อมูลภาคสนาม</p>
             </div>
             <div class="r-skill">
               <h3>Data &amp; Analysis</h3>
-              <p>Primary data validation, data cross-checking, source tracking, Microsoft Excel, PivotTables, dashboards</p>
+              <p data-i18n="res.s3">ตรวจสอบข้อมูลปฐมภูมิ, Cross-check ข้อมูล, ติดตามแหล่งที่มา, Microsoft Excel, PivotTables, Dashboard</p>
             </div>
             <div class="r-skill">
               <h3>Technical Reporting</h3>
-              <p>Methodology documentation, technical reports, recommendations, management reporting</p>
+              <p data-i18n="res.s4">เอกสารระเบียบวิธี, รายงานทางเทคนิค, ข้อเสนอแนะ, รายงานผู้บริหาร</p>
             </div>
           </div>
 
           <div class="r-block">
-            <h2>Education</h2>
+            <h2 data-i18n="res.education">การศึกษา</h2>
             <div class="r-job">
               <div class="r-job-head">
-                <h3>Kasetsart University</h3>
-                <span class="r-date">Jul 2019 – Apr 2023</span>
+                <h3 data-i18n="res.school">มหาวิทยาลัยเกษตรศาสตร์</h3>
+                <span class="r-date" data-i18n="res.eduDate">ก.ค. 2019 – เม.ย. 2023</span>
               </div>
-              <p class="r-role">Bachelor of Arts in Public Administration · GPAX 3.23</p>
+              <p class="r-role" data-i18n="res.degree">ศิลปศาสตรบัณฑิต สาขารัฐประศาสนศาสตร์ · GPAX 3.23</p>
             </div>
           </div>
         </aside>
 
         <div class="r-main">
           <div class="r-block">
-            <h2>Profile</h2>
-            <p class="r-summary">
-              Sustainability professional with 2.5 years of experience in food supply chains, specializing in GHG assessment,
-              sustainability data analysis, and Social Return on Investment (SROI). Experienced in designing field assessments,
-              validating primary data, developing farm-level emission factors, and translating technical findings into
-              actionable recommendations.
+            <h2 data-i18n="res.profile">โปรไฟล์</h2>
+            <p class="r-summary" data-i18n="res.summary">
+              ทำงานด้านความยั่งยืนในห่วงโซ่อุปทานอาหาร 2.5 ปี เชี่ยวชาญการประเมินก๊าซเรือนกระจก การวิเคราะห์ข้อมูลความยั่งยืน
+              และผลตอบแทนทางสังคมจากการลงทุน (SROI) มีประสบการณ์ออกแบบการประเมินภาคสนาม ตรวจสอบข้อมูลปฐมภูมิ
+              พัฒนาค่า Emission Factor ระดับแปลง และแปลงผลการวิเคราะห์ทางเทคนิคเป็นข้อเสนอแนะที่นำไปใช้ได้จริง
             </p>
           </div>
 
           <div class="r-block">
-            <h2>Professional Experience</h2>
+            <h2 data-i18n="res.experience">ประสบการณ์ทำงาน</h2>
             <div class="r-job">
               <div class="r-job-head">
-                <h3>Doi Kham Food Products Company, Limited</h3>
-                <span class="r-date">Jan 2024 – Jun 2026</span>
+                <h3 data-i18n="res.company">บริษัท ดอยคำผลิตภัณฑ์อาหาร จำกัด</h3>
+                <span class="r-date" data-i18n="res.jobDate">ม.ค. 2024 – มิ.ย. 2026</span>
               </div>
-              <p class="r-role">Social Enterprise and Sustainability Information Officer</p>
-              <ul>
-                <li><strong>Conducted Carbon Footprint for Organization (CFO)</strong> assessment across manufacturing facilities and the head office, covering Scope 1, Scope 2 and selected Scope 3 activities.</li>
-                <li><strong>Developed a company-specific Emission Factor (EF)</strong> for fresh tomatoes through farm-level GHG assessment and primary data validation across ICS-GAP farmers, reported with a 95% confidence interval.</li>
-                <li><strong>Conducted SROI assessments</strong> for tomato procurement and community engagement programs to evaluate social, economic, and environmental outcomes.</li>
-                <li><strong>Analyzed and validated sustainability data</strong> including activity data, emission factors, survey results, and supporting evidence, using Excel, PivotTables and dashboards.</li>
-                <li><strong>Prepared technical reports and management presentations</strong>, translating GHG, ESG and social-impact data into findings and recommendations for decision-making.</li>
+              <p class="r-role" data-i18n="res.jobRole">เจ้าหน้าที่ข้อมูลกิจการเพื่อสังคมและความยั่งยืน</p>
+              <ul data-i18n="res.bullets">
+                <li><strong>จัดทำคาร์บอนฟุตพริ้นท์องค์กร (CFO)</strong> ครอบคลุมโรงงานผลิตและสำนักงานใหญ่ ในขอบเขต Scope 1, Scope 2 และกิจกรรม Scope 3 ที่เลือก</li>
+                <li><strong>พัฒนาค่า Emission Factor (EF) เฉพาะของบริษัท</strong> สำหรับมะเขือเทศสด ด้วยการประเมินก๊าซเรือนกระจกระดับแปลงและตรวจสอบข้อมูลปฐมภูมิของเกษตรกร ICS-GAP รายงานพร้อมช่วงความเชื่อมั่น 95%</li>
+                <li><strong>ประเมิน SROI</strong> ของการรับซื้อมะเขือเทศและกิจกรรมชุมชนสัมพันธ์ เพื่อวัดผลลัพธ์ด้านสังคม เศรษฐกิจ และสิ่งแวดล้อม</li>
+                <li><strong>วิเคราะห์และตรวจสอบข้อมูลความยั่งยืน</strong> ทั้ง Activity Data, Emission Factor, ผลแบบสอบถาม และหลักฐานประกอบ ด้วย Excel, PivotTables และ Dashboard</li>
+                <li><strong>จัดทำรายงานทางเทคนิคและการนำเสนอผู้บริหาร</strong> แปลงข้อมูล GHG, ESG และผลกระทบทางสังคมเป็นข้อค้นพบและข้อเสนอแนะเพื่อการตัดสินใจ</li>
               </ul>
             </div>
           </div>
 
           <div class="r-block">
-            <h2>Training</h2>
+            <h2 data-i18n="res.training">การอบรม</h2>
             <div class="r-job">
               <div class="r-job-head">
                 <h3>Thailand Sustainability Academy</h3>
-                <span class="r-date">Dec 2025</span>
+                <span class="r-date" data-i18n="res.trainDate">ธ.ค. 2025</span>
               </div>
-              <p class="r-role">Sustainability Essentials for Supplier (Batch 2)</p>
+              <p class="r-role" data-i18n="res.course">Sustainability Essentials for Supplier (รุ่น 2)</p>
               <ul>
                 <li>Greenhouse Gas Inventory for Organizations Scope 1 &amp; 2</li>
               </ul>
@@ -150,9 +162,9 @@
           </div>
 
           <div class="r-block pdf-wrap">
-            <h2>Original PDF</h2>
+            <h2 data-i18n="res.pdf">ไฟล์ PDF ต้นฉบับ</h2>
             <object class="pdf-frame" data="assets/Anapat_Tantikulanon_Resume.pdf" type="application/pdf" aria-label="Resume PDF">
-              <p><a href="assets/Anapat_Tantikulanon_Resume.pdf">Open the PDF</a></p>
+              <p><a href="assets/Anapat_Tantikulanon_Resume.pdf" data-i18n="res.openPdf">เปิดไฟล์ PDF</a></p>
             </object>
           </div>
         </div>
@@ -163,14 +175,17 @@
   <footer class="footer">
     <div class="container">
       <span>© 2026 Anapat Tantikulanon</span>
-      <a href="index.html">← Back to portfolio</a>
+      <a href="index.html" data-i18n="res.footerBack">← กลับไปหน้าพอร์ตโฟลิโอ</a>
     </div>
   </footer>
 
+  <script src="js/lang-en.js"></script>
+  <script src="js/i18n.js"></script>
   <script>
     (function () {
       var t = document.querySelector(".nav-toggle"), l = document.getElementById("navLinks");
       t.addEventListener("click", function () { var o = l.classList.toggle("open"); t.setAttribute("aria-expanded", String(o)); });
+      l.addEventListener("click", function (e) { if (e.target.closest("a")) { l.classList.remove("open"); t.setAttribute("aria-expanded", "false"); } });
     })();
   </script>
 </body>

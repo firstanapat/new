@@ -14,6 +14,27 @@
     });
   }
 
+  /* ---------- Language ---------- */
+  function lang() { return (window.I18N && window.I18N.lang) || "th"; }
+  var L = {
+    th: { sample: "ตัวอย่าง", details: "ดูรายละเอียด", open: "เปิดเว็บ", close: "ปิด", pause: "หยุดเลื่อนอัตโนมัติ", play: "เลื่อนอัตโนมัติ", shot: "ภาพหน้าจอ ",
+      units: ["โรงงาน A", "โรงงาน B", "สำนักงานใหญ่"], scopes: ["ขอบเขต 1", "ขอบเขต 2", "ขอบเขต 3"],
+      cfoHead: ["หน่วยงาน", "ขอบเขต 1", "ขอบเขต 2", "ขอบเขต 3", "รวม 2568", "ปีฐาน 2567", "เปลี่ยนแปลง"],
+      efHead: ["ช่วง EF (kgCO₂e/kg)", "จำนวนแปลง"], srcHead: ["แหล่งปล่อย", "สัดส่วน"], plots: " แปลง",
+      src: ["ปุ๋ยเคมี", "ไฟฟ้า (ปั๊มน้ำ)", "น้ำมันเชื้อเพลิง", "สารเคมีเกษตร", "ปุ๋ยคอก"],
+      sroi: ["รายได้เกษตรกรเพิ่มขึ้น", "สุขภาพจากการลดสารเคมี", "ค่าเดินทางผู้บริโภคที่ลดลง", "ความสัมพันธ์ในชุมชน", "ลด CO₂ จากการขนส่ง"],
+      sroiHead: ["ผลลัพธ์", "มูลค่า (ล้านบาท)"], total: "รวม", mTHB: " ล้านบาท", locale: "th-TH" },
+    en: { sample: "Sample", details: "View details", open: "Open site", close: "Close", pause: "Pause autoplay", play: "Autoplay", shot: "Screenshot of ",
+      units: ["Plant A", "Plant B", "Head office"], scopes: ["Scope 1", "Scope 2", "Scope 3"],
+      cfoHead: ["Site", "Scope 1", "Scope 2", "Scope 3", "Total 2025", "Base year 2024", "Change"],
+      efHead: ["EF range (kgCO₂e/kg)", "Plots"], srcHead: ["Source", "Share"], plots: " plots",
+      src: ["Chemical fertiliser", "Electricity (pumps)", "Fuel", "Agrochemicals", "Manure"],
+      sroi: ["Higher farmer income", "Health from fewer chemicals", "Lower travel costs for shoppers", "Community relationships", "Less CO₂ from transport"],
+      sroiHead: ["Outcome", "Value (THB million)"], total: "Total", mTHB: " THB million", locale: "en-US" }
+  };
+  function T() { return L[lang()] || L.th; }
+  function P(p, field) { return lang() === "en" && p.en && p.en[field] ? p.en[field] : p[field]; }
+
   var yearEl = $("#year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
@@ -41,6 +62,11 @@
       railSections.forEach(function (s, i) { var r = visible[s.id] || 0; if (r > bestRatio) { bestRatio = r; best = i; } });
       railLinks.forEach(function (a, i) { a.setAttribute("aria-current", String(i === best)); });
       if (railNow) railNow.textContent = String(best + 1).padStart(2, "0");
+      var id = railSections[best].id;
+      var group = (id === "work" || id === "tools") ? "work" : id === "about" ? "about" : "";
+      $$("[data-nav]").forEach(function (a) {
+        if (a.getAttribute("data-nav") === group) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+      });
     }, { threshold: [0, 0.15, 0.3, 0.5, 0.7, 1] });
     railSections.forEach(function (s) { railIO.observe(s); });
   }
@@ -123,7 +149,7 @@
     return head + body + "</svg>";
   }
   function mediaHtml(p) {
-    if (p.image) return '<img src="' + esc(p.image) + '" alt="ภาพหน้าจอ ' + esc(p.title) + '" loading="lazy" draggable="false" />';
+    if (p.image) return '<img src="' + esc(p.image) + '" alt="' + esc(T().shot + p.title) + '" loading="lazy" draggable="false" />';
     return mockSvg(p);
   }
 
@@ -139,14 +165,14 @@
     if (!modal || !p) return;
     $("#modalMedia").innerHTML = mediaHtml(p);
     $("#modalTitle").textContent = p.title;
-    $("#modalDesc").textContent = p.desc;
+    $("#modalDesc").textContent = P(p, "desc");
     $("#modalTags").innerHTML =
-      (p.sample ? '<span class="chip chip-sample">ตัวอย่าง</span>' : "") +
+      (p.sample ? '<span class="chip chip-sample">' + T().sample + "</span>" : "") +
       p.tags.map(function (t) { return '<span class="chip">' + esc(t) + "</span>"; }).join("");
-    $("#modalFeatures").innerHTML = (p.features || []).map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("");
+    $("#modalFeatures").innerHTML = (P(p, "features") || []).map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("");
     $("#modalActions").innerHTML =
-      (p.url ? '<a class="btn btn-dark" href="' + esc(p.url) + '" target="_blank" rel="noopener">เปิดเว็บ <svg><use href="#i-up-right"/></svg></a>' : "") +
-      '<button class="btn btn-outline" type="button" data-close>ปิด</button>';
+      (p.url ? '<a class="btn btn-dark" href="' + esc(p.url) + '" target="_blank" rel="noopener">' + T().open + ' <svg><use href="#i-up-right"/></svg></a>' : "") +
+      '<button class="btn btn-outline" type="button" data-close>' + T().close + "</button>";
     flow && flow.pause(true);
     if (typeof modal.showModal === "function") modal.showModal(); else modal.setAttribute("open", "");
   }
@@ -164,17 +190,21 @@
       var autoplay = !reduceMotion, held = false, hovering = false, inView = true, timer = null;
       var INTERVAL = 4500;
 
+      function fillCard(card, p) {
+        card.setAttribute("aria-label", p.title + (p.sample ? " (" + T().sample + ")" : ""));
+        card.innerHTML =
+          '<div class="flow-media">' + mediaHtml(p) +
+          (p.sample ? '<span class="chip chip-sample">' + T().sample + "</span>" : "") +
+          '<span class="flow-open">' + T().details + ' <svg><use href="#i-expand"/></svg></span></div>' +
+          '<div class="flow-body"><div class="kicker">' + esc(p.kicker || p.tags.slice(0, 2).join(" / ")) + "</div>" +
+          "<h3>" + esc(p.title) + "</h3></div>";
+      }
+
       products.forEach(function (p, i) {
         var card = document.createElement("button");
         card.type = "button";
         card.className = "flow-card";
-        card.setAttribute("aria-label", p.title + (p.sample ? " (ตัวอย่าง)" : ""));
-        card.innerHTML =
-          '<div class="flow-media">' + mediaHtml(p) +
-          (p.sample ? '<span class="chip chip-sample">ตัวอย่าง</span>' : "") +
-          '<span class="flow-open">ดูรายละเอียด <svg><use href="#i-expand"/></svg></span></div>' +
-          '<div class="flow-body"><div class="kicker">' + esc(p.kicker || p.tags.slice(0, 2).join(" / ")) + "</div>" +
-          "<h3>" + esc(p.title) + "</h3></div>";
+        fillCard(card, p);
         card.addEventListener("click", function (e) {
           if (stage.dataset.moved === "1") { e.preventDefault(); return; }
           if (i === active) openModal(p); else go(i);
@@ -229,7 +259,7 @@
       }
       function setPlay(on) {
         autoplay = on;
-        playBtn.innerHTML = '<svg><use href="#' + (on ? "i-pause" : "i-play") + '"/></svg>' + (on ? "หยุดเลื่อนอัตโนมัติ" : "เลื่อนอัตโนมัติ");
+        playBtn.innerHTML = '<svg><use href="#' + (on ? "i-pause" : "i-play") + '"/></svg>' + (on ? T().pause : T().play);
         restart();
       }
       playBtn.addEventListener("click", function () { setPlay(!autoplay); });
@@ -274,6 +304,10 @@
 
       render();
       setPlay(autoplay);
+      document.addEventListener("langchange", function () {
+        cards.forEach(function (c, i) { fillCard(c, products[i]); });
+        render(); setPlay(autoplay);
+      });
       return { pause: function (on) { held = on; restart(); } };
     })();
   }
@@ -315,35 +349,38 @@
     s3: css.getPropertyValue("--series-3").trim() || "#1baf7a",
     grid: "#e8e8e6", tick: "#5f6368", ink: "#3c4043", surface: "#f7f7f5"
   };
-  var nf = new Intl.NumberFormat("th-TH");
+  function nf(v) { return new Intl.NumberFormat(T().locale).format(v); }
 
+  // Numbers only — labels come from T() so they follow the chosen language.
   var DATA = {
-    cfo: { units: ["โรงงาน A", "โรงงาน B", "สำนักงานใหญ่"], s1: [1980, 1050, 35], s2: [2760, 1640, 410], s3: [6420, 3890, 280], base: [11920, 7010, 756] },
+    cfo: { s1: [1980, 1050, 35], s2: [2760, 1640, 410], s3: [6420, 3890, 280], base: [11920, 7010, 756] },
     efHist: { bins: ["0.1–0.2", "0.2–0.3", "0.3–0.4", "0.4–0.5", "0.5–0.6", "0.6–0.7", "0.7–0.8"], count: [3, 8, 12, 10, 7, 3, 2] },
-    efSource: { labels: ["ปุ๋ยเคมี", "ไฟฟ้า (ปั๊มน้ำ)", "น้ำมันเชื้อเพลิง", "สารเคมีเกษตร", "ปุ๋ยคอก"], pct: [48, 21, 17, 9, 5] },
-    sroi: { labels: ["รายได้เกษตรกรเพิ่มขึ้น", "สุขภาพจากการลดสารเคมี", "ค่าเดินทางผู้บริโภคที่ลดลง", "ความสัมพันธ์ในชุมชน", "ลด CO₂ จากการขนส่ง"], value: [1.42, 0.68, 0.31, 0.29, 0.19] }
+    efSource: { pct: [48, 21, 17, 9, 5] },
+    sroi: { value: [1.42, 0.68, 0.31, 0.29, 0.19] }
   };
+  function th(cells) { return "<thead><tr>" + cells.map(function (c) { return "<th>" + c + "</th>"; }).join("") + "</tr></thead>"; }
 
-  (function fillTables() {
-    var d = DATA.cfo, rows = "";
-    d.units.forEach(function (u, i) {
+  function fillTables() {
+    var d = DATA.cfo, t = T(), rows = "";
+    t.units.forEach(function (u, i) {
       var tot = d.s1[i] + d.s2[i] + d.s3[i];
       var ch = (tot - d.base[i]) / d.base[i] * 100;
-      rows += "<tr><td>" + u + "</td><td>" + nf.format(d.s1[i]) + "</td><td>" + nf.format(d.s2[i]) + "</td><td>" + nf.format(d.s3[i]) +
-        "</td><td>" + nf.format(tot) + "</td><td>" + nf.format(d.base[i]) + "</td><td>" + ch.toFixed(1) + "%</td></tr>";
+      rows += "<tr><td>" + u + "</td><td>" + nf(d.s1[i]) + "</td><td>" + nf(d.s2[i]) + "</td><td>" + nf(d.s3[i]) +
+        "</td><td>" + nf(tot) + "</td><td>" + nf(d.base[i]) + "</td><td>" + ch.toFixed(1) + "%</td></tr>";
     });
-    var t = $("#tableCfo");
-    if (t) t.innerHTML = "<thead><tr><th>หน่วยงาน</th><th>ขอบเขต 1</th><th>ขอบเขต 2</th><th>ขอบเขต 3</th><th>รวม 2568</th><th>ปีฐาน 2567</th><th>เปลี่ยนแปลง</th></tr></thead><tbody>" + rows + "</tbody>";
+    var tc = $("#tableCfo");
+    if (tc) tc.innerHTML = th(t.cfoHead) + "<tbody>" + rows + "</tbody>";
     var te = $("#tableEf");
-    if (te) te.innerHTML = "<thead><tr><th>ช่วง EF (kgCO₂e/kg)</th><th>จำนวนแปลง</th></tr></thead><tbody>" +
+    if (te) te.innerHTML = th(t.efHead) + "<tbody>" +
       DATA.efHist.bins.map(function (b, i) { return "<tr><td>" + b + "</td><td>" + DATA.efHist.count[i] + "</td></tr>"; }).join("") +
-      "</tbody><thead><tr><th>แหล่งปล่อย</th><th>สัดส่วน</th></tr></thead><tbody>" +
-      DATA.efSource.labels.map(function (l, i) { return "<tr><td>" + l + "</td><td>" + DATA.efSource.pct[i] + "%</td></tr>"; }).join("") + "</tbody>";
+      "</tbody>" + th(t.srcHead) + "<tbody>" +
+      t.src.map(function (l, i) { return "<tr><td>" + l + "</td><td>" + DATA.efSource.pct[i] + "%</td></tr>"; }).join("") + "</tbody>";
     var ts = $("#tableSroi");
-    if (ts) ts.innerHTML = "<thead><tr><th>ผลลัพธ์</th><th>มูลค่า (ล้านบาท)</th></tr></thead><tbody>" +
-      DATA.sroi.labels.map(function (l, i) { return "<tr><td>" + l + "</td><td>" + DATA.sroi.value[i].toFixed(2) + "</td></tr>"; }).join("") +
-      "<tr><td><strong>รวม</strong></td><td><strong>2.89</strong></td></tr></tbody>";
-  })();
+    if (ts) ts.innerHTML = th(t.sroiHead) + "<tbody>" +
+      t.sroi.map(function (l, i) { return "<tr><td>" + l + "</td><td>" + DATA.sroi.value[i].toFixed(2) + "</td></tr>"; }).join("") +
+      "<tr><td><strong>" + t.total + "</strong></td><td><strong>2.89</strong></td></tr></tbody>";
+  }
+  fillTables();
 
   var drawn = {};
   function tooltip(extra) {
@@ -384,6 +421,7 @@
     Chart.defaults.color = C.tick;
     drawn[panelId] = true;
 
+    var t = T();
     if (panelId === "case-cfo") {
       var d = DATA.cfo;
       var seg = function (label, data, color, last) {
@@ -392,12 +430,12 @@
       };
       new Chart($("#chartCfo"), {
         type: "bar",
-        data: { labels: d.units, datasets: [seg("ขอบเขต 1", d.s1, C.s1), seg("ขอบเขต 2", d.s2, C.s2), seg("ขอบเขต 3", d.s3, C.s3, true)] },
+        data: { labels: t.units, datasets: [seg(t.scopes[0], d.s1, C.s1), seg(t.scopes[1], d.s2, C.s2), seg(t.scopes[2], d.s3, C.s3, true)] },
         options: base({
           indexAxis: "y", interaction: { mode: "nearest", intersect: true, axis: "y" },
-          plugins: { legend: { display: false }, tooltip: tooltip({ callbacks: { label: function (c) { return " " + c.dataset.label + ": " + nf.format(c.raw) + " tCO₂e"; } } }) },
+          plugins: { legend: { display: false }, tooltip: tooltip({ callbacks: { label: function (c) { return " " + c.dataset.label + ": " + nf(c.raw) + " tCO₂e"; } } }) },
           scales: {
-            x: axis({ stacked: true, ticks: { color: C.tick, callback: function (v) { return nf.format(v); } } }),
+            x: axis({ stacked: true, ticks: { color: C.tick, callback: function (v) { return nf(v); } } }),
             y: axis({ stacked: true, grid: { display: false }, ticks: { color: C.ink, font: { size: 13, weight: "500" } } })
           }
         })
@@ -408,22 +446,35 @@
         type: "bar",
         data: { labels: DATA.efHist.bins, datasets: [{ data: DATA.efHist.count, backgroundColor: C.s1, maxBarThickness: 24, borderRadius: { topLeft: 4, topRight: 4 }, borderSkipped: false }] },
         options: base({
-          plugins: { legend: { display: false }, tooltip: tooltip({ displayColors: false, callbacks: { title: function (c) { return "EF " + c[0].label + " kgCO₂e/kg"; }, label: function (c) { return c.raw + " แปลง"; } } }) },
+          plugins: { legend: { display: false }, tooltip: tooltip({ displayColors: false, callbacks: { title: function (c) { return "EF " + c[0].label + " kgCO₂e/kg"; }, label: function (c) { return c.raw + t.plots; } } }) },
           scales: { x: axis({ grid: { display: false } }), y: axis({ beginAtZero: true, ticks: { color: C.tick, stepSize: 4 } }) }
         })
       });
-      hbar("#chartEfSource", DATA.efSource.labels, DATA.efSource.pct,
+      hbar("#chartEfSource", t.src, DATA.efSource.pct,
         function (v) { return v + "% (" + (0.412 * v / 100).toFixed(3) + " kgCO₂e/kg)"; },
         function (v) { return v + "%"; }, 60);
     }
     if (panelId === "case-sroi") {
-      hbar("#chartSroi", DATA.sroi.labels, DATA.sroi.value,
-        function (v) { return v.toFixed(2) + " ล้านบาท"; },
+      hbar("#chartSroi", t.sroi, DATA.sroi.value,
+        function (v) { return v.toFixed(2) + t.mTHB; },
         function (v) { return v.toFixed(1); });
     }
   }
 
-  var casesSection = $("#cases");
+  // Re-draw tables and any charts already drawn when the language changes.
+  document.addEventListener("langchange", function () {
+    fillTables();
+    if (typeof Chart === "undefined") return;
+    var redo = Object.keys(drawn);
+    ["#chartCfo", "#chartEfHist", "#chartEfSource", "#chartSroi"].forEach(function (id) {
+      var el = $(id), ch = el && Chart.getChart(el);
+      if (ch) ch.destroy();
+    });
+    drawn = {};
+    redo.forEach(drawChartsFor);
+  });
+
+  var casesSection = $("#work");
   if (casesSection && "IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (entries) {
       if (entries[0].isIntersecting) { drawChartsFor("case-cfo"); io.disconnect(); }

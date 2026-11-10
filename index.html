@@ -3,23 +3,33 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ANAPAT · Sustainability Data into Decisions</title>
-  <meta name="description" content="พอร์ตโฟลิโอของ Anapat Tantikulanon — Sustainability, ESG, GHG & Impact Assessment: คาร์บอนฟุตพริ้นท์องค์กร, Emission Factor, SROI และเครื่องมือเว็บสำหรับงานข้อมูลความยั่งยืน" />
-  <meta property="og:title" content="ANAPAT · Sustainability Data into Decisions" />
-  <meta property="og:description" content="GHG & Impact Assessment · CFO · Emission Factor · SROI · Web Products" />
+  <title>Anapat · พอร์ตโฟลิโอ Sustainability & ESG</title>
+  <meta name="description" content="พอร์ตโฟลิโอของ Anapat Tantikulanon — นักวิเคราะห์ด้านความยั่งยืน: คาร์บอนฟุตพริ้นท์องค์กร, Emission Factor, SROI และเครื่องมือเว็บสำหรับงานข้อมูลความยั่งยืน" />
+  <meta property="og:title" content="Anapat · Sustainability Analyst Portfolio" />
+  <meta property="og:description" content="GHG & Impact Assessment · CFO · Emission Factor · SROI" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="assets/img/profile.jpg" />
   <meta name="theme-color" content="#ffffff" />
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <script>
+    /* Hide the page for a moment while English text is swapped in, so Thai doesn't flash first. */
+    (function () { try {
+      var q = new URLSearchParams(location.search).get("lang"), s = null;
+      try { s = localStorage.getItem("lang"); } catch (e) {}
+      var l = (q === "th" || q === "en") ? q : (s === "th" || s === "en") ? s : ((navigator.language || "").toLowerCase().indexOf("th") === 0 ? "th" : "en");
+      if (l === "en") { var h = document.documentElement; h.classList.add("i18n-wait"); h.lang = "en"; setTimeout(function () { h.classList.remove("i18n-wait"); }, 1500); }
+    } catch (e) {} })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
+<body data-page="home">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
       <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14m0 0-6-6m6 6 6-6"/></symbol>
+      <symbol id="i-down-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7l10 10M17 8v9H8"/></symbol>
       <symbol id="i-up-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></symbol>
       <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l12.5-7.5z"/></symbol>
       <symbol id="i-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4.5" width="4" height="15" rx="1"/><rect x="14" y="4.5" width="4" height="15" rx="1"/></symbol>
@@ -31,122 +41,90 @@
     </defs>
   </svg>
 
-  <a class="visually-hidden" href="#main">ข้ามไปเนื้อหา</a>
+  <a class="visually-hidden" href="#main" data-i18n="skip">ข้ามไปเนื้อหา</a>
 
+  <!-- ================= Nav ================= -->
   <div class="nav-wrap">
     <header class="nav">
-      <a class="brand" href="#intro" aria-label="ANAPAT หน้าแรก">
-        <span class="brand-photo"><img src="assets/img/profile.jpg" alt="" width="800" height="1000" /></span>
-        <span>ANAPAT<span class="dot-accent">.</span></span>
-      </a>
-      <button class="btn btn-outline btn-icon nav-toggle" aria-expanded="false" aria-controls="navLinks" aria-label="เปิดเมนู">
-        <svg><use href="#i-menu"/></svg>
-      </button>
+      <a class="brand" href="#top" aria-label="Anapat"><span class="brand-dot" aria-hidden="true"></span>ANAPAT</a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#intro">Web Products</a></li>
-        <li><a href="#cases">Case Studies</a></li>
-        <li><a href="#skills">ทักษะ</a></li>
-        <li><a href="resume.html">Resume <svg><use href="#i-up-right"/></svg></a></li>
+        <li><a href="#work" data-nav="work">Work</a></li>
+        <li><a href="#about" data-nav="about">About</a></li>
+        <li><a href="resume.html" data-nav="resume">Resume</a></li>
+        <li class="nav-links-cta"><a href="#contact" data-i18n="nav.contact">ติดต่อ</a></li>
       </ul>
-      <a class="btn btn-dark nav-cta" href="#start">ติดต่อผม <svg><use href="#i-down"/></svg></a>
+      <div class="nav-right">
+        <div class="lang" role="group" aria-label="Language / ภาษา">
+          <button type="button" data-lang-btn="th" aria-pressed="true">TH</button>
+          <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn btn-dark nav-cta" href="#contact"><span data-i18n="nav.contact">ติดต่อ</span> <svg><use href="#i-down-right"/></svg></a>
+        <button class="btn btn-outline btn-icon nav-toggle" aria-expanded="false" aria-controls="navLinks" aria-label="เปิดเมนู" data-i18n-aria="nav.menu">
+          <svg><use href="#i-menu"/></svg>
+        </button>
+      </div>
     </header>
   </div>
 
-  <nav class="rail" aria-label="ตำแหน่งในหน้า">
+  <nav class="rail" aria-label="ตำแหน่งในหน้า" data-i18n-aria="rail.label">
     <div class="rail-count" aria-hidden="true"><span class="now" id="railNow">01</span><i></i><span>05</span></div>
-    <a href="#intro" aria-label="Web Products"></a>
-    <a href="#results" aria-label="ภาพรวม"></a>
-    <a href="#cases" aria-label="Case Studies"></a>
-    <a href="#skills" aria-label="ทักษะ"></a>
-    <a href="#start" aria-label="ติดต่อ"></a>
+    <a href="#top" aria-label="หน้าแรก" data-i18n-aria="rail.top"></a>
+    <a href="#work" aria-label="Case Studies"></a>
+    <a href="#tools" aria-label="เครื่องมือที่สร้าง" data-i18n-aria="rail.tools"></a>
+    <a href="#about" aria-label="About"></a>
+    <a href="#contact" aria-label="ติดต่อ" data-i18n-aria="rail.contact"></a>
   </nav>
 
   <main id="main">
-    <!-- ================= 01 Intro + Web Products coverflow ================= -->
-    <section class="intro" id="intro" data-rail>
+    <!-- ================= 01 Hero ================= -->
+    <section class="intro" id="top" data-rail>
       <div class="container">
-        <span class="eyebrow">Anapat / Sustainability data into decisions</span>
-        <h1>ข้อมูลจริง<span class="dot-accent">.</span> ผลกระทบจริง<span class="dot-accent">.</span></h1>
-        <p class="lead">ผมเปลี่ยนข้อมูลภาคสนาม บัญชีก๊าซเรือนกระจก และผลลัพธ์ทางสังคม<br class="br-desk" />
-          ให้เป็นตัวเลขที่ใช้ตัดสินใจได้ — และสร้างเครื่องมือเว็บที่ทำให้ทีมใช้ข้อมูลได้จริง</p>
-      </div>
-
-      <div class="flow" aria-roledescription="carousel" aria-label="Web Products">
-        <div class="flow-stage" id="flowStage" tabindex="0" aria-describedby="flowHelp"></div>
-        <p class="visually-hidden" id="flowHelp">ใช้ปุ่มลูกศรซ้ายขวาเพื่อเลื่อน กด Enter เพื่อดูรายละเอียด</p>
-        <div class="flow-controls">
-          <div class="flow-dots" id="flowDots" role="tablist" aria-label="เลือกผลงาน"></div>
-          <span class="flow-sep" aria-hidden="true"></span>
-          <span class="flow-caption" id="flowCaption" aria-live="polite"></span>
-          <button class="flow-play" id="flowPlay" type="button"></button>
-        </div>
-      </div>
-
-      <div class="container">
+        <span class="status"><span class="status-dot" aria-hidden="true"></span><span data-i18n="hero.status">เปิดรับงานด้าน Sustainability / ESG</span></span>
+        <h1 data-i18n="hero.title">ข้อมูลจริง<span class="dot-accent">.</span> ผลกระทบจริง<span class="dot-accent">.</span></h1>
+        <p class="lead" data-i18n="hero.lead">ฉันคือ Anapat นักวิเคราะห์ด้านความยั่งยืน ประสบการณ์ 2.5 ปีในห่วงโซ่อุปทานอาหาร
+          ทำบัญชีก๊าซเรือนกระจก Emission Factor ระดับแปลง และ SROI ให้เป็นตัวเลขที่ผู้บริหารใช้ตัดสินใจได้</p>
         <div class="intro-actions">
-          <a class="btn btn-outline btn-lg" href="#cases">ดู Case Studies <svg><use href="#i-down"/></svg></a>
-          <a class="btn btn-dark btn-lg" href="resume.html">ดู Resume <svg><use href="#i-up-right"/></svg></a>
+          <a class="btn btn-dark btn-lg" href="#work"><span data-i18n="hero.cta1">ดูผลงาน</span> <svg><use href="#i-down"/></svg></a>
+          <a class="btn btn-outline btn-lg" href="resume.html"><span>Resume</span> <svg><use href="#i-up-right"/></svg></a>
         </div>
-        <p class="intro-note">ลากหรือปัดการ์ดเพื่อเลื่อน · คลิกการ์ดตรงกลางเพื่อดูรายละเอียด</p>
-      </div>
-    </section>
 
-    <dialog class="modal" id="productModal" aria-labelledby="modalTitle">
-      <button class="btn btn-outline btn-icon modal-close" id="modalClose" aria-label="ปิด"><svg><use href="#i-close"/></svg></button>
-      <div class="modal-media" id="modalMedia"></div>
-      <div class="modal-body">
-        <div class="modal-tags" id="modalTags"></div>
-        <h3 id="modalTitle"></h3>
-        <p id="modalDesc"></p>
-        <ul id="modalFeatures"></ul>
-      </div>
-      <div class="modal-actions" id="modalActions"></div>
-    </dialog>
-
-    <!-- ================= 02 Results ================= -->
-    <section class="section section-soft" id="results" data-rail>
-      <div class="container">
-        <div class="split-head">
-          <h2><span class="soft">งานความยั่งยืน</span>ที่วัดผลได้เป็นตัวเลข<span class="dot-accent">.</span></h2>
-          <p>ตั้งแต่ออกแบบการเก็บข้อมูล ตรวจสอบข้อมูลปฐมภูมิ จนถึงสรุปเป็นข้อเสนอแนะให้ผู้บริหาร — ครบทั้งฝั่งสิ่งแวดล้อมและสังคม</p>
-        </div>
         <div class="results">
           <div class="result">
-            <div class="result-num">2.5<small>ปี</small></div>
-            <h3>ประสบการณ์ในห่วงโซ่อุปทานอาหาร</h3>
-            <p>งานความยั่งยืนตั้งแต่ระดับโรงงานจนถึงแปลงเกษตรกร</p>
-            <a class="link-arrow" href="resume.html">ดูประวัติการทำงาน <svg><use href="#i-up-right"/></svg></a>
+            <div class="result-num" data-i18n="r1.num">2.5<small>ปี</small></div>
+            <h3 data-i18n="r1.title">ประสบการณ์ในห่วงโซ่อุปทานอาหาร</h3>
+            <p data-i18n="r1.desc">งานความยั่งยืนตั้งแต่ระดับโรงงานจนถึงแปลงเกษตรกร</p>
           </div>
           <div class="result">
             <div class="result-num">Scope 1–3</div>
-            <h3>บัญชีก๊าซเรือนกระจกองค์กร</h3>
-            <p>CFO, Life Cycle Inventory และ Emission Factor ระดับแปลง</p>
-            <a class="link-arrow" href="#cases" data-case="case-cfo">ดูตัวอย่างงาน <svg><use href="#i-up-right"/></svg></a>
+            <h3 data-i18n="r2.title">บัญชีก๊าซเรือนกระจกองค์กร</h3>
+            <p data-i18n="r2.desc">CFO, Life Cycle Inventory และ Emission Factor ระดับแปลง</p>
           </div>
           <div class="result">
             <div class="result-num">SROI</div>
-            <h3>มูลค่าทางสังคมจากการลงทุน</h3>
-            <p>Indicator, Financial Proxy และการเก็บข้อมูลภาคสนาม</p>
-            <a class="link-arrow" href="#cases" data-case="case-sroi">ดูตัวอย่างงาน <svg><use href="#i-up-right"/></svg></a>
+            <h3 data-i18n="r3.title">มูลค่าทางสังคมจากการลงทุน</h3>
+            <p data-i18n="r3.desc">Indicator, Financial Proxy และการเก็บข้อมูลภาคสนาม</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= 03 Case studies ================= -->
-    <section class="section" id="cases" data-rail>
+    <!-- ================= 02 Work · Case studies ================= -->
+    <section class="section section-soft" id="work" data-rail>
       <div class="container">
         <div class="split-head">
-          <h2><span class="soft">CFO · Emission Factor · SROI</span>นี่คือวิธีที่ผมทำงาน<span class="dot-accent">.</span></h2>
-          <p>รูปแบบงานเดียวกับที่ผมทำจริง นำเสนอด้วยองค์กรและตัวเลขสมมติ เลือกดูทีละชิ้นได้ด้านล่าง</p>
+          <div>
+            <span class="eyebrow">Work · Case Studies</span>
+            <h2 data-i18n="cases.title"><span class="soft">CFO · Emission Factor · SROI</span>นี่คือวิธีที่ฉันทำงาน<span class="dot-accent">.</span></h2>
+          </div>
+          <p data-i18n="cases.lead">รูปแบบงานเดียวกับที่ฉันทำจริง นำเสนอด้วยองค์กรและตัวเลขสมมติ เลือกดูทีละชิ้นได้ด้านล่าง</p>
         </div>
 
         <div class="case-note" role="note">
           <svg><use href="#i-info"/></svg>
-          <div><strong>ข้อมูลจำลองเพื่อสาธิต</strong> — ชื่อองค์กร ตัวเลข และกราฟในส่วนนี้สร้างขึ้นเพื่อแสดงวิธีการทำงานเท่านั้น ไม่ใช่ข้อมูลขององค์กรใดจริง</div>
+          <div data-i18n="cases.note"><strong>ข้อมูลจำลองเพื่อสาธิต</strong> — ชื่อองค์กร ตัวเลข และกราฟในส่วนนี้สร้างขึ้นเพื่อแสดงวิธีการทำงานเท่านั้น ไม่ใช่ข้อมูลขององค์กรใดจริง</div>
         </div>
 
-        <div class="case-tabs" role="tablist" aria-label="เลือก Case Study">
+        <div class="case-tabs" role="tablist" aria-label="Case Studies">
           <button role="tab" id="tab-cfo" aria-controls="case-cfo" aria-selected="true"><span>01</span> Carbon Footprint <svg><use href="#i-down"/></svg></button>
           <button role="tab" id="tab-ef" aria-controls="case-ef" aria-selected="false" tabindex="-1"><span>02</span> Emission Factor <svg><use href="#i-down"/></svg></button>
           <button role="tab" id="tab-sroi" aria-controls="case-sroi" aria-selected="false" tabindex="-1"><span>03</span> SROI <svg><use href="#i-down"/></svg></button>
@@ -157,34 +135,34 @@
           <div class="case-card">
             <div class="case-visual">
               <div class="viz-frame">
-                <div class="viz-title">การปล่อยก๊าซเรือนกระจกแยกตามขอบเขต</div>
-                <div class="viz-sub">tCO₂e · ปี 2568 · ข้อมูลจำลอง</div>
+                <div class="viz-title" data-i18n="cfo.vizTitle">การปล่อยก๊าซเรือนกระจกแยกตามขอบเขต</div>
+                <div class="viz-sub" data-i18n="cfo.vizSub">tCO₂e · ปี 2568 · ข้อมูลจำลอง</div>
                 <div class="legend" aria-hidden="true">
-                  <span><i style="background:var(--series-1)"></i>ขอบเขต 1</span>
-                  <span><i style="background:var(--series-2)"></i>ขอบเขต 2</span>
-                  <span><i style="background:var(--series-3)"></i>ขอบเขต 3</span>
+                  <span><i style="background:var(--series-1)"></i><span data-i18n="scope1">ขอบเขต 1</span></span>
+                  <span><i style="background:var(--series-2)"></i><span data-i18n="scope2">ขอบเขต 2</span></span>
+                  <span><i style="background:var(--series-3)"></i><span data-i18n="scope3">ขอบเขต 3</span></span>
                 </div>
-                <div class="chart-box"><canvas id="chartCfo" role="img" aria-label="กราฟแท่งซ้อนการปล่อยก๊าซเรือนกระจกแยกตามขอบเขตของ 3 หน่วยงาน (ข้อมูลจำลอง)"></canvas></div>
+                <div class="chart-box"><canvas id="chartCfo" role="img" aria-label="กราฟแท่งซ้อนการปล่อยก๊าซเรือนกระจกแยกตามขอบเขตของ 3 หน่วยงาน (ข้อมูลจำลอง)" data-i18n-aria="cfo.chartAria"></canvas></div>
               </div>
               <div class="mini-kpis">
-                <div class="mini-kpi"><b>57%</b><span>สัดส่วนขอบเขต 3</span></div>
-                <div class="mini-kpi"><b>3</b><span>หน่วยงานในขอบเขต</span></div>
-                <div class="mini-kpi"><b>42</b><span>แหล่งปล่อยที่ตรวจสอบ</span></div>
+                <div class="mini-kpi"><b>57%</b><span data-i18n="cfo.k1">สัดส่วนขอบเขต 3</span></div>
+                <div class="mini-kpi"><b>3</b><span data-i18n="cfo.k2">หน่วยงานในขอบเขต</span></div>
+                <div class="mini-kpi"><b>42</b><span data-i18n="cfo.k3">แหล่งปล่อยที่ตรวจสอบ</span></div>
               </div>
             </div>
             <div class="case-info">
-              <div class="kicker"><span>01</span> · Carbon Footprint for Organization · <span class="chip chip-sample">ข้อมูลจำลอง</span></div>
-              <h3>คาร์บอนฟุตพริ้นท์องค์กร 3 หน่วยงาน</h3>
-              <p class="by">บริษัท อาหารแปรรูปตัวอย่าง จำกัด · ปีข้อมูล 2568 · ปีฐาน 2567</p>
+              <div class="kicker"><span>01</span> · Carbon Footprint for Organization · <span class="chip chip-sample" data-i18n="sample">ข้อมูลจำลอง</span></div>
+              <h3 data-i18n="cfo.title">คาร์บอนฟุตพริ้นท์องค์กร 3 หน่วยงาน</h3>
+              <p class="by" data-i18n="cfo.by">บริษัท อาหารแปรรูปตัวอย่าง จำกัด · ปีข้อมูล 2568 · ปีฐาน 2567</p>
               <hr />
-              <div class="big-label">การปล่อยรวมขอบเขต 1+2+3</div>
+              <div class="big-label" data-i18n="cfo.bigLabel">การปล่อยรวมขอบเขต 1+2+3</div>
               <div class="big-num">18,465<small>tCO₂e</small></div>
-              <div class="big-sub">ลดลง 6.2% จากปีฐาน</div>
-              <p class="case-desc">ขอบเขต 3 จากวัตถุดิบเกษตรและบรรจุภัณฑ์เป็นสัดส่วนใหญ่ที่สุด จึงเป็นจุดที่ควรเปลี่ยนค่า EF ทุติยภูมิเป็นค่าปฐมภูมิจากแปลงจริง</p>
+              <div class="big-sub" data-i18n="cfo.bigSub">ลดลง 6.2% จากปีฐาน</div>
+              <p class="case-desc" data-i18n="cfo.desc">ขอบเขต 3 จากวัตถุดิบเกษตรและบรรจุภัณฑ์เป็นสัดส่วนใหญ่ที่สุด จึงเป็นจุดที่ควรเปลี่ยนค่า EF ทุติยภูมิเป็นค่าปฐมภูมิจากแปลงจริง</p>
               <div>
                 <details class="acc">
-                  <summary>วิธีการ</summary>
-                  <ul>
+                  <summary data-i18n="method">วิธีการ</summary>
+                  <ul data-i18n="cfo.method">
                     <li>กำหนดขอบเขตองค์กรแบบ Operational Control และขอบเขตการดำเนินงาน</li>
                     <li>เก็บ Activity Data รายเดือน ตรวจสอบกับใบเสร็จและมิเตอร์</li>
                     <li>Emission = Activity Data × EF × GWP (IPCC AR5 GWP100)</li>
@@ -192,11 +170,11 @@
                   </ul>
                 </details>
                 <details class="acc">
-                  <summary>ตารางข้อมูล</summary>
+                  <summary data-i18n="dataTable">ตารางข้อมูล</summary>
                   <div class="table-scroll"><table class="data-table" id="tableCfo"></table></div>
                 </details>
               </div>
-              <div class="callout"><b>ข้อค้นพบ</b><p>ลดขอบเขต 3 ได้มากที่สุดด้วยข้อมูลปฐมภูมิจากซัพพลายเออร์ — นำไปสู่ Case Study ถัดไป</p></div>
+              <div class="callout"><b data-i18n="finding">ข้อค้นพบ</b><p data-i18n="cfo.finding">ลดขอบเขต 3 ได้มากที่สุดด้วยข้อมูลปฐมภูมิจากซัพพลายเออร์ — นำไปสู่ Case Study ถัดไป</p></div>
             </div>
           </div>
         </article>
@@ -206,29 +184,29 @@
           <div class="case-card">
             <div class="case-visual">
               <div class="viz-frame">
-                <div class="viz-title">การกระจายค่า EF รายแปลง</div>
-                <div class="viz-sub">จำนวนแปลงในแต่ละช่วง kgCO₂e/kg · n = 45 · ข้อมูลจำลอง</div>
-                <div class="chart-box" style="height:240px"><canvas id="chartEfHist" role="img" aria-label="ฮิสโตแกรมค่า EF รายแปลง 45 แปลง (ข้อมูลจำลอง)"></canvas></div>
+                <div class="viz-title" data-i18n="ef.vizTitle">การกระจายค่า EF รายแปลง</div>
+                <div class="viz-sub" data-i18n="ef.vizSub">จำนวนแปลงในแต่ละช่วง kgCO₂e/kg · n = 45 · ข้อมูลจำลอง</div>
+                <div class="chart-box" style="height:240px"><canvas id="chartEfHist" role="img" aria-label="ฮิสโตแกรมค่า EF รายแปลง 45 แปลง (ข้อมูลจำลอง)" data-i18n-aria="ef.histAria"></canvas></div>
               </div>
               <div class="viz-frame">
-                <div class="viz-title">สัดส่วนแหล่งปล่อยใน EF เฉลี่ย</div>
-                <div class="viz-sub">% ของ 0.412 kgCO₂e/kg · ข้อมูลจำลอง</div>
-                <div class="chart-box" style="height:210px"><canvas id="chartEfSource" role="img" aria-label="กราฟแท่งแนวนอนสัดส่วนแหล่งปล่อยก๊าซเรือนกระจก (ข้อมูลจำลอง)"></canvas></div>
+                <div class="viz-title" data-i18n="ef.viz2Title">สัดส่วนแหล่งปล่อยใน EF เฉลี่ย</div>
+                <div class="viz-sub" data-i18n="ef.viz2Sub">% ของ 0.412 kgCO₂e/kg · ข้อมูลจำลอง</div>
+                <div class="chart-box" style="height:210px"><canvas id="chartEfSource" role="img" aria-label="กราฟแท่งแนวนอนสัดส่วนแหล่งปล่อยก๊าซเรือนกระจก (ข้อมูลจำลอง)" data-i18n-aria="ef.srcAria"></canvas></div>
               </div>
             </div>
             <div class="case-info">
-              <div class="kicker"><span>02</span> · Emission Factor · Cradle-to-Farm Gate · <span class="chip chip-sample">ข้อมูลจำลอง</span></div>
-              <h3>Emission Factor ปฐมภูมิของพริกหวาน</h3>
-              <p class="by">เกษตรกรตัวอย่าง 45 แปลง · หน่วยหน้าที่ 1 kg ผลผลิตสด</p>
+              <div class="kicker"><span>02</span> · Emission Factor · Cradle-to-Farm Gate · <span class="chip chip-sample" data-i18n="sample">ข้อมูลจำลอง</span></div>
+              <h3 data-i18n="ef.title">Emission Factor ปฐมภูมิของพริกหวาน</h3>
+              <p class="by" data-i18n="ef.by">เกษตรกรตัวอย่าง 45 แปลง · หน่วยหน้าที่ 1 kg ผลผลิตสด</p>
               <hr />
               <div class="big-label">Mean of Individual EF</div>
               <div class="big-num">0.412<small>kgCO₂e/kg</small></div>
               <div class="big-sub">95% CI 0.361–0.463</div>
-              <p class="case-desc">ปุ๋ยเคมีเป็น Hotspot ถึง 48% ของค่าเฉลี่ย — แปลงที่ EF สูงกว่า 0.6 ใช้ปุ๋ยไนโตรเจนเกินคำแนะนำเฉลี่ย 35%</p>
+              <p class="case-desc" data-i18n="ef.desc">ปุ๋ยเคมีเป็น Hotspot ถึง 48% ของค่าเฉลี่ย — แปลงที่ EF สูงกว่า 0.6 ใช้ปุ๋ยไนโตรเจนเกินคำแนะนำเฉลี่ย 35%</p>
               <div>
                 <details class="acc">
-                  <summary>วิธีการ</summary>
-                  <ul>
+                  <summary data-i18n="method">วิธีการ</summary>
+                  <ul data-i18n="ef.method">
                     <li>ออกแบบแบบสอบถาม Life Cycle Inventory ระดับแปลง</li>
                     <li>Cross-check ปริมาณปุ๋ย ไฟฟ้า น้ำมัน เทียบกับผลผลิต</li>
                     <li>คำนวณ EF รายแปลง, Mean พร้อม 95% CI, CV และ Ratio Estimator</li>
@@ -236,11 +214,11 @@
                   </ul>
                 </details>
                 <details class="acc">
-                  <summary>ตารางข้อมูล</summary>
+                  <summary data-i18n="dataTable">ตารางข้อมูล</summary>
                   <div class="table-scroll"><table class="data-table" id="tableEf"></table></div>
                 </details>
               </div>
-              <div class="callout"><b>ข้อค้นพบ</b><p>ปรับสูตรปุ๋ยตามค่าวิเคราะห์ดินคือมาตรการที่ลด EF ได้มากที่สุดต่อต้นทุน</p></div>
+              <div class="callout"><b data-i18n="finding">ข้อค้นพบ</b><p data-i18n="ef.finding">ปรับสูตรปุ๋ยตามค่าวิเคราะห์ดินคือมาตรการที่ลด EF ได้มากที่สุดต่อต้นทุน</p></div>
             </div>
           </div>
         </article>
@@ -250,29 +228,29 @@
           <div class="case-card">
             <div class="case-visual">
               <div class="viz-frame">
-                <div class="viz-title">มูลค่าทางสังคมแยกตามผลลัพธ์</div>
-                <div class="viz-sub">ล้านบาท · หลังหัก Deadweight และ Attribution · ข้อมูลจำลอง</div>
-                <div class="chart-box" style="height:280px"><canvas id="chartSroi" role="img" aria-label="กราฟแท่งแนวนอนมูลค่าทางสังคมแยกตามผลลัพธ์ (ข้อมูลจำลอง)"></canvas></div>
+                <div class="viz-title" data-i18n="sroi.vizTitle">มูลค่าทางสังคมแยกตามผลลัพธ์</div>
+                <div class="viz-sub" data-i18n="sroi.vizSub">ล้านบาท · หลังหัก Deadweight และ Attribution · ข้อมูลจำลอง</div>
+                <div class="chart-box" style="height:280px"><canvas id="chartSroi" role="img" aria-label="กราฟแท่งแนวนอนมูลค่าทางสังคมแยกตามผลลัพธ์ (ข้อมูลจำลอง)" data-i18n-aria="sroi.chartAria"></canvas></div>
               </div>
               <div class="mini-kpis">
-                <div class="mini-kpi"><b>2.89 ลบ.</b><span>มูลค่าทางสังคมสุทธิ</span></div>
-                <div class="mini-kpi"><b>0.85 ลบ.</b><span>งบลงทุน</span></div>
-                <div class="mini-kpi"><b>120</b><span>ผู้ตอบแบบสอบถาม</span></div>
+                <div class="mini-kpi"><b data-i18n="sroi.k1v">2.89 ลบ.</b><span data-i18n="sroi.k1">มูลค่าทางสังคมสุทธิ</span></div>
+                <div class="mini-kpi"><b data-i18n="sroi.k2v">0.85 ลบ.</b><span data-i18n="sroi.k2">งบลงทุน</span></div>
+                <div class="mini-kpi"><b>120</b><span data-i18n="sroi.k3">ผู้ตอบแบบสอบถาม</span></div>
               </div>
             </div>
             <div class="case-info">
-              <div class="kicker"><span>03</span> · Social Return on Investment · <span class="chip chip-sample">ข้อมูลจำลอง</span></div>
-              <h3>SROI โครงการตลาดชุมชนสีเขียว</h3>
-              <p class="by">โครงการสมมติ · พื้นที่ขายผลผลิตปลอดภัยของเกษตรกรรายย่อย</p>
+              <div class="kicker"><span>03</span> · Social Return on Investment · <span class="chip chip-sample" data-i18n="sample">ข้อมูลจำลอง</span></div>
+              <h3 data-i18n="sroi.title">SROI โครงการตลาดชุมชนสีเขียว</h3>
+              <p class="by" data-i18n="sroi.by">โครงการสมมติ · พื้นที่ขายผลผลิตปลอดภัยของเกษตรกรรายย่อย</p>
               <hr />
-              <div class="big-label">มูลค่าทางสังคมต่องบลงทุน 1 บาท</div>
-              <div class="big-num">3.40<small>บาท</small></div>
-              <div class="big-sub">SROI ratio หลัง Sensitivity analysis</div>
-              <p class="case-desc">รายได้ที่เพิ่มขึ้นของเกษตรกรเป็นผลลัพธ์หลัก ส่วนสุขภาพจากการลดใช้สารเคมีมีความอ่อนไหวต่อสมมติฐานสูงสุด</p>
+              <div class="big-label" data-i18n="sroi.bigLabel">มูลค่าทางสังคมต่องบลงทุน 1 บาท</div>
+              <div class="big-num" data-i18n="sroi.bigNum">3.40<small>บาท</small></div>
+              <div class="big-sub" data-i18n="sroi.bigSub">SROI ratio หลัง Sensitivity analysis</div>
+              <p class="case-desc" data-i18n="sroi.desc">รายได้ที่เพิ่มขึ้นของเกษตรกรเป็นผลลัพธ์หลัก ส่วนสุขภาพจากการลดใช้สารเคมีมีความอ่อนไหวต่อสมมติฐานสูงสุด</p>
               <div>
                 <details class="acc">
-                  <summary>วิธีการ</summary>
-                  <ul>
+                  <summary data-i18n="method">วิธีการ</summary>
+                  <ul data-i18n="sroi.method">
                     <li>Stakeholder mapping และ Theory of Change</li>
                     <li>แบบสอบถามก่อน–หลัง เก็บข้อมูล 120 ราย</li>
                     <li>กำหนด Indicator และ Financial Proxy ของแต่ละผลลัพธ์</li>
@@ -280,42 +258,92 @@
                   </ul>
                 </details>
                 <details class="acc">
-                  <summary>ตารางข้อมูล</summary>
+                  <summary data-i18n="dataTable">ตารางข้อมูล</summary>
                   <div class="table-scroll"><table class="data-table" id="tableSroi"></table></div>
                 </details>
               </div>
-              <div class="callout"><b>ข้อค้นพบ</b><p>ควรเก็บข้อมูลผลตรวจสุขภาพเพิ่มในรอบถัดไป เพื่อลดความไม่แน่นอนของผลลัพธ์ด้านสุขภาพ</p></div>
+              <div class="callout"><b data-i18n="finding">ข้อค้นพบ</b><p data-i18n="sroi.finding">ควรเก็บข้อมูลผลตรวจสุขภาพเพิ่มในรอบถัดไป เพื่อลดความไม่แน่นอนของผลลัพธ์ด้านสุขภาพ</p></div>
             </div>
           </div>
         </article>
       </div>
     </section>
 
-    <!-- ================= 04 Skills ================= -->
-    <section class="section section-soft" id="skills" data-rail>
+    <!-- ================= 03 Work · Tools I built (coverflow) ================= -->
+    <section class="section tools" id="tools" data-rail>
       <div class="container">
         <div class="split-head">
-          <h2><span class="soft">Core Expertise</span>ทักษะที่ใช้ทำงานทุกวัน<span class="dot-accent">.</span></h2>
-          <p>ผสมความรู้ด้านมาตรฐานก๊าซเรือนกระจก การประเมินผลกระทบทางสังคม และการจัดการข้อมูล</p>
+          <div>
+            <span class="eyebrow">Work · Tools I built</span>
+            <h2 data-i18n="tools.title"><span class="soft">นอกจากวิเคราะห์ข้อมูล</span>ฉันสร้างเครื่องมือเองด้วย<span class="dot-accent">.</span></h2>
+          </div>
+          <p data-i18n="tools.lead">เว็บแอปที่ทำให้การเก็บ ตรวจ และสรุปข้อมูลความยั่งยืนเร็วขึ้น — ลากหรือปัดเพื่อเลื่อน คลิกการ์ดตรงกลางเพื่อดูรายละเอียด</p>
         </div>
-        <div class="skills">
-          <div class="skill"><span class="skill-no">01</span><h3>GHG &amp; Carbon Assessment</h3><p>CFO, Scope 1, 2 และ Scope 3 ที่เลือก, Life Cycle Inventory, Emission Factor, System Boundary, IPCC AR5 GWP100</p></div>
-          <div class="skill"><span class="skill-no">02</span><h3>Social Impact Assessment</h3><p>Social Return on Investment (SROI), ออกแบบแบบสอบถาม, เก็บข้อมูลภาคสนาม</p></div>
-          <div class="skill"><span class="skill-no">03</span><h3>Data &amp; Analysis</h3><p>ตรวจสอบข้อมูลปฐมภูมิ, Cross-check, ติดตามแหล่งที่มา, Excel, PivotTables, Dashboard</p></div>
-          <div class="skill"><span class="skill-no">04</span><h3>Technical Reporting</h3><p>เอกสารระเบียบวิธี, รายงานทางเทคนิค, ข้อเสนอแนะ และรายงานผู้บริหาร</p></div>
+      </div>
+      <div class="flow" aria-roledescription="carousel" aria-label="Tools I built">
+        <div class="flow-stage" id="flowStage" tabindex="0" aria-describedby="flowHelp"></div>
+        <p class="visually-hidden" id="flowHelp" data-i18n="tools.help">ใช้ปุ่มลูกศรซ้ายขวาเพื่อเลื่อน กด Enter เพื่อดูรายละเอียด</p>
+        <div class="flow-controls">
+          <div class="flow-dots" id="flowDots" role="tablist" aria-label="Tools"></div>
+          <span class="flow-sep" aria-hidden="true"></span>
+          <span class="flow-caption" id="flowCaption" aria-live="polite"></span>
+          <button class="flow-play" id="flowPlay" type="button"></button>
         </div>
       </div>
     </section>
 
-    <!-- ================= 05 Start / contact ================= -->
-    <section class="start" id="start" data-rail>
+    <dialog class="modal" id="productModal" aria-labelledby="modalTitle">
+      <button class="btn btn-outline btn-icon modal-close" id="modalClose" aria-label="ปิด" data-i18n-aria="close"><svg><use href="#i-close"/></svg></button>
+      <div class="modal-media" id="modalMedia"></div>
+      <div class="modal-body">
+        <div class="modal-tags" id="modalTags"></div>
+        <h3 id="modalTitle"></h3>
+        <p id="modalDesc"></p>
+        <ul id="modalFeatures"></ul>
+      </div>
+      <div class="modal-actions" id="modalActions"></div>
+    </dialog>
+
+    <!-- ================= 04 About ================= -->
+    <section class="section section-soft" id="about" data-rail>
       <div class="container">
-        <span class="eyebrow">Let's work together</span>
-        <h2 style="margin-top:18px">มาเปลี่ยนข้อมูล<br />ให้เป็นการตัดสินใจกัน<span class="dot-accent">.</span></h2>
-        <p>เปิดรับงานด้าน Sustainability, ESG, GHG และ Impact Assessment รวมถึงสร้างเครื่องมือข้อมูลสำหรับทีม</p>
+        <div class="split-head">
+          <div>
+            <span class="eyebrow">About</span>
+            <h2 data-i18n="about.title"><span class="soft">Core Expertise</span>ทักษะที่ฉันนำมาให้ทีม<span class="dot-accent">.</span></h2>
+          </div>
+          <p data-i18n="about.lead">ผสมความรู้ด้านมาตรฐานก๊าซเรือนกระจก การประเมินผลกระทบทางสังคม และการจัดการข้อมูล</p>
+        </div>
+        <div class="skills">
+          <div class="skill"><span class="skill-no">01</span><h3>GHG &amp; Carbon Assessment</h3><p data-i18n="s1">CFO, Scope 1, 2 และ Scope 3 ที่เลือก, Life Cycle Inventory, Emission Factor, System Boundary, IPCC AR5 GWP100</p></div>
+          <div class="skill"><span class="skill-no">02</span><h3>Social Impact Assessment</h3><p data-i18n="s2">Social Return on Investment (SROI), ออกแบบแบบสอบถาม, เก็บข้อมูลภาคสนาม</p></div>
+          <div class="skill"><span class="skill-no">03</span><h3>Data &amp; Analysis</h3><p data-i18n="s3">ตรวจสอบข้อมูลปฐมภูมิ, Cross-check, ติดตามแหล่งที่มา, Excel, PivotTables, Dashboard</p></div>
+          <div class="skill"><span class="skill-no">04</span><h3>Technical Reporting</h3><p data-i18n="s4">เอกสารระเบียบวิธี, รายงานทางเทคนิค, ข้อเสนอแนะ และรายงานผู้บริหาร</p></div>
+        </div>
+        <div class="creds">
+          <div class="cred">
+            <span class="kicker" data-i18n="edu.label">การศึกษา</span>
+            <h3 data-i18n="edu.school">มหาวิทยาลัยเกษตรศาสตร์</h3>
+            <p data-i18n="edu.degree">ศิลปศาสตรบัณฑิต สาขารัฐประศาสนศาสตร์ · 2019–2023</p>
+          </div>
+          <div class="cred">
+            <span class="kicker" data-i18n="train.label">การอบรม</span>
+            <h3>Thailand Sustainability Academy</h3>
+            <p data-i18n="train.course">Sustainability Essentials for Supplier (รุ่น 2) · GHG Inventory for Organizations Scope 1 &amp; 2 · ธ.ค. 2025</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 05 Contact ================= -->
+    <section class="start" id="contact" data-rail>
+      <div class="container">
+        <span class="eyebrow" data-i18n="contact.eyebrow">ติดต่อ</span>
+        <h2 style="margin-top:18px" data-i18n="contact.title">มาเปลี่ยนข้อมูล<br />ให้เป็นการตัดสินใจกัน<span class="dot-accent">.</span></h2>
+        <p data-i18n="contact.lead">เปิดรับงานประจำด้าน Sustainability / ESG และงานโปรเจกต์ด้าน GHG และ SROI — ส่งอีเมลหาฉัน หรือดาวน์โหลด Resume ได้เลย</p>
         <div class="intro-actions">
           <a class="btn btn-accent btn-lg" href="mailto:anapat.t@outlook.com">anapat.t@outlook.com <svg><use href="#i-mail"/></svg></a>
-          <a class="btn btn-outline btn-lg" href="assets/Anapat_Tantikulanon_Resume.pdf" download>ดาวน์โหลด Resume <svg><use href="#i-down"/></svg></a>
+          <a class="btn btn-outline btn-lg" href="assets/Anapat_Tantikulanon_Resume.pdf" download><span data-i18n="contact.resume">ดาวน์โหลด Resume</span> <svg><use href="#i-down"/></svg></a>
         </div>
       </div>
     </section>
@@ -324,11 +352,13 @@
   <footer class="footer">
     <div class="container">
       <span>© <span id="year">2026</span> Anapat Tantikulanon · Bangkok, Thailand</span>
-      <span>ตัวเลขใน Case Studies เป็นข้อมูลจำลองเพื่อสาธิต</span>
+      <span data-i18n="footer.note">ตัวเลขใน Case Studies เป็นข้อมูลจำลองเพื่อสาธิต</span>
     </div>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="js/lang-en.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/products.js"></script>
   <script src="js/main.js"></script>
 </body>
