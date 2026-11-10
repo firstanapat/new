@@ -19,8 +19,9 @@ window.I18N_EN = {
 
   /* hero */
   "hero.status": "Open to work · Sustainability / ESG roles",
-  "hero.title": "Real data<span class=\"dot-accent\">.</span> Real impact<span class=\"dot-accent\">.</span>",
-  "hero.lead": "I'm Anapat, a sustainability analyst with 2.5 years in food supply chains. I turn GHG inventories, farm-level emission factors and SROI studies into numbers that management can act on.",
+  "hero.title": "<span class=\"nb\">Real data<span class=\"dot-accent\">.</span></span> <span class=\"nb\">Real impact<span class=\"dot-accent\">.</span></span>",
+  "hero.lead": "Sustainability analyst with 2.5 years in the food industry.<br class=\"br-desk\" /> I turn GHG and social impact data into numbers management can act on.",
+  "hero.sub": "<span>Corporate carbon footprints</span><span>Emission factors from real farms</span><span>SROI assessments</span>",
   "hero.cta1": "See my work",
   "r1.num": "2.5<small>years</small>",
   "r1.title": "In food supply chains",

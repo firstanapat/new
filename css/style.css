@@ -188,10 +188,19 @@ html.i18n-wait body { visibility: hidden; }
 /* ---------- Intro / hero ---------- */
 .intro { padding: 72px 0 40px; text-align: center; overflow: hidden; }
 .intro .results { margin-top: 72px; text-align: left; }
+.intro .lead { max-width: 860px; color: var(--ink-2); text-wrap: balance; }
+.nb { white-space: nowrap; }
+.lead-sub {
+  margin: 18px auto 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 10px;
+  font-size: 14px; color: var(--muted);
+}
+.lead-sub span { display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; }
+.lead-sub span + span::before { content: ""; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
+@media (max-width: 480px) { .lead-sub { flex-direction: column; align-items: center; } .lead-sub span::before { display: none; } }
 .tools { overflow: hidden; }
 .tools .flow { margin-top: 0; }
 .intro h1 { font-size: clamp(38px, 6.4vw, 72px); letter-spacing: -0.02em; line-height: 1.12; margin-top: 18px; }
-.intro .lead { margin: 20px auto 0; max-width: 620px; font-size: clamp(16px, 2vw, 19px); color: var(--muted); line-height: 1.7; }
+.intro .lead { margin: 20px auto 0; max-width: 860px; font-size: clamp(16px, 2vw, 19px); color: var(--muted); line-height: 1.7; }
 
 /* coverflow */
 .flow { position: relative; margin-top: 48px; user-select: none; -webkit-user-select: none; }
