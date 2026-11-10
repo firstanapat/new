@@ -134,7 +134,5 @@ window.I18N_EN = {
   "res.training": "Training",
   "res.trainDate": "Dec 2025",
   "res.course": "Sustainability Essentials for Supplier (Batch 2)",
-  "res.pdf": "Original PDF",
-  "res.openPdf": "Open the PDF",
   "res.footerBack": "← Back to portfolio"
 };
