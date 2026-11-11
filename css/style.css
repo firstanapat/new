@@ -409,6 +409,9 @@ dialog.modal::backdrop { background: rgba(31,33,36,.55); backdrop-filter: blur(3
 .r-skill + .r-skill { margin-top: 18px; }
 .r-skill h3 { font-size: 15.5px; }
 .r-skill p { font-size: 14px; color: var(--muted); margin-top: 4px; line-height: 1.6; }
+.r-skill ul { margin: 6px 0 0; padding-left: 18px; display: grid; gap: 2px; font-size: 14px; color: var(--muted); line-height: 1.55; }
+.r-skill li::marker { color: var(--accent); }
+.r-job + .r-job { margin-top: 20px; }
 .r-summary { font-size: 18px; line-height: 1.75; color: var(--ink-2); }
 .r-job-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; align-items: baseline; }
 .r-job-head h3 { font-size: 19px; }
