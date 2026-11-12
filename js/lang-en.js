@@ -107,7 +107,7 @@ window.I18N_EN = {
   /* contact */
   "contact.eyebrow": "Contact",
   "contact.title": "Let's turn data<br />into decisions<span class=\"dot-accent\">.</span>",
-  "contact.lead": "Open to full-time Sustainability / ESG roles and to project work on GHG and SROI. Email me or download my resume.",
+  "contact.lead": "Open to full-time Sustainability / ESG roles and to project work on GHG and SROI. Call, email or download my resume.",
   "contact.resume": "Download resume",
   "footer.note": "Numbers in the case studies are sample data for demonstration",
 
