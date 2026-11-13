@@ -17,14 +17,14 @@
   /* ---------- Language ---------- */
   function lang() { return (window.I18N && window.I18N.lang) || "th"; }
   var L = {
-    th: { sample: "ตัวอย่าง", details: "ดูรายละเอียด", open: "เปิดเว็บ", close: "ปิด", pause: "หยุดเลื่อนอัตโนมัติ", play: "เลื่อนอัตโนมัติ", shot: "ภาพหน้าจอ ",
+    th: { sample: "ตัวอย่าง", wip: "กำลังพัฒนา", details: "ดูรายละเอียด", open: "เปิดเว็บ", close: "ปิด", pause: "หยุดเลื่อนอัตโนมัติ", play: "เลื่อนอัตโนมัติ", shot: "ภาพหน้าจอ ",
       units: ["โรงงาน A", "โรงงาน B", "สำนักงานใหญ่"], scopes: ["ขอบเขต 1", "ขอบเขต 2", "ขอบเขต 3"],
       cfoHead: ["หน่วยงาน", "ขอบเขต 1", "ขอบเขต 2", "ขอบเขต 3", "รวม 2568", "ปีฐาน 2567", "เปลี่ยนแปลง"],
       efHead: ["ช่วง EF (kgCO₂e/kg)", "จำนวนแปลง"], srcHead: ["แหล่งปล่อย", "สัดส่วน"], plots: " แปลง",
       src: ["ปุ๋ยเคมี", "ไฟฟ้า (ปั๊มน้ำ)", "น้ำมันเชื้อเพลิง", "สารเคมีเกษตร", "ปุ๋ยคอก"],
       sroi: ["รายได้เกษตรกรเพิ่มขึ้น", "สุขภาพจากการลดสารเคมี", "ค่าเดินทางผู้บริโภคที่ลดลง", "ความสัมพันธ์ในชุมชน", "ลด CO₂ จากการขนส่ง"],
       sroiHead: ["ผลลัพธ์", "มูลค่า (ล้านบาท)"], total: "รวม", mTHB: " ล้านบาท", locale: "th-TH" },
-    en: { sample: "Sample", details: "View details", open: "Open site", close: "Close", pause: "Pause autoplay", play: "Autoplay", shot: "Screenshot of ",
+    en: { sample: "Sample", wip: "In progress", details: "View details", open: "Open site", close: "Close", pause: "Pause autoplay", play: "Autoplay", shot: "Screenshot of ",
       units: ["Plant A", "Plant B", "Head office"], scopes: ["Scope 1", "Scope 2", "Scope 3"],
       cfoHead: ["Site", "Scope 1", "Scope 2", "Scope 3", "Total 2025", "Base year 2024", "Change"],
       efHead: ["EF range (kgCO₂e/kg)", "Plots"], srcHead: ["Source", "Share"], plots: " plots",
@@ -33,6 +33,11 @@
       sroiHead: ["Outcome", "Value (THB million)"], total: "Total", mTHB: " THB million", locale: "en-US" }
   };
   function T() { return L[lang()] || L.th; }
+  function badge(p) {
+    if (p.wip) return '<span class="chip chip-wip">' + T().wip + "</span>";
+    if (p.sample) return '<span class="chip chip-sample">' + T().sample + "</span>";
+    return "";
+  }
   function P(p, field) { return lang() === "en" && p.en && p.en[field] ? p.en[field] : p[field]; }
 
   var yearEl = $("#year");
@@ -167,7 +172,7 @@
     $("#modalTitle").textContent = p.title;
     $("#modalDesc").textContent = P(p, "desc");
     $("#modalTags").innerHTML =
-      (p.sample ? '<span class="chip chip-sample">' + T().sample + "</span>" : "") +
+      badge(p) +
       p.tags.map(function (t) { return '<span class="chip">' + esc(t) + "</span>"; }).join("");
     $("#modalFeatures").innerHTML = (P(p, "features") || []).map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("");
     $("#modalActions").innerHTML =
@@ -191,10 +196,10 @@
       var INTERVAL = 4500;
 
       function fillCard(card, p) {
-        card.setAttribute("aria-label", p.title + (p.sample ? " (" + T().sample + ")" : ""));
+        var status = p.wip ? T().wip : p.sample ? T().sample : "";
+        card.setAttribute("aria-label", p.title + (status ? " (" + status + ")" : ""));
         card.innerHTML =
-          '<div class="flow-media">' + mediaHtml(p) +
-          (p.sample ? '<span class="chip chip-sample">' + T().sample + "</span>" : "") +
+          '<div class="flow-media">' + mediaHtml(p) + badge(p) +
           '<span class="flow-open">' + T().details + ' <svg><use href="#i-expand"/></svg></span></div>' +
           '<div class="flow-body"><div class="kicker">' + esc(p.kicker || p.tags.slice(0, 2).join(" / ")) + "</div>" +
           "<h3>" + esc(p.title) + "</h3></div>";

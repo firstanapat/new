@@ -1,117 +1,94 @@
 /* ==========================================================================
-   Web Products — แก้ไขรายการการ์ดใน 3D carousel ที่ไฟล์นี้ไฟล์เดียว
+   Tools I built — แก้ไขรายการการ์ดใน 3D carousel ที่ไฟล์นี้ไฟล์เดียว
    --------------------------------------------------------------------------
    title   : ชื่อ (ใช้ทั้งสองภาษา)
    kicker  : ข้อความเล็กเหนือชื่อการ์ด
    desc / features : ภาษาไทย  ·  en.desc / en.features : ภาษาอังกฤษ
-   image   : URL รูปหน้าจอ (เช่น "assets/img/cfo-collector.jpg") — ถ้าเว้นว่าง จะวาดภาพตัวอย่างให้
+   image   : URL รูปหน้าจอ (เช่น "assets/img/cfo-dashboard.jpg") — ถ้าเว้นว่าง จะวาดภาพตัวอย่างให้
    url     : ลิงก์เว็บจริง — ถ้าเว้นว่าง จะไม่แสดงปุ่ม "เปิดเว็บ"
-   sample  : true = ยังเป็นการ์ดตัวอย่าง (แสดงป้าย "ตัวอย่าง")
+   wip     : true = กำลังพัฒนา (แสดงป้าย "กำลังพัฒนา")
    layout  : รูปแบบภาพตัวอย่าง: "dashboard" | "upload" | "form" | "table" | "site"
-   ⚠️ รูปหน้าจอและลิงก์ต้องไม่มีข้อมูลจริงของนายจ้าง
+   ⚠️ ทุกการ์ดต้องเป็นงานที่สร้างเองจริง และรูป/ลิงก์ต้องไม่มีข้อมูลจริงของนายจ้าง
    ========================================================================== */
 window.PRODUCTS = [
   {
-    title: "CFO Data Collector",
-    kicker: "Web App / Google Apps Script",
-    desc: "เว็บแอปให้แต่ละหน่วยงานอัปโหลดไฟล์ Excel บัญชีก๊าซเรือนกระจก แล้วดึงข้อมูลเข้าฐานข้อมูลกลางและสรุปเป็น Dashboard อัตโนมัติ",
+    title: "CFO Dashboard",
+    kicker: "Google Apps Script / Google Sheets",
+    desc: "รวมไฟล์คาร์บอนฟุตพริ้นท์องค์กรตามแบบฟอร์ม TGO ของทุกหน่วยงานไว้ในที่เดียว แล้วแสดงเป็น Dashboard บนเว็บ แทนการเปิดไฟล์ Excel ทีละไฟล์",
     features: [
-      "อัปโหลดไฟล์ .xlsx หลายหน่วยงานผ่านหน้าเว็บเดียว",
-      "อ่านชีต Fr-04.1 / Fr-05 และแยก Scope 1, 2, 3 อัตโนมัติ",
-      "เก็บข้อมูลลง Google Sheets เป็นฐานข้อมูลกลาง",
-      "สรุปผลรวมและเทียบปีฐานบน Dashboard"
+      "นำเข้าไฟล์ .xlsx ผ่านเมนูใน Google Sheets หรือ Import อัตโนมัติทุกเช้าจากโฟลเดอร์ใน Google Drive",
+      "อ่านชีต Fr-04.1 และ Fr-05 อัตโนมัติ แล้วแยกตาม Scope 1, 2 และ 3",
+      "แตก tCO₂e เป็นรายเดือนตามสัดส่วนกิจกรรม โดยผลรวมตรงกับ Fr-04.1 เสมอ",
+      "Dashboard เลือกหน่วยงานและปี เทียบปีฐาน แสดง 10 รายการที่ปล่อยมากที่สุด และค้นหารายการได้"
     ],
     en: {
-      desc: "A web app where each site uploads its GHG inventory Excel file. It pulls the data into one central database and builds the dashboard automatically.",
+      desc: "Brings every site's corporate carbon footprint file (TGO forms) into one place and shows it as a web dashboard, instead of opening Excel files one by one.",
       features: [
-        "Upload .xlsx files from several sites through one page",
-        "Reads the Fr-04.1 / Fr-05 sheets and splits Scope 1, 2 and 3 automatically",
-        "Stores everything in Google Sheets as the central database",
-        "Dashboard shows totals and the change against the base year"
+        "Import .xlsx files from a Google Sheets menu, or automatically every morning from a Google Drive folder",
+        "Reads the Fr-04.1 and Fr-05 sheets automatically and splits them by Scope 1, 2 and 3",
+        "Spreads tCO₂e across months by activity share, so the total always matches Fr-04.1",
+        "Dashboard with site and year filters, base-year comparison, the top 10 sources and a searchable item table"
       ]
     },
-    tags: ["Google Apps Script", "HTML", "Google Sheets"],
+    tags: ["Google Apps Script", "Google Sheets", "Chart.js"],
     image: "",
     url: "",
-    sample: false,
     layout: "upload",
     accent: "#12a05c",
     tint: "#e3f4ea"
   },
   {
-    title: "Farm EF Survey",
-    kicker: "Web Form / Field Data",
-    desc: "แบบฟอร์มเก็บข้อมูล Life Cycle Inventory ระดับแปลงบนมือถือ พร้อมตรวจความสมเหตุสมผลของข้อมูลทันทีที่กรอก",
+    title: "CarbonMate TH",
+    kicker: "Python / AI · Personal project",
+    desc: "โปรเจกต์ส่วนตัว: เครื่องคำนวณคาร์บอนฟุตพริ้นท์องค์กรตามแนวทาง TGO ที่ตรวจสอบย้อนกลับได้ และใช้ AI ช่วยจับคู่กิจกรรมกับค่า EF ทดสอบกับบริษัทสมมติ \"Northern Valley Foods\" ซึ่งเป็นข้อมูลจำลองทั้งหมด",
     features: [
-      "กรอกได้ออฟไลน์ในพื้นที่สัญญาณอ่อน",
-      "เตือนเมื่อปริมาณปุ๋ยต่อผลผลิตผิดปกติ",
-      "คำนวณ EF รายแปลงเบื้องต้นให้เห็นทันที"
+      "Engine คำนวณจากตาราง EF ของ TGO (AR5) ที่ระบุแหล่งที่มาและเวอร์ชันทุกค่า ตรวจเทียบกับการคำนวณมือแล้ว ต่างกันไม่เกิน 0.0015%",
+      "ปฏิเสธข้อมูลผิดอัตโนมัติ: Scope ไม่ตรง หน่วยไม่ตรง รหัส EF ที่ไม่มีอยู่ หรือปริมาณติดลบ",
+      "กำลังพัฒนา: AI จับคู่ข้อความภาษาไทยกับค่า EF โดยเลือกได้เฉพาะจากตาราง ตอบได้ 3 แบบ (ตรง / ถามกลับ / ไม่พบ) พร้อมชุดทดสอบ 113 กรณี",
+      "แผนต่อไป: Dashboard บน Streamlit ส่งออกแบบฟอร์ม Fr-04.1 และบันทึก Audit log"
     ],
     en: {
-      desc: "A mobile form for collecting farm-level Life Cycle Inventory data that checks each answer for plausibility as it is entered.",
+      desc: "Personal project: an auditable corporate carbon footprint calculator that follows Thailand's TGO guidelines, with AI help to match activities to emission factors. Tested on a fictional company, \"Northern Valley Foods\", using only synthetic data.",
       features: [
-        "Works offline in areas with weak signal",
-        "Warns when fertiliser use per kg of yield looks unusual",
-        "Shows a first estimate of the plot's EF straight away"
+        "Calculation engine on the TGO (AR5) EF table, with source and version recorded for every value; checked against a hand calculation to within 0.0015%",
+        "Rejects bad input automatically: scope mismatch, unit mismatch, unknown EF ID or negative quantity",
+        "In progress: an AI matcher that maps Thai activity text to an EF, choosing only from the table and answering match / clarify / not found, with a 113-case test set",
+        "Next: a Streamlit dashboard, Fr-04.1 export and an audit log"
       ]
     },
-    tags: ["Web Form", "Mobile", "Data Validation"],
+    tags: ["Python", "Claude API", "Streamlit", "pytest"],
     image: "",
     url: "",
-    sample: true,
-    layout: "form",
-    accent: "#1aae39",
-    tint: "#d9f3e1"
+    wip: true,
+    layout: "dashboard",
+    accent: "#0075de",
+    tint: "#dcecfa"
   },
   {
-    title: "SROI Calculator",
-    kicker: "Tool / Social Impact",
-    desc: "เครื่องมือคำนวณ SROI ที่ใส่ Indicator, Financial Proxy, Deadweight และ Attribution แล้วได้ผลพร้อม Sensitivity analysis",
+    title: "Farm EF Workbook",
+    kicker: "Excel Model / LCA",
+    desc: "สมุดงาน Excel ที่แปลงคำตอบแบบสอบถามเกษตรกรเป็นค่า Emission Factor รายแปลง (kgCO₂e/kg) ใช้จริงกับข้อมูลเกษตรกร 60 ราย",
     features: [
-      "เทมเพลต Impact Map ตามหลัก Social Value",
-      "ปรับค่าสมมติฐานแล้วเห็น SROI เปลี่ยนแบบเรียลไทม์",
-      "ส่งออกตารางสรุปสำหรับรายงาน"
+      "แยกคำตอบแบบสอบถามจากชีต Raw Data อัตโนมัติด้วยสูตร LET, TEXTSPLIT และ INDEX",
+      "ดึงค่า EF อ้างอิงจากตาราง แล้วคำนวณ Activity Data × EF × GWP",
+      "คำนวณแยกตามแหล่งปล่อย เช่น ปุ๋ยเคมี ปุ๋ยคอก สารเคมีเกษตร ไฟฟ้า และน้ำมันเชื้อเพลิง",
+      "การ์ดนี้ไม่แสดงตัวเลขหรือข้อมูลเกษตรกร เพราะเป็นข้อมูลของบริษัท"
     ],
     en: {
-      desc: "An SROI calculator: enter indicators, financial proxies, deadweight and attribution, and get the ratio with a sensitivity analysis.",
+      desc: "An Excel workbook that turns farmer survey answers into a plot-level emission factor (kgCO₂e/kg). Used on real data from 60 farmers.",
       features: [
-        "Impact Map template based on Social Value principles",
-        "Change an assumption and see the SROI update live",
-        "Export a summary table for the report"
+        "Parses raw survey answers automatically with LET, TEXTSPLIT and INDEX formulas",
+        "Looks up reference EFs from a table and calculates Activity Data × EF × GWP",
+        "Breaks emissions down by source, such as chemical fertiliser, manure, agrochemicals, electricity and fuel",
+        "No numbers or farmer data are shown here, because they belong to the company"
       ]
     },
-    tags: ["JavaScript", "Calculator"],
+    tags: ["Excel", "LCA", "ISO 14067"],
     image: "",
     url: "",
-    sample: true,
     layout: "table",
     accent: "#dd5b00",
     tint: "#ffe8d4"
-  },
-  {
-    title: "Supplier GHG Portal",
-    kicker: "Portal / Scope 3",
-    desc: "พอร์ทัลให้ซัพพลายเออร์ส่งข้อมูลการปล่อยก๊าซเรือนกระจกของตนเอง เพื่อนำไปใช้คำนวณ Scope 3 ของบริษัท",
-    features: [
-      "ซัพพลายเออร์ล็อกอินและส่งข้อมูลรายปี",
-      "ตรวจความครบถ้วนของข้อมูลก่อนส่ง",
-      "สรุปอัตราการตอบกลับและคุณภาพข้อมูล"
-    ],
-    en: {
-      desc: "A portal where suppliers submit their own emissions data, which then feeds the company's Scope 3 calculation.",
-      features: [
-        "Suppliers sign in and submit data once a year",
-        "Checks that the data is complete before it is sent",
-        "Summarises response rate and data quality"
-      ]
-    },
-    tags: ["Portal", "Scope 3"],
-    image: "",
-    url: "",
-    sample: true,
-    layout: "table",
-    accent: "#c2417f",
-    tint: "#fde0ec"
   },
   {
     title: "Portfolio Website",
@@ -133,7 +110,6 @@ window.PRODUCTS = [
     tags: ["HTML", "CSS", "JavaScript", "Vercel"],
     image: "",
     url: "",
-    sample: false,
     layout: "site",
     accent: "#1f2124",
     tint: "#f1f1ef"

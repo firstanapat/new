@@ -91,6 +91,8 @@ p { margin: 0; }
   font: 500 12px/1 var(--font); background: var(--bg-soft); color: var(--ink-2); white-space: nowrap;
 }
 .chip-sample { background: #fff6d6; color: #6b5400; }
+.chip-wip { background: #e3eefc; color: #1c5cab; }
+.flow-media .chip { position: absolute; top: 14px; left: 14px; }
 .link-arrow { display: inline-flex; align-items: center; gap: 6px; color: var(--accent-ink); font-weight: 600; font-size: 14px; }
 .link-arrow svg { width: 14px; height: 14px; transition: transform .2s var(--ease); }
 .link-arrow:hover svg { transform: translate(2px, -2px); }
