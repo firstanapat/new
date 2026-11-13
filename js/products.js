@@ -89,31 +89,6 @@ window.PRODUCTS = [
     tint: "#ffe8d4"
   },
   {
-    title: "ESG KPI Dashboard",
-    kicker: "Dashboard / ESG Reporting",
-    desc: "Dashboard ติดตามตัวชี้วัด ESG รายเดือน — พลังงาน น้ำ ของเสีย และกิจกรรมชุมชน — สำหรับรายงานผู้บริหาร",
-    features: [
-      "การ์ด KPI พร้อมเทียบเป้าหมายรายปี",
-      "กราฟแนวโน้มรายเดือนแยกหน่วยงาน",
-      "ตัวกรองตามปีและหน่วยงาน"
-    ],
-    en: {
-      desc: "A monthly ESG KPI dashboard covering energy, water, waste and community activities, built for management reporting.",
-      features: [
-        "KPI cards compared against the yearly target",
-        "Monthly trend charts by site",
-        "Filters by year and by site"
-      ]
-    },
-    tags: ["Dashboard", "Chart.js"],
-    image: "",
-    url: "",
-    sample: true,
-    layout: "dashboard",
-    accent: "#0075de",
-    tint: "#dcecfa"
-  },
-  {
     title: "Supplier GHG Portal",
     kicker: "Portal / Scope 3",
     desc: "พอร์ทัลให้ซัพพลายเออร์ส่งข้อมูลการปล่อยก๊าซเรือนกระจกของตนเอง เพื่อนำไปใช้คำนวณ Scope 3 ของบริษัท",
