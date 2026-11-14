@@ -34,7 +34,7 @@
     calc: { th: "ตรวจและคำนวณ", en: "Check & calculate" },
     resTitle: { th: "ผลการตรวจ", en: "Checks" },
     chkUnit: { th: "หน่วยตรงกัน · kWh", en: "Units match · kWh" },
-    chkScope: { th: "ขอบเขต 2 · ไฟฟ้าที่ซื้อ", en: "Scope 2 · purchased electricity" },
+    chkScope: { th: "ขอบเขต 2 · ไฟฟ้าที่ซื้อมาใช้", en: "Scope 2 · purchased electricity" },
     chkId: { th: "รหัส ELEC-001 อยู่ในตาราง", en: "ELEC-001 is in the table" },
     emissions: { th: "การปล่อยก๊าซเรือนกระจก", en: "Greenhouse gas emissions" },
     source: { th: "อบก. ฉบับ ก.พ. 2569", en: "TGO, Feb 2026 edition" },
@@ -127,6 +127,7 @@
       en: "CarbonMate TH screen mockup with sample data: 12,000 kWh of factory electricity, factor ELEC-001 at 0.475 kgCO₂e/kWh, a result of 5.70 tCO₂e, and the AI part still in development"
     },
     start: "input",
+    cover: 3,          // card image = the result after beat 3 (assets/img/card-carbonmate-th*.webp)
     state: { activity: "", amount: "", unit: "", efRows: false, picked: false, checked: false, t: 0, ai: "", aiShown: false },
     screens: cmScreens,
     steps: [
@@ -218,19 +219,19 @@
     [["elec", 410], ["travel", 160], ["commute", 90], ["cars", 35], ["waste", 30]]
   ];
   var CF = {
-    importTitle: { th: "นำเข้าไฟล์ตามแบบ อบก.", en: "Import TGO workbooks" },
+    importTitle: { th: "นำเข้าไฟล์ตามแบบฟอร์ม อบก.", en: "Import TGO workbooks" },
     importSub: { th: "Google Sheets · Apps Script", en: "Google Sheets · Apps Script" },
-    importBtn: { th: "นำเข้าอัตโนมัติ", en: "Import all" },
+    importBtn: { th: "นำเข้าทั้งหมด", en: "Import all" },
     master: { th: "ชีตรวม", en: "Master sheet" },
     empty: { th: "ยังไม่มีข้อมูล", en: "No data yet" },
     dash: { th: "CFO Dashboard", en: "CFO Dashboard" },
     year: { th: "ปี 2568", en: "2025" },
     all: { th: "ทุกหน่วยงาน", en: "All sites" },
     total: { th: "การปล่อยรวม", en: "Total emissions" },
-    matches: { th: "✓ ยอดรายเดือนรวมตรงกับ Fr‑04.1", en: "✓ Monthly figures add up to Fr‑04.1" },
+    matches: { th: "✓ ยอดทุกเดือนรวมกันตรงกับ Fr‑04.1", en: "✓ Monthly figures add up to Fr‑04.1" },
     down: { th: "ลดลง {p}% จากปีฐาน 2567", en: "Down {p}% from the 2024 base year" },
     scope: { th: "ขอบเขต", en: "Scope" },
-    top: { th: "แหล่งปล่อยสูงสุด · 5 จาก 10", en: "Top sources · 5 of 10" },
+    top: { th: "ปล่อยมากที่สุด 5 อันดับแรก (จาก 10)", en: "Top 5 of 10 sources" },
     byMonth: { th: "รายเดือนแยกตามขอบเขต", en: "By month and scope" }
   };
 
@@ -289,6 +290,7 @@
       en: "CFO Dashboard screen mockup with sample data: three site workbooks imported, 18,465 tCO₂e by month and scope, then Plant A at 11,160 tCO₂e, down 6.4% from the base year"
     },
     start: "files",
+    cover: 2,          // card image = the monthly dashboard after beat 2
     state: { imported: 0, site: -1, total: 0 },
     screens: cfoScreens,
     steps: [
@@ -339,9 +341,9 @@
     more: { th: "อีก 57 ราย", en: "57 more" },
     head: [{ th: "แปลง", en: "Plot" }, { th: "ปุ๋ย", en: "Fertiliser" }, { th: "เชื้อเพลิง", en: "Fuel" }, { th: "ผลผลิตสด", en: "Fresh yield" }],
     rows: { th: "แถว", en: "rows" },
-    unitFix: { th: "แปลงหน่วยเป็น กก. แล้ว 3 รายการ", en: "3 entries converted to kg" },
-    unitBad: { th: "หน่วยไม่ตรง 3 รายการ", en: "3 entries with mixed units" },
-    formula: { th: "EF แปลง = Σ (กิจกรรม × EF) ÷ ผลผลิตสด", en: "Plot EF = Σ (activity × EF) ÷ fresh yield" },
+    unitFix: { th: "แปลงหน่วยเป็นกิโลกรัมแล้ว 3 แถว", en: "3 rows converted to kg" },
+    unitBad: { th: "หน่วยไม่ตรง 3 แถว", en: "3 rows with mixed units" },
+    formula: { th: "EF ของแปลง = Σ (กิจกรรม × EF) ÷ ผลผลิตสด", en: "Plot EF = Σ (activity × EF) ÷ fresh yield" },
     mean: { th: "ค่าเฉลี่ย EF ของ 60 แปลง", en: "Mean EF of 60 plots" },
     plots: { th: "จำนวนแปลงตามช่วง EF", en: "Plots by EF band" }
   };

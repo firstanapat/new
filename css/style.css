@@ -310,6 +310,25 @@ html.i18n-wait body { visibility: hidden; }
 .project-result strong { color: var(--accent-ink); font-size: 14px; }
 .project-result p { color: var(--ink-2); }
 
+/* story head: copy on the left, the chapter's scene image on the right */
+.project-story-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); align-items: center; gap: clamp(20px, 4vw, 56px); margin-bottom: clamp(24px, 3.5vw, 40px); }
+.story-scene { position: relative; margin: 0; aspect-ratio: 16 / 10; border-radius: var(--r-lg); overflow: hidden; background: var(--bg-soft); }
+.story-scene img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.story-scene .media-label { opacity: .92; }
+/* dark chapter: the scene has a dark wall on its left, so it fades into the page */
+.project-story--dark .story-scene { border-radius: 0; background: transparent; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 38%); mask-image: linear-gradient(90deg, transparent 0, #000 38%); }
+.project-story--dark .story-scene .media-label { left: auto; right: 10px; }
+@media (max-width: 700px) {
+  .project-story-head { grid-template-columns: 1fr; gap: 16px; }
+  .story-scene { order: -1; aspect-ratio: 16 / 9; }
+  .project-story--dark .story-scene { -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent); mask-image: linear-gradient(180deg, #000 70%, transparent); }
+}
+
+/* card → story: the card image morphs into the live frame (js/motion.js) */
+::view-transition-group(story-media) { animation-duration: .55s; animation-timing-function: var(--ease); }
+::view-transition-old(story-media), ::view-transition-new(story-media) { height: 100%; object-fit: cover; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .3s; }
+
 /* chapter label above each story title: "01  Personal project · In development" */
 .story-chapter { display: flex; align-items: baseline; gap: 12px; margin-bottom: 10px; color: var(--accent-ink); font-size: 14px; font-weight: 700; }
 .story-num { font-size: 13px; letter-spacing: .08em; color: var(--muted); font-variant-numeric: tabular-nums; }
@@ -329,6 +348,8 @@ html.i18n-wait body { visibility: hidden; }
   background:
     radial-gradient(50% 40% at 85% 12%, rgba(18,160,92,.22), transparent 70%),
     radial-gradient(40% 50% at 8% 88%, rgba(110,231,168,.08), transparent 70%),
+    linear-gradient(180deg, rgba(13,42,28,.35), rgba(13,42,28,.75)),
+    url("../assets/img/texture-leaf.webp") center / cover,
     var(--story-bg);
 }
 .project-story--dark + .project-story { border-top-color: transparent; }
@@ -555,9 +576,23 @@ html.i18n-wait body { visibility: hidden; }
 @media (max-width: 520px) { .skills { grid-template-columns: 1fr; } }
 
 /* ---------- Start / contact ---------- */
-.start { text-align: center; padding: 120px 0 96px; }
+/* closing dark chapter, same leaf texture as CarbonMate TH */
+.start {
+  text-align: center; padding: clamp(96px, 12vw, 150px) 0 clamp(80px, 10vw, 120px); color: #fff;
+  background:
+    radial-gradient(45% 55% at 50% 0%, rgba(18,160,92,.28), transparent 70%),
+    linear-gradient(180deg, rgba(13,42,28,.4), rgba(13,42,28,.8)),
+    url("../assets/img/texture-leaf.webp") center / cover,
+    #0d2a1c;
+}
 .start h2 { font-size: clamp(36px, 5.6vw, 64px); letter-spacing: -0.02em; }
-.start p { color: var(--muted); font-size: 18px; margin: 18px auto 0; max-width: 560px; }
+.start .dot-accent { color: #6ee7a8; }
+.start .eyebrow { color: #b9cfc1; }
+.start .eyebrow::before { background: #6ee7a8; }
+.start p { color: #b9cfc1; font-size: 18px; margin: 18px auto 0; max-width: 560px; }
+.start .btn-outline { background: transparent; color: #fff; border-color: rgba(255,255,255,.35); }
+.start .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.06); }
+.start + .footer, main + .footer { border-top: 0; }
 .start .intro-actions { margin-top: 36px; }
 
 .footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 13px; }

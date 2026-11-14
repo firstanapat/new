@@ -9,7 +9,7 @@ Static site (HTML / CSS / JS, no build step). Deployed on Vercel from this repo.
 - `js/stories.js`: the four walkthroughs (screens + beats): CarbonMate TH, CFO Dashboard, Farm EF Workbook, SROI.
 - `js/charts.js`: inline SVG charts for the walkthrough screens (columns, stacked columns, ranked bars, donut).
 - `js/motion.js`: hero count-up. The hero entrance itself is CSS.
-- `assets/img/`: shared profile photo and ImageGen showcase WebPs
+- `assets/img/`: profile photo, card captures, ImageGen scenes and texture, OG image. Sources and prompts: `docs/images.md`
 
 Preview locally:
 

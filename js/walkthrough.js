@@ -412,11 +412,13 @@
         });
     },
 
-    /* Ask for `count` beats to be done; the queue plays them in order. */
+    /* Ask for `count` beats to be done; the queue plays them in order.
+       Returns a promise that settles when the queue is empty. */
     play: function (count, via) {
       this.target = Math.max(0, Math.min(count, this.steps.length));
       this.via = via || "scroll";
-      if (!this.running) this.drain();
+      if (!this.running) this.drained = this.drain();
+      return this.drained;
     },
 
     drain: function () {
@@ -440,11 +442,17 @@
       return loop();
     },
 
-    finalState: function () {
+    /* Jump straight to the state after `n` beats, without animation. */
+    showBeat: function (n) {
       this.resetReq = true;
       this.allInstant = true;
-      this.play(this.steps.length, "final");
+      return this.play(n, "final");
     },
+
+    finalState: function () { return this.showBeat(this.steps.length); },
+
+    /* The beat the project card's image was captured from (def.cover). */
+    coverState: function () { return this.showBeat(this.def.cover || this.steps.length); },
 
     replay: function () {
       this.resetReq = true;
