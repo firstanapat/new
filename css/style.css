@@ -7,35 +7,45 @@
 :root {
   color-scheme: light;
 
-  --ink: #1f2124;
-  --ink-2: #3c4043;
-  --muted: #5f6368;
-  --faint: #9aa0a6;
-  --line: #e8e8e6;
-  --line-2: #f0f0ee;
+  /* warm neutrals in the Notion manner (shadcn.io/design/notion):
+     ink for headings, charcoal for body, steel for secondary text */
+  --ink: #1a1a1a;
+  --ink-2: #37352f;
+  --muted: #787671;
+  --faint: #a4a097;
+  --line: #e5e3df;
+  --line-2: #ede9e4;
+  --line-strong: #c8c4be;
   --bg: #ffffff;
-  --bg-soft: #f7f7f5;
+  --bg-soft: #f6f5f4;
+  --bg-softer: #fafaf9;
   --bg-tint: #f1f8f3;
+  --hover: rgba(55, 53, 47, .06);
 
   --accent: #12a05c;        /* sustainability green */
   --accent-ink: #0b7a45;    /* text-safe green on white */
   --accent-soft: #e3f4ea;
-  --dark: #1f2124;
+  --dark: #1a1a1a;
 
   /* chart series — validated default categorical slots 1–3 (light) */
   --series-1: #2a78d6;
   --series-2: #eb6834;
   --series-3: #1baf7a;
 
-  --r-md: 12px;
-  --r-lg: 20px;
-  --r-xl: 28px;
+  /* Notion radii: 6 small, 8 buttons and inputs, 12 cards, 16 large media */
+  --r-sm: 6px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 16px;
   --r-full: 9999px;
 
-  --shadow-1: 0 1px 2px rgba(32,33,36,.06), 0 4px 16px rgba(32,33,36,.06);
-  --shadow-2: 0 2px 6px rgba(32,33,36,.08), 0 24px 56px rgba(32,33,36,.14);
+  /* flat, border-based surfaces; one diffuse shadow for workspace mockups */
+  --shadow-1: 0 1px 2px rgba(15, 15, 15, .04);
+  --shadow-2: 0 2px 6px rgba(15, 15, 15, .06), 0 12px 28px rgba(15, 15, 15, .08);
+  --shadow-mock: 0 24px 48px -8px rgba(15, 15, 15, .2);
 
-  --font: "Anuphan", "Noto Sans Thai", -apple-system, system-ui, "Segoe UI", sans-serif;
+  /* Inter for Latin (Notion Sans is Inter-based), Anuphan for Thai */
+  --font: "Inter", "Anuphan", "Noto Sans Thai", -apple-system, system-ui, "Segoe UI", sans-serif;
   --ease: cubic-bezier(.22, .8, .22, 1);
   --max: 1160px;
 
@@ -592,7 +602,9 @@ html.i18n-wait body { visibility: hidden; }
 .start p { color: #b9cfc1; font-size: 18px; margin: 18px auto 0; max-width: 560px; }
 .start .btn-outline { background: transparent; color: #fff; border-color: rgba(255,255,255,.35); }
 .start .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.06); }
-.start + .footer, main + .footer { border-top: 0; }
+/* the home page ends on the dark contact chapter, so its footer needs no rule;
+   the resume page keeps its footer border */
+body[data-page="home"] .footer { border-top: 0; }
 .start .intro-actions { margin-top: 36px; }
 
 .footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 13px; }
@@ -735,3 +747,162 @@ html.i18n-wait body { visibility: hidden; }
 .wt-beat { position: absolute; inset: 0; width: 100%; border: 0; padding: 0; margin: 0; background: transparent; border-radius: inherit; cursor: pointer; }
 .wt-beat:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { .project-steps li.wt-beat-item { transition: none; } }
+
+/* ==========================================================================
+   Notion layer (after shadcn.io/design/notion)
+   Keeps the brand colours and the page structure; changes the feel:
+   Inter + Anuphan at weight 600 for headings, warm greys, 8px rectangular
+   buttons, 12px flat cards with hairline borders, one diffuse shadow for the
+   workspace mockups, pills only for tabs and tags, callouts for outcomes.
+   Remove this block to go back to the previous look.
+   ========================================================================== */
+
+/* ---------- type ---------- */
+body { color: var(--ink-2); line-height: 1.6; font-feature-settings: "cv11", "ss01"; }
+h1, h2, h3, h4 { font-weight: 600; color: var(--ink); letter-spacing: -0.01em; }
+.intro h1 { font-weight: 600; letter-spacing: -0.035em; }
+.showcase-title, .section h2 { font-size: clamp(30px, 3.6vw, 40px); letter-spacing: -0.02em; font-weight: 600; }
+.project-story-head h3 { font-size: clamp(28px, 3.2vw, 38px); letter-spacing: -0.02em; }
+.project-card h3 { letter-spacing: -0.015em; }
+.project-card-featured h3 { font-size: clamp(28px, 3.8vw, 46px); letter-spacing: -0.025em; }
+.start h2 { font-weight: 600; letter-spacing: -0.03em; }
+.intro-stats dd { font-weight: 600; letter-spacing: -0.03em; }
+.project-steps h4 { font-size: 17px; font-weight: 600; }
+.project-steps p, .project-story-head p { color: var(--ink-2); }
+
+/* micro labels: 11–12px, 600, tracked (Notion "micro-uppercase") */
+.eyebrow, .kicker { font-size: 11px; letter-spacing: .08em; font-weight: 600; color: var(--muted); }
+.story-num { font-size: 11px; font-weight: 600; letter-spacing: .08em; color: var(--muted); }   /* 4.5:1 */
+
+/* ---------- buttons: 8px rectangles, 14–15px / 500 ---------- */
+.btn { height: 40px; padding: 0 16px; border-radius: var(--r-md); font-weight: 500; font-size: 15px; border-width: 1px; gap: 8px; }
+.btn:hover { transform: none; }
+.btn-dark { background: var(--dark); }
+.btn-dark:hover { background: #000; }
+.btn-accent { background: var(--accent-ink); }           /* white text 5.4:1 */
+.btn-accent:hover { background: #096a3c; }
+.btn-outline { background: #fff; color: var(--ink); border-color: var(--line-strong); }
+.btn-outline:hover { background: var(--bg-softer); border-color: var(--line-strong); }
+.btn-lg { height: 48px; padding: 0 20px; font-size: 15px; min-width: 220px; }
+.btn-icon { width: 40px; height: 40px; border-radius: var(--r-md); }
+
+/* ---------- nav: flat bar with a hairline, rectangle items ---------- */
+.nav { height: 64px; border-radius: var(--r-lg); padding: 0 10px 0 22px; background: rgba(255,255,255,.86); border-color: var(--line); box-shadow: var(--shadow-1); }
+.brand { font-weight: 600; font-size: 15px; letter-spacing: .18em; }
+.nav-links a { height: 36px; padding: 0 12px; border-radius: var(--r-sm); font-size: 15px; color: var(--muted); }
+.nav-links a:hover { background: var(--hover); color: var(--ink); }
+.nav-links a[aria-current="true"], .nav-links a[aria-current="page"] { background: var(--hover); color: var(--ink); }
+.nav-cta { height: 40px; padding: 0 14px; }
+/* language: pill tabs, the active one solid ink (Notion "pill tab") */
+.lang { padding: 2px; gap: 2px; background: #fff; border-color: var(--line); }
+.lang button { height: 30px; min-width: 40px; padding: 0 10px; color: var(--muted); font-weight: 600; letter-spacing: .02em; }
+.lang button:hover { color: var(--ink); }
+.lang button[aria-pressed="true"] { background: var(--ink); color: #fff; box-shadow: none; }
+@media (max-width: 860px) {
+  .nav { height: 56px; padding: 0 6px 0 16px; }
+  .nav-links { border-radius: var(--r-lg); top: 64px; }
+  .nav-links a { padding: 12px 14px; border-radius: var(--r-sm); }
+  .nav-links .nav-links-cta a { border-radius: var(--r-md); }
+}
+
+/* skip link: shows when focused from the keyboard */
+a.visually-hidden:focus { position: fixed !important; z-index: 100; left: 16px; top: 16px; width: auto; height: auto; clip: auto; overflow: visible; padding: 10px 14px; border-radius: var(--r-md); background: var(--ink); color: #fff; font-weight: 500; }
+
+/* ---------- tags and labels: small, soft, 4–6px ---------- */
+.media-label { border-radius: var(--r-sm); padding: 3px 8px; font-size: 12px; font-weight: 500; color: var(--ink-2); background: rgba(255,255,255,.92); border: 1px solid var(--line); bottom: 10px; left: 10px; }
+.tag-dev { border: 0; border-radius: var(--r-sm); padding: 2px 8px; background: #ffe8d4; color: #793400; font-weight: 500; vertical-align: 2px; }
+.project-story--dark .tag-dev { background: rgba(255, 180, 138, .16); color: #ffcfae; }
+.chip { border-radius: var(--r-sm); }
+.project-category { font-size: 13px; font-weight: 600; }
+
+/* ---------- hero ---------- */
+.intro { padding-top: clamp(36px, 4.5vw, 64px); }
+@media (min-width: 701px) and (max-height: 960px) { .intro { padding-top: 34px; } }
+@media (max-width: 700px) { .intro { padding-top: 24px; } }
+.intro-figure { border-radius: var(--r-xl); box-shadow: none; border-color: var(--line); }
+@media (prefers-reduced-motion: no-preference) {
+  .intro-figure { animation-name: open-up-notion; }
+}
+@keyframes open-up-notion { from { clip-path: inset(100% 0 0 0 round var(--r-xl)); } to { clip-path: inset(0 0 0 0 round var(--r-xl)); } }
+.intro-stats dt { color: var(--muted); }
+
+/* ---------- cards: flat, hairline, 12px; hover = soft surface ---------- */
+.project-card { border-radius: var(--r-lg); border-color: var(--line); transition: background-color .15s ease, border-color .15s ease; }
+.project-card:hover { border-color: var(--line-strong); box-shadow: none; background: var(--bg-softer); }
+.project-card-featured { border-color: #d7e7dc; }
+.project-card-featured:hover { background: #ecf6ef; }
+.project-card-media img { transition: transform .4s var(--ease); }
+.project-card:hover .project-card-media img { transform: scale(1.015); }
+.project-card-media { overflow: hidden; }
+.project-link { font-size: 14px; font-weight: 500; }
+.skill, .cred { border-radius: var(--r-lg); border-color: var(--line); box-shadow: none; transition: background-color .15s ease, border-color .15s ease; }
+.skill:hover { transform: none; border-color: var(--line-strong); background: var(--bg-softer); }
+.skill h3, .cred h3 { font-size: 17px; font-weight: 600; }
+.section-soft { background: var(--bg-softer); }
+.link-arrow { font-weight: 500; padding: 4px 0; }   /* ≥ 24px target */
+
+/* ---------- story: chapter label, scene, steps as a Notion list ---------- */
+.story-scene { border-radius: var(--r-lg); }
+.story-num::after { opacity: .6; }
+.project-steps li { border-bottom-color: var(--line-2); }
+.project-steps li::marker { color: var(--faint); font-weight: 500; font-variant-numeric: tabular-nums; }
+.project-steps li.wt-beat-item { border-radius: var(--r-sm); transition: background-color .15s ease; }
+/* steps not played yet: grey text instead of opacity (keeps 4.5:1) */
+.wt-on .project-steps li.wt-beat-item:not(.is-done):not(.is-current) { opacity: 1; }
+.wt-on .project-steps li.wt-beat-item:not(.is-done):not(.is-current) h4,
+.wt-on .project-steps li.wt-beat-item:not(.is-done):not(.is-current) p { color: var(--muted); }
+.project-steps li.wt-beat-item:hover { background: var(--hover); }
+.project-steps li.is-current, .project-steps li.is-current:hover { background: var(--accent-soft); }
+.project-steps li.is-current::marker, .project-steps li.is-done::marker { color: var(--accent-ink); }
+.project-story--dark .wt-on .project-steps li.wt-beat-item:not(.is-done):not(.is-current) h4,
+.project-story--dark .wt-on .project-steps li.wt-beat-item:not(.is-done):not(.is-current) p,
+.project-story--dark.wt-on .project-steps li.wt-beat-item:not(.is-done):not(.is-current) h4,
+.project-story--dark.wt-on .project-steps li.wt-beat-item:not(.is-done):not(.is-current) p { color: #8fb39d; }
+.project-story--dark .project-steps li::marker { color: #8fb39d; }
+.project-story--dark .project-steps li.is-current::marker, .project-story--dark .project-steps li.is-done::marker { color: #6ee7a8; }
+.project-story--dark .project-steps li { border-bottom-color: rgba(255,255,255,.1); }
+
+/* outcome as a Notion callout: soft surface, 8px, icon on the left */
+.project-result {
+  display: grid; grid-template-columns: 24px 1fr; column-gap: 12px; align-items: start;
+  margin-top: 28px; padding: 16px 18px; border-left: 0; border-radius: var(--r-md); background: var(--bg-soft);
+}
+.project-result::before { content: "💡"; grid-row: 1 / 3; font-size: 18px; line-height: 1.4; }
+.project-result strong { grid-column: 2; color: var(--ink); font-size: 14px; font-weight: 600; }
+.project-result p { grid-column: 2; color: var(--ink-2); }
+.project-story--dark .project-result { background: rgba(255,255,255,.06); }
+.project-story--dark .project-result::before { content: "🚧"; }
+.project-story--dark .project-result strong { color: #fff; }
+
+/* ---------- walkthrough frame = the workspace mockup ---------- */
+.wt-frame { border-radius: var(--r-lg); border-color: var(--line); box-shadow: var(--shadow-mock); }
+.project-story--dark .wt-frame { border-color: rgba(255,255,255,.14); box-shadow: 0 24px 48px -8px rgba(0,0,0,.45); }
+.wt-bar { height: 36px; background: var(--bg-softer); border-bottom-color: var(--line); }
+.wt-dots i { background: var(--line-strong); opacity: .7; }
+.wt-url { border-radius: var(--r-sm); border-color: var(--line); background: #fff; }
+.wt-replay { border-radius: var(--r-sm); }
+.wt-replay:hover { background: var(--hover); }
+.wt-chip { border-radius: var(--r-sm); font-weight: 500; }
+.wt-hl { border-radius: var(--r-sm); }
+/* screens inside the canvas: 8px controls, warm hairlines */
+.cm-input, .cm-ef, .cm-chk, .ws-file, .ws-logrow, .ws-panel, .ws-kpi, .fe-form, .fe-formula, .sr-act, .sr-col, .cm-query, .cm-ai { border-radius: var(--r-md); }
+.cm-btn, .ws-btn { border-radius: var(--r-md); font-weight: 500; }
+.cm-chip { border-radius: var(--r-md); }
+.ws-chip { border-radius: var(--r-full); font-weight: 500; }
+.ws-tag { border-radius: var(--r-sm); font-weight: 600; }
+.ws-tab.on { box-shadow: inset 0 -2px 0 var(--ink); color: var(--ink); }
+
+/* ---------- rail ---------- */
+.rail-pct, .rail-t { border-radius: var(--r-sm); border-color: var(--line); box-shadow: none; }
+.rail a { height: 24px; }                                  /* 24px target */
+.rail a i { background: var(--line-strong); }
+
+/* ---------- closing chapter + footer ---------- */
+.start h2 { color: #fff; }
+.start .btn-lg { min-width: 0; }
+.footer { color: var(--muted); font-size: 13px; }
+
+/* reduced motion wins over the hover/step transitions above */
+@media (prefers-reduced-motion: reduce) {
+  .project-steps li.wt-beat-item, .project-card, .project-card-media img, .skill, .cred { transition: none; }
+}
