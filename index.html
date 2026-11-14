@@ -212,7 +212,9 @@
             </div>
             <div class="project-story-grid">
               <figure class="project-figure">
-                <img src="assets/img/cfo-dashboard.webp" alt="" width="1200" height="800" loading="lazy">
+                <div class="wt-slot" data-walkthrough>
+                  <img src="assets/img/cfo-dashboard.webp" alt="" width="1200" height="800" loading="lazy">
+                </div>
                 <figcaption data-i18n="work.cfo-dashboard.caption">ภาพจำลองหน้าจอ แสดงการรวมตารางต้นทางเป็น Dashboard ด้วยข้อมูลตัวอย่าง</figcaption>
               </figure>
               <ol class="project-steps">
@@ -244,8 +246,10 @@
             </div>
             <div class="project-story-grid">
               <figure class="project-figure">
-                <img src="assets/img/farm-ef-workbook.webp" alt="" width="1200" height="800" loading="lazy">
-                <figcaption data-i18n="work.farm-ef-workbook.caption">ภาพประกอบแบบบันทึกข้อมูลภาคสนามในแปลงมะเขือเทศ</figcaption>
+                <div class="wt-slot" data-walkthrough>
+                  <img src="assets/img/farm-ef-workbook.webp" alt="" width="1200" height="800" loading="lazy">
+                </div>
+                <figcaption data-i18n="work.farm-ef-workbook.caption">ภาพจำลองหน้าจอ workbook ด้วยข้อมูลสมมติ</figcaption>
               </figure>
               <ol class="project-steps">
                 <li>
@@ -276,8 +280,10 @@
             </div>
             <div class="project-story-grid">
               <figure class="project-figure">
-                <img src="assets/img/sroi-assessment.webp" alt="" width="1200" height="800" loading="lazy">
-                <figcaption data-i18n="work.sroi-assessment.caption">ภาพประกอบตะกร้ามะเขือเทศและสมุดจดสำหรับการประเมินที่จุดรับซื้อ</figcaption>
+                <div class="wt-slot" data-walkthrough>
+                  <img src="assets/img/sroi-assessment.webp" alt="" width="1200" height="800" loading="lazy">
+                </div>
+                <figcaption data-i18n="work.sroi-assessment.caption">ภาพจำลองกรอบสรุปผล SROI ด้วยตัวอย่างสมมติ</figcaption>
               </figure>
               <ol class="project-steps">
                 <li>
@@ -343,170 +349,6 @@
       </div>
     </section>
 
-    <section class="section demo-section" id="demos">
-      <div class="container">
-        <h2 data-i18n="cases.title" class="showcase-title">ตัวอย่างการวิเคราะห์</h2>
-        <details class="demo-disclosure" id="caseDemos">
-          <summary>
-            <span class="demo-summary-copy">
-              <strong data-i18n="cases.toggle">เปิดดูตัวอย่าง CFO, Emission Factor และ SROI</strong>
-              <span data-i18n="cases.lead">กราฟและตารางใช้ข้อมูลจำลอง</span>
-            </span>
-            <svg aria-hidden="true"><use href="#i-down"/></svg>
-          </summary>
-          <div class="demo-content">
-            <div class="case-note" role="note">
-              <svg aria-hidden="true"><use href="#i-info"/></svg>
-              <div data-i18n="cases.note"><strong>ข้อมูลจำลองเพื่อสาธิต</strong> — ชื่อองค์กร ตัวเลข และกราฟในส่วนนี้สร้างขึ้นเพื่อแสดงวิธีการทำงานเท่านั้น ไม่ใช่ข้อมูลขององค์กรใดจริง</div>
-            </div>
-
-            <div class="case-tabs" role="tablist" aria-label="ตัวอย่างการวิเคราะห์" data-i18n-aria="cases.tabs">
-              <button role="tab" id="tab-cfo" aria-controls="case-cfo" aria-selected="true"><span data-i18n="cases.tab.cfo">คาร์บอนฟุตพริ้นท์</span></button>
-              <button role="tab" id="tab-ef" aria-controls="case-ef" aria-selected="false" tabindex="-1"><span data-i18n="cases.tab.ef">ค่าการปล่อย</span></button>
-              <button role="tab" id="tab-sroi" aria-controls="case-sroi" aria-selected="false" tabindex="-1"><span data-i18n="cases.tab.sroi">SROI</span></button>
-            </div>
-
-            <!-- 01 CFO -->
-            <article class="case active" id="case-cfo" role="tabpanel" aria-labelledby="tab-cfo">
-              <div class="case-card">
-                <div class="case-visual">
-                  <div class="viz-frame">
-                    <div class="viz-title" data-i18n="cfo.vizTitle">การปล่อยก๊าซเรือนกระจกแยกตามขอบเขต</div>
-                    <div class="viz-sub" data-i18n="cfo.vizSub">tCO₂e · ปี 2568 · ข้อมูลจำลอง</div>
-                    <div class="legend" aria-hidden="true">
-                      <span><i style="background:var(--series-1)"></i><span data-i18n="scope1">ขอบเขต 1</span></span>
-                      <span><i style="background:var(--series-2)"></i><span data-i18n="scope2">ขอบเขต 2</span></span>
-                      <span><i style="background:var(--series-3)"></i><span data-i18n="scope3">ขอบเขต 3</span></span>
-                    </div>
-                    <div class="chart-box"><canvas id="chartCfo" role="img" aria-label="กราฟแท่งซ้อนการปล่อยก๊าซเรือนกระจกแยกตามขอบเขตของ 3 หน่วยงาน (ข้อมูลจำลอง)" data-i18n-aria="cfo.chartAria"></canvas></div>
-                  </div>
-                  <div class="mini-kpis">
-                    <div class="mini-kpi"><b>57%</b><span data-i18n="cfo.k1">สัดส่วนขอบเขต 3</span></div>
-                    <div class="mini-kpi"><b>3</b><span data-i18n="cfo.k2">หน่วยงานในขอบเขต</span></div>
-                    <div class="mini-kpi"><b>42</b><span data-i18n="cfo.k3">แหล่งปล่อยที่ตรวจสอบ</span></div>
-                  </div>
-                </div>
-                <div class="case-info">
-                  <div class="kicker"><span>01</span> · Carbon Footprint for Organization · <span class="chip chip-sample" data-i18n="sample">ข้อมูลจำลอง</span></div>
-                  <h3 data-i18n="cfo.title">คาร์บอนฟุตพริ้นท์องค์กร 3 หน่วยงาน</h3>
-                  <p class="by" data-i18n="cfo.by">บริษัท อาหารแปรรูปตัวอย่าง จำกัด · ปีข้อมูล 2568 · ปีฐาน 2567</p>
-                  <hr />
-                  <div class="big-label" data-i18n="cfo.bigLabel">การปล่อยรวมขอบเขต 1+2+3</div>
-                  <div class="big-num">18,465<small>tCO₂e</small></div>
-                  <div class="big-sub" data-i18n="cfo.bigSub">ลดลง 6.2% จากปีฐาน</div>
-                  <p class="case-desc" data-i18n="cfo.desc">ขอบเขต 3 จากวัตถุดิบเกษตรและบรรจุภัณฑ์เป็นสัดส่วนใหญ่ที่สุด จึงเป็นจุดที่ควรเปลี่ยนค่า EF ทุติยภูมิเป็นค่าปฐมภูมิจากแปลงจริง</p>
-                  <div>
-                    <details class="acc">
-                      <summary data-i18n="method">วิธีการ</summary>
-                      <ul data-i18n="cfo.method">
-                        <li>กำหนดขอบเขตองค์กรแบบ Operational Control และขอบเขตการดำเนินงาน</li>
-                        <li>เก็บ Activity Data รายเดือน ตรวจสอบกับใบเสร็จและมิเตอร์</li>
-                        <li>Emission = Activity Data × EF × GWP (IPCC AR5 GWP100)</li>
-                        <li>วิเคราะห์ Hotspot และเทียบปีฐานเพื่อวางเป้าลด</li>
-                      </ul>
-                    </details>
-                    <details class="acc">
-                      <summary data-i18n="dataTable">ตารางข้อมูล</summary>
-                      <div class="table-scroll"><table class="data-table" id="tableCfo"></table></div>
-                    </details>
-                  </div>
-                  <div class="callout"><b data-i18n="finding">ข้อค้นพบ</b><p data-i18n="cfo.finding">ลดขอบเขต 3 ได้มากที่สุดด้วยข้อมูลปฐมภูมิจากซัพพลายเออร์ — นำไปสู่ Case Study ถัดไป</p></div>
-                </div>
-              </div>
-            </article>
-
-            <!-- 02 EF -->
-            <article class="case" id="case-ef" role="tabpanel" aria-labelledby="tab-ef" hidden>
-              <div class="case-card">
-                <div class="case-visual">
-                  <div class="viz-frame">
-                    <div class="viz-title" data-i18n="ef.vizTitle">การกระจายค่า EF รายแปลง</div>
-                    <div class="viz-sub" data-i18n="ef.vizSub">จำนวนแปลงในแต่ละช่วง kgCO₂e/kg · n = 45 · ข้อมูลจำลอง</div>
-                    <div class="chart-box" style="height:240px"><canvas id="chartEfHist" role="img" aria-label="ฮิสโตแกรมค่า EF รายแปลง 45 แปลง (ข้อมูลจำลอง)" data-i18n-aria="ef.histAria"></canvas></div>
-                  </div>
-                  <div class="viz-frame">
-                    <div class="viz-title" data-i18n="ef.viz2Title">สัดส่วนแหล่งปล่อยใน EF เฉลี่ย</div>
-                    <div class="viz-sub" data-i18n="ef.viz2Sub">% ของ 0.412 kgCO₂e/kg · ข้อมูลจำลอง</div>
-                    <div class="chart-box" style="height:210px"><canvas id="chartEfSource" role="img" aria-label="กราฟแท่งแนวนอนสัดส่วนแหล่งปล่อยก๊าซเรือนกระจก (ข้อมูลจำลอง)" data-i18n-aria="ef.srcAria"></canvas></div>
-                  </div>
-                </div>
-                <div class="case-info">
-                  <div class="kicker"><span>02</span> · Emission Factor · Cradle-to-Farm Gate · <span class="chip chip-sample" data-i18n="sample">ข้อมูลจำลอง</span></div>
-                  <h3 data-i18n="ef.title">Emission Factor ปฐมภูมิของพริกหวาน</h3>
-                  <p class="by" data-i18n="ef.by">เกษตรกรตัวอย่าง 45 แปลง · หน่วยหน้าที่ 1 kg ผลผลิตสด</p>
-                  <hr />
-                  <div class="big-label">Mean of Individual EF</div>
-                  <div class="big-num">0.412<small>kgCO₂e/kg</small></div>
-                  <div class="big-sub">95% CI 0.361–0.463</div>
-                  <p class="case-desc" data-i18n="ef.desc">ปุ๋ยเคมีเป็น Hotspot ถึง 48% ของค่าเฉลี่ย — แปลงที่ EF สูงกว่า 0.6 ใช้ปุ๋ยไนโตรเจนเกินคำแนะนำเฉลี่ย 35%</p>
-                  <div>
-                    <details class="acc">
-                      <summary data-i18n="method">วิธีการ</summary>
-                      <ul data-i18n="ef.method">
-                        <li>ออกแบบแบบสอบถาม Life Cycle Inventory ระดับแปลง</li>
-                        <li>Cross-check ปริมาณปุ๋ย ไฟฟ้า น้ำมัน เทียบกับผลผลิต</li>
-                        <li>คำนวณ EF รายแปลง, Mean พร้อม 95% CI, CV และ Ratio Estimator</li>
-                        <li>อ้างอิง ISO 14067, IPCC 2019 Refinement และ TGO</li>
-                      </ul>
-                    </details>
-                    <details class="acc">
-                      <summary data-i18n="dataTable">ตารางข้อมูล</summary>
-                      <div class="table-scroll"><table class="data-table" id="tableEf"></table></div>
-                    </details>
-                  </div>
-                  <div class="callout"><b data-i18n="finding">ข้อค้นพบ</b><p data-i18n="ef.finding">ปรับสูตรปุ๋ยตามค่าวิเคราะห์ดินคือมาตรการที่ลด EF ได้มากที่สุดต่อต้นทุน</p></div>
-                </div>
-              </div>
-            </article>
-
-            <!-- 03 SROI -->
-            <article class="case" id="case-sroi" role="tabpanel" aria-labelledby="tab-sroi" hidden>
-              <div class="case-card">
-                <div class="case-visual">
-                  <div class="viz-frame">
-                    <div class="viz-title" data-i18n="sroi.vizTitle">มูลค่าทางสังคมแยกตามผลลัพธ์</div>
-                    <div class="viz-sub" data-i18n="sroi.vizSub">ล้านบาท · หลังหัก Deadweight และ Attribution · ข้อมูลจำลอง</div>
-                    <div class="chart-box" style="height:280px"><canvas id="chartSroi" role="img" aria-label="กราฟแท่งแนวนอนมูลค่าทางสังคมแยกตามผลลัพธ์ (ข้อมูลจำลอง)" data-i18n-aria="sroi.chartAria"></canvas></div>
-                  </div>
-                  <div class="mini-kpis">
-                    <div class="mini-kpi"><b data-i18n="sroi.k1v">2.89 ลบ.</b><span data-i18n="sroi.k1">มูลค่าทางสังคมสุทธิ</span></div>
-                    <div class="mini-kpi"><b data-i18n="sroi.k2v">0.85 ลบ.</b><span data-i18n="sroi.k2">งบลงทุน</span></div>
-                    <div class="mini-kpi"><b>120</b><span data-i18n="sroi.k3">ผู้ตอบแบบสอบถาม</span></div>
-                  </div>
-                </div>
-                <div class="case-info">
-                  <div class="kicker"><span>03</span> · Social Return on Investment · <span class="chip chip-sample" data-i18n="sample">ข้อมูลจำลอง</span></div>
-                  <h3 data-i18n="sroi.title">SROI โครงการตลาดชุมชนสีเขียว</h3>
-                  <p class="by" data-i18n="sroi.by">โครงการสมมติ · พื้นที่ขายผลผลิตปลอดภัยของเกษตรกรรายย่อย</p>
-                  <hr />
-                  <div class="big-label" data-i18n="sroi.bigLabel">มูลค่าทางสังคมต่องบลงทุน 1 บาท</div>
-                  <div class="big-num" data-i18n="sroi.bigNum">3.40<small>บาท</small></div>
-                  <div class="big-sub" data-i18n="sroi.bigSub">SROI ratio หลัง Sensitivity analysis</div>
-                  <p class="case-desc" data-i18n="sroi.desc">รายได้ที่เพิ่มขึ้นของเกษตรกรเป็นผลลัพธ์หลัก ส่วนสุขภาพจากการลดใช้สารเคมีมีความอ่อนไหวต่อสมมติฐานสูงสุด</p>
-                  <div>
-                    <details class="acc">
-                      <summary data-i18n="method">วิธีการ</summary>
-                      <ul data-i18n="sroi.method">
-                        <li>Stakeholder mapping และ Theory of Change</li>
-                        <li>แบบสอบถามก่อน–หลัง เก็บข้อมูล 120 ราย</li>
-                        <li>กำหนด Indicator และ Financial Proxy ของแต่ละผลลัพธ์</li>
-                        <li>หัก Deadweight, Attribution, Drop-off แล้วทำ Sensitivity analysis</li>
-                      </ul>
-                    </details>
-                    <details class="acc">
-                      <summary data-i18n="dataTable">ตารางข้อมูล</summary>
-                      <div class="table-scroll"><table class="data-table" id="tableSroi"></table></div>
-                    </details>
-                  </div>
-                  <div class="callout"><b data-i18n="finding">ข้อค้นพบ</b><p data-i18n="sroi.finding">ควรเก็บข้อมูลผลตรวจสุขภาพเพิ่มในรอบถัดไป เพื่อลดความไม่แน่นอนของผลลัพธ์ด้านสุขภาพ</p></div>
-                </div>
-              </div>
-            </article>
-          </div>
-        </details>
-      </div>
-    </section>
-
     <!-- ================= 05 Contact ================= -->
     <section class="start" id="contact" data-rail>
       <div class="container">
@@ -525,11 +367,10 @@
   <footer class="footer">
     <div class="container">
       <span>© <span id="year">2026</span> Anapat Tantikulanon · Bangkok, Thailand</span>
-      <span data-i18n="footer.note">ตัวเลขใน Case Studies เป็นข้อมูลจำลองเพื่อสาธิต</span>
+      <span data-i18n="footer.note">ตัวเลขในภาพจำลองหน้าจอเป็นข้อมูลสมมติเพื่อสาธิต</span>
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <script src="js/lang-en.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/walkthrough.js"></script>

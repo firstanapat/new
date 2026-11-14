@@ -2,11 +2,13 @@
 
 Static site (HTML / CSS / JS, no build step). Deployed on Vercel from this repo.
 
-- `index.html`: home page with featured work, project stories, skills, analysis demos and contact
+- `index.html`: home page with featured work, four project stories (each a guided walkthrough), skills and contact
 - `resume.html`: the resume page, with the PDF in `assets/`
 - `js/lang-en.js`: English copy for both pages. Thai copy lives in the HTML.
 - `js/walkthrough.js`: guided walkthrough engine for the project stories (ported from the BRTY v4 deck). Each story's `<ol class="project-steps">` items are its beats; a story registers its screens and steps with `Walkthrough.register(id, def)`. Motion names: step build / beat, synced step list, tap indicator, spotlight ring, handoff chip, arrive, final-state jump.
+- `js/stories.js`: the four walkthroughs (screens + beats): CarbonMate TH, CFO Dashboard, Farm EF Workbook, SROI.
 - `js/charts.js`: inline SVG charts for the walkthrough screens (columns, stacked columns, ranked bars, donut).
+- `js/motion.js`: hero count-up. The hero entrance itself is CSS.
 - `assets/img/`: shared profile photo and ImageGen showcase WebPs
 
 Preview locally:
@@ -15,4 +17,4 @@ Preview locally:
 python3 -m http.server 8790 --bind 127.0.0.1
 ```
 
-The analysis demos use fictional data.
+The walkthrough screens use sample data. CarbonMate TH's AI matching is shown as in development.
