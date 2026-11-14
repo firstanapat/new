@@ -1,6 +1,5 @@
 /* ==========================================================================
-   Portfolio interactions: nav, coverflow carousel, product modal,
-   section progress rail, case tabs, charts
+   Portfolio interactions: nav, section progress rail, case tabs, charts
    ========================================================================== */
 (function () {
   "use strict";
@@ -8,24 +7,16 @@
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var $ = function (sel, root) { return (root || document).querySelector(sel); };
   var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
-  function esc(s) {
-    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
-      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
-    });
-  }
-
   /* ---------- Language ---------- */
   function lang() { return (window.I18N && window.I18N.lang) || "th"; }
   var L = {
-    th: { sample: "ตัวอย่าง", wip: "กำลังพัฒนา", details: "ดูรายละเอียด", open: "เปิดเว็บ", close: "ปิด", pause: "หยุดเลื่อนอัตโนมัติ", play: "เลื่อนอัตโนมัติ", shot: "ภาพหน้าจอ ",
-      units: ["โรงงาน A", "โรงงาน B", "สำนักงานใหญ่"], scopes: ["ขอบเขต 1", "ขอบเขต 2", "ขอบเขต 3"],
+    th: { units: ["โรงงาน A", "โรงงาน B", "สำนักงานใหญ่"], scopes: ["ขอบเขต 1", "ขอบเขต 2", "ขอบเขต 3"],
       cfoHead: ["หน่วยงาน", "ขอบเขต 1", "ขอบเขต 2", "ขอบเขต 3", "รวม 2568", "ปีฐาน 2567", "เปลี่ยนแปลง"],
       efHead: ["ช่วง EF (kgCO₂e/kg)", "จำนวนแปลง"], srcHead: ["แหล่งปล่อย", "สัดส่วน"], plots: " แปลง",
       src: ["ปุ๋ยเคมี", "ไฟฟ้า (ปั๊มน้ำ)", "น้ำมันเชื้อเพลิง", "สารเคมีเกษตร", "ปุ๋ยคอก"],
       sroi: ["รายได้เกษตรกรเพิ่มขึ้น", "สุขภาพจากการลดสารเคมี", "ค่าเดินทางผู้บริโภคที่ลดลง", "ความสัมพันธ์ในชุมชน", "ลด CO₂ จากการขนส่ง"],
       sroiHead: ["ผลลัพธ์", "มูลค่า (ล้านบาท)"], total: "รวม", mTHB: " ล้านบาท", locale: "th-TH" },
-    en: { sample: "Sample", wip: "In progress", details: "View details", open: "Open site", close: "Close", pause: "Pause autoplay", play: "Autoplay", shot: "Screenshot of ",
-      units: ["Plant A", "Plant B", "Head office"], scopes: ["Scope 1", "Scope 2", "Scope 3"],
+    en: { units: ["Plant A", "Plant B", "Head office"], scopes: ["Scope 1", "Scope 2", "Scope 3"],
       cfoHead: ["Site", "Scope 1", "Scope 2", "Scope 3", "Total 2025", "Base year 2024", "Change"],
       efHead: ["EF range (kgCO₂e/kg)", "Plots"], srcHead: ["Source", "Share"], plots: " plots",
       src: ["Chemical fertiliser", "Electricity (pumps)", "Fuel", "Agrochemicals", "Manure"],
@@ -33,13 +24,6 @@
       sroiHead: ["Outcome", "Value (THB million)"], total: "Total", mTHB: " THB million", locale: "en-US" }
   };
   function T() { return L[lang()] || L.th; }
-  function badge(p) {
-    if (p.wip) return '<span class="chip chip-wip">' + T().wip + "</span>";
-    if (p.sample) return '<span class="chip chip-sample">' + T().sample + "</span>";
-    return "";
-  }
-  function P(p, field) { return lang() === "en" && p.en && p.en[field] ? p.en[field] : p[field]; }
-
   var yearEl = $("#year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
@@ -68,7 +52,7 @@
       railLinks.forEach(function (a, i) { a.setAttribute("aria-current", String(i === best)); });
       if (railNow) railNow.textContent = String(best + 1).padStart(2, "0");
       var id = railSections[best].id;
-      var group = (id === "work" || id === "tools") ? "work" : id === "about" ? "about" : "";
+      var group = id === "work" ? "work" : id === "about" ? "about" : "";
       $$("[data-nav]").forEach(function (a) {
         if (a.getAttribute("data-nav") === group) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
       });
@@ -76,248 +60,8 @@
     railSections.forEach(function (s) { railIO.observe(s); });
   }
 
-  /* ---------- Placeholder screenshots (until a real image is set) ---------- */
-  function mockSvg(p) {
-    var a = p.accent || "#12a05c", t = p.tint || "#f7f7f5";
-    var line = "#e8e8e6", soft = "#f7f7f5", ink = "#3c4043";
-    var head =
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' +
-      '<rect width="320" height="200" fill="' + t + '"/>' +
-      '<rect x="16" y="16" width="288" height="184" rx="8" fill="#fff" stroke="' + line + '"/>' +
-      '<circle cx="30" cy="29" r="3" fill="#e03131" opacity=".6"/><circle cx="40" cy="29" r="3" fill="#f5d75e"/><circle cx="50" cy="29" r="3" fill="#1aae39" opacity=".6"/>' +
-      '<rect x="64" y="25" width="120" height="8" rx="4" fill="' + soft + '"/>' +
-      '<line x1="16" y1="42" x2="304" y2="42" stroke="' + line + '"/>';
-    var body = "";
-    switch (p.layout) {
-      case "upload":
-        body =
-          '<rect x="32" y="56" width="90" height="8" rx="4" fill="' + ink + '" opacity=".8"/>' +
-          '<rect x="32" y="72" width="140" height="6" rx="3" fill="' + line + '"/>' +
-          '<rect x="32" y="90" width="256" height="58" rx="8" fill="' + t + '" stroke="' + a + '" stroke-dasharray="5 4"/>' +
-          '<path d="M160 104v18m0-18-7 7m7-7 7 7" stroke="' + a + '" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
-          '<rect x="128" y="130" width="64" height="6" rx="3" fill="' + a + '" opacity=".5"/>' +
-          '<rect x="32" y="160" width="120" height="10" rx="5" fill="' + soft + '"/><rect x="32" y="160" width="84" height="10" rx="5" fill="' + a + '"/>' +
-          '<rect x="232" y="158" width="56" height="16" rx="4" fill="' + a + '"/>';
-        break;
-      case "form":
-        body =
-          '<rect x="32" y="56" width="110" height="8" rx="4" fill="' + ink + '" opacity=".8"/>' +
-          [74, 106, 138].map(function (y) {
-            return '<rect x="32" y="' + y + '" width="60" height="5" rx="2.5" fill="#9aa0a6"/>' +
-              '<rect x="32" y="' + (y + 9) + '" width="160" height="14" rx="4" fill="#fff" stroke="' + line + '"/>';
-          }).join("") +
-          '<rect x="210" y="74" width="78" height="78" rx="8" fill="' + t + '"/>' +
-          '<text x="249" y="112" text-anchor="middle" font-family="Anuphan,sans-serif" font-size="16" font-weight="700" fill="' + a + '">0.41</text>' +
-          '<rect x="226" y="122" width="46" height="5" rx="2.5" fill="' + a + '" opacity=".5"/>' +
-          '<rect x="32" y="170" width="70" height="16" rx="4" fill="' + a + '"/>';
-        break;
-      case "table":
-        body = '<rect x="32" y="56" width="100" height="8" rx="4" fill="' + ink + '" opacity=".8"/>' +
-          '<rect x="232" y="53" width="56" height="14" rx="4" fill="' + a + '"/>' +
-          '<rect x="32" y="76" width="256" height="14" rx="3" fill="' + soft + '"/>';
-        for (var r = 0; r < 5; r++) {
-          var y = 96 + r * 18;
-          body += '<rect x="40" y="' + (y + 4) + '" width="' + (60 + (r * 17) % 40) + '" height="6" rx="3" fill="' + line + '"/>' +
-            '<rect x="150" y="' + (y + 4) + '" width="40" height="6" rx="3" fill="' + line + '"/>' +
-            '<rect x="230" y="' + (y + 2) + '" width="' + (20 + (r * 23) % 36) + '" height="10" rx="3" fill="' + a + '" opacity="' + (0.35 + r * 0.12) + '"/>' +
-            '<line x1="32" y1="' + (y + 16) + '" x2="288" y2="' + (y + 16) + '" stroke="' + soft + '"/>';
-        }
-        break;
-      case "site":
-        body =
-          '<rect x="17" y="43" width="286" height="156" fill="#fff"/>' +
-          '<rect x="96" y="54" width="128" height="14" rx="7" fill="#fff" stroke="' + line + '"/>' +
-          '<rect x="104" y="80" width="112" height="10" rx="4" fill="' + ink + '"/>' +
-          '<circle cx="219" cy="88" r="2.5" fill="' + a + '"/>' +
-          '<rect x="124" y="96" width="72" height="5" rx="2.5" fill="#9aa0a6"/>' +
-          '<g transform="translate(160 150)">' +
-          '<rect x="-112" y="-32" width="60" height="44" rx="6" fill="' + soft + '" transform="rotate(-6)"/>' +
-          '<rect x="52" y="-32" width="60" height="44" rx="6" fill="' + soft + '" transform="rotate(6)"/>' +
-          '<rect x="-44" y="-40" width="88" height="58" rx="7" fill="#fff" stroke="' + line + '"/>' +
-          '<rect x="-38" y="-34" width="76" height="34" rx="4" fill="' + t + '"/></g>';
-        break;
-      default: // dashboard
-        body =
-          '<rect x="17" y="43" width="56" height="156" fill="' + soft + '"/>' +
-          [56, 72, 88, 104].map(function (y, i) { return '<rect x="26" y="' + y + '" width="' + (i === 0 ? 38 : 30) + '" height="6" rx="3" fill="' + (i === 0 ? a : line) + '"/>'; }).join("") +
-          [0, 1, 2].map(function (i) {
-            var x = 86 + i * 72;
-            return '<rect x="' + x + '" y="56" width="62" height="38" rx="6" fill="#fff" stroke="' + line + '"/>' +
-              '<rect x="' + (x + 8) + '" y="64" width="26" height="5" rx="2.5" fill="#9aa0a6"/>' +
-              '<rect x="' + (x + 8) + '" y="76" width="36" height="9" rx="3" fill="' + ink + '" opacity=".85"/>';
-          }).join("") +
-          '<rect x="86" y="104" width="206" height="84" rx="6" fill="#fff" stroke="' + line + '"/>' +
-          [32, 48, 40, 58, 50, 64, 56, 70].map(function (h, i) {
-            return '<rect x="' + (100 + i * 23) + '" y="' + (180 - h) + '" width="12" height="' + h + '" rx="3" fill="' + a + '" opacity="' + (0.45 + i * 0.07) + '"/>';
-          }).join("");
-    }
-    return head + body + "</svg>";
-  }
-  function mediaHtml(p) {
-    if (p.image) return '<img src="' + esc(p.image) + '" alt="' + esc(T().shot + p.title) + '" loading="lazy" draggable="false" />';
-    return mockSvg(p);
-  }
-
-  /* ---------- Coverflow carousel ---------- */
-  var products = window.PRODUCTS || [];
-  var stage = $("#flowStage");
-  var dotsEl = $("#flowDots");
-  var caption = $("#flowCaption");
-  var playBtn = $("#flowPlay");
-  var modal = $("#productModal");
-
-  function openModal(p) {
-    if (!modal || !p) return;
-    $("#modalMedia").innerHTML = mediaHtml(p);
-    $("#modalTitle").textContent = p.title;
-    $("#modalDesc").textContent = P(p, "desc");
-    $("#modalTags").innerHTML =
-      badge(p) +
-      p.tags.map(function (t) { return '<span class="chip">' + esc(t) + "</span>"; }).join("");
-    $("#modalFeatures").innerHTML = (P(p, "features") || []).map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("");
-    $("#modalActions").innerHTML =
-      (p.url ? '<a class="btn btn-dark" href="' + esc(p.url) + '" target="_blank" rel="noopener">' + T().open + ' <svg><use href="#i-up-right"/></svg></a>' : "") +
-      '<button class="btn btn-outline" type="button" data-close>' + T().close + "</button>";
-    flow && flow.pause(true);
-    if (typeof modal.showModal === "function") modal.showModal(); else modal.setAttribute("open", "");
-  }
-  if (modal) {
-    modal.addEventListener("close", function () { flow && flow.pause(false); });
-    modal.addEventListener("click", function (e) {
-      if (e.target === modal || e.target.closest("[data-close]") || e.target.closest("#modalClose")) modal.close();
-    });
-  }
-
-  var flow = null;
-  if (stage && products.length) {
-    flow = (function () {
-      var N = products.length, active = 0, cards = [], dots = [];
-      var autoplay = !reduceMotion, held = false, hovering = false, inView = true, timer = null;
-      var INTERVAL = 4500;
-
-      function fillCard(card, p) {
-        var status = p.wip ? T().wip : p.sample ? T().sample : "";
-        card.setAttribute("aria-label", p.title + (status ? " (" + status + ")" : ""));
-        card.innerHTML =
-          '<div class="flow-media">' + mediaHtml(p) + badge(p) +
-          '<span class="flow-open">' + T().details + ' <svg><use href="#i-expand"/></svg></span></div>' +
-          '<div class="flow-body"><div class="kicker">' + esc(p.kicker || p.tags.slice(0, 2).join(" / ")) + "</div>" +
-          "<h3>" + esc(p.title) + "</h3></div>";
-      }
-
-      products.forEach(function (p, i) {
-        var card = document.createElement("button");
-        card.type = "button";
-        card.className = "flow-card";
-        fillCard(card, p);
-        card.addEventListener("click", function (e) {
-          if (stage.dataset.moved === "1") { e.preventDefault(); return; }
-          if (i === active) openModal(p); else go(i);
-        });
-        stage.appendChild(card);
-        cards.push(card);
-
-        var dot = document.createElement("button");
-        dot.type = "button";
-        dot.setAttribute("role", "tab");
-        dot.setAttribute("aria-label", p.title);
-        dot.addEventListener("click", function () { go(i); });
-        dotsEl.appendChild(dot);
-        dots.push(dot);
-      });
-
-      function offset(i) {
-        var d = i - active;
-        if (d > N / 2) d -= N;
-        if (d < -N / 2) d += N;
-        return d;
-      }
-
-      function render() {
-        var w = cards[0].offsetWidth;
-        var narrow = window.innerWidth < 700;
-        var gap = narrow ? w * 0.62 : w * 0.7;
-        cards.forEach(function (c, i) {
-          var d = offset(i), ad = Math.abs(d);
-          var x = d * gap - Math.sign(d) * (ad > 1 ? (ad - 1) * gap * 0.35 : 0);
-          var tf = "translateX(" + x + "px) translateZ(" + (-ad * 220) + "px) rotateY(" + (-d * 32) + "deg)";
-          c.style.transform = tf;
-          c.style.opacity = ad > 2 ? "0" : ad === 2 ? (narrow ? "0" : ".55") : "1";
-          c.style.zIndex = String(10 - ad);
-          c.style.pointerEvents = ad > 1 ? "none" : "auto";
-          c.classList.toggle("is-center", d === 0);
-          c.tabIndex = -1;
-          c.setAttribute("aria-hidden", ad > 1 ? "true" : "false");
-        });
-        dots.forEach(function (dt, i) { if (i === active) dt.setAttribute("aria-current", "true"); else dt.removeAttribute("aria-current"); });
-        caption.textContent = String(active + 1).padStart(2, "0") + " / " + String(N).padStart(2, "0") + " · " + products[active].title;
-      }
-
-      function go(i) { active = ((i % N) + N) % N; render(); restart(); }
-      function next() { go(active + 1); }
-      function prev() { go(active - 1); }
-
-      function running() { return autoplay && !held && !hovering && inView && !document.hidden; }
-      function restart() {
-        clearInterval(timer);
-        if (running()) timer = setInterval(next, INTERVAL);
-      }
-      function setPlay(on) {
-        autoplay = on;
-        playBtn.innerHTML = '<svg><use href="#' + (on ? "i-pause" : "i-play") + '"/></svg>' + (on ? T().pause : T().play);
-        restart();
-      }
-      playBtn.addEventListener("click", function () { setPlay(!autoplay); });
-
-      /* drag / swipe */
-      var startX = 0, dragging = false;
-      stage.addEventListener("pointerdown", function (e) {
-        if (e.button !== 0) return;
-        dragging = true; startX = e.clientX; stage.dataset.moved = "0";
-      });
-      window.addEventListener("pointermove", function (e) {
-        if (!dragging) return;
-        if (Math.abs(e.clientX - startX) > 8 && stage.dataset.moved !== "1") { stage.dataset.moved = "1"; stage.classList.add("dragging"); }
-      });
-      function endDrag(e) {
-        if (!dragging) return;
-        dragging = false; stage.classList.remove("dragging");
-        var dx = (e.clientX || startX) - startX;
-        if (stage.dataset.moved === "1") {
-          if (dx < -40) next(); else if (dx > 40) prev();
-          setTimeout(function () { stage.dataset.moved = "0"; }, 0);
-        }
-      }
-      window.addEventListener("pointerup", endDrag);
-      window.addEventListener("pointercancel", function () { dragging = false; stage.classList.remove("dragging"); });
-
-      stage.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") { hovering = true; restart(); } });
-      stage.addEventListener("pointerleave", function () { if (hovering) { hovering = false; restart(); } });
-      stage.addEventListener("keydown", function (e) {
-        if (e.key === "ArrowRight") { e.preventDefault(); next(); }
-        else if (e.key === "ArrowLeft") { e.preventDefault(); prev(); }
-        else if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModal(products[active]); }
-      });
-      stage.addEventListener("focus", function () { held = true; restart(); });
-      stage.addEventListener("blur", function () { held = false; restart(); });
-      document.addEventListener("visibilitychange", restart);
-      if ("IntersectionObserver" in window) {
-        new IntersectionObserver(function (en) { inView = en[0].isIntersecting; restart(); }).observe(stage);
-      }
-      var rt;
-      window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(render, 100); });
-
-      render();
-      setPlay(autoplay);
-      document.addEventListener("langchange", function () {
-        cards.forEach(function (c, i) { fillCard(c, products[i]); });
-        render(); setPlay(autoplay);
-      });
-      return { pause: function (on) { held = on; restart(); } };
-    })();
-  }
-
   /* ---------- Case study tabs ---------- */
+  var demos = $("#caseDemos");
   var tabs = $$('.case-tabs [role="tab"]');
   function selectTab(tab) {
     tabs.forEach(function (t) {
@@ -339,13 +83,6 @@
       if (n) { e.preventDefault(); n.focus(); selectTab(n); }
     });
   });
-  $$("[data-case]").forEach(function (a) {
-    a.addEventListener("click", function () {
-      var t = tabs.filter(function (x) { return x.getAttribute("aria-controls") === a.dataset.case; })[0];
-      if (t) selectTab(t);
-    });
-  });
-
   /* ---------- Charts (Showcase Data — fictional) ---------- */
   var css = getComputedStyle(document.documentElement);
   var C = {
@@ -421,7 +158,7 @@
   }
 
   function drawChartsFor(panelId) {
-    if (typeof Chart === "undefined" || drawn[panelId]) return;
+    if (!demos.open || typeof Chart === "undefined" || drawn[panelId]) return;
     Chart.defaults.font.family = '"Anuphan", "Noto Sans Thai", system-ui, sans-serif';
     Chart.defaults.color = C.tick;
     drawn[panelId] = true;
@@ -466,26 +203,27 @@
     }
   }
 
-  // Re-draw tables and any charts already drawn when the language changes.
+  function drawSelectedCase() {
+    var selected = $('.case-tabs [aria-selected="true"]');
+    drawChartsFor(selected.getAttribute("aria-controls"));
+  }
+
+  // Draw the selected chart only after its disclosure is visible.
+  demos.addEventListener("toggle", function () {
+    if (demos.open) drawSelectedCase();
+  });
+  drawSelectedCase();
+
+  // Refresh translated chart labels and table headings.
   document.addEventListener("langchange", function () {
     fillTables();
     if (typeof Chart === "undefined") return;
-    var redo = Object.keys(drawn);
     ["#chartCfo", "#chartEfHist", "#chartEfSource", "#chartSroi"].forEach(function (id) {
       var el = $(id), ch = el && Chart.getChart(el);
       if (ch) ch.destroy();
     });
     drawn = {};
-    redo.forEach(drawChartsFor);
+    drawSelectedCase();
   });
 
-  var casesSection = $("#work");
-  if (casesSection && "IntersectionObserver" in window) {
-    var io = new IntersectionObserver(function (entries) {
-      if (entries[0].isIntersecting) { drawChartsFor("case-cfo"); io.disconnect(); }
-    }, { rootMargin: "300px" });
-    io.observe(casesSection);
-  } else {
-    drawChartsFor("case-cfo");
-  }
 })();

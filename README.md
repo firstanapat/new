@@ -2,15 +2,15 @@
 
 Static site (HTML / CSS / JS, no build step). Deployed on Vercel from this repo.
 
-- `index.html`: home page with the 3D carousel of Web Products, Case Studies (sample data), skills and contact
+- `index.html`: home page with featured work, project stories, skills, analysis demos and contact
 - `resume.html`: the resume page, with the PDF in `assets/`
-- `js/products.js`: **edit the carousel cards here** (title, description, image, link)
-- Profile photo: put it in `assets/img/profile.jpg`, then replace `<span class="avatar-initials">` in both HTML files
+- `js/lang-en.js`: English copy for both pages. Thai copy lives in the HTML.
+- `assets/img/`: shared profile photo and ImageGen showcase WebPs
 
 Preview locally:
 
 ```bash
-python -m http.server 8790
+python3 -m http.server 8790 --bind 127.0.0.1
 ```
 
-All numbers in Case Studies are sample data made up for this demo. None of them come from a real organisation.
+The analysis demos use fictional data.
