@@ -39,25 +39,39 @@
     });
   }
 
-  /* ---------- Section progress rail ---------- */
+  /* ---------- Section progress rail ----------
+     The current section is the innermost [data-rail] element that holds a
+     line 40% down the viewport, so a project story wins over the #work
+     section around it. Rail links match sections by href. The % is how far
+     down the page the reader is. */
   var railLinks = $$(".rail a");
-  var railNow = $("#railNow");
+  var railPct = $("#railPct");
   var railSections = $$("[data-rail]");
-  if (railLinks.length && railSections.length && "IntersectionObserver" in window) {
-    var visible = {};
-    var railIO = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { visible[en.target.id] = en.intersectionRatio; });
-      var best = 0, bestRatio = -1;
-      railSections.forEach(function (s, i) { var r = visible[s.id] || 0; if (r > bestRatio) { bestRatio = r; best = i; } });
-      railLinks.forEach(function (a, i) { a.setAttribute("aria-current", String(i === best)); });
-      if (railNow) railNow.textContent = String(best + 1).padStart(2, "0");
-      var id = railSections[best].id;
-      var group = id === "work" ? "work" : id === "about" ? "about" : "";
+  if (railLinks.length && railSections.length) {
+    var lastId = null, ticking = false;
+    var updateRail = function () {
+      ticking = false;
+      var line = innerHeight * 0.4, id = railSections[0].id;
+      railSections.forEach(function (s) {
+        var r = s.getBoundingClientRect();
+        if (r.top <= line && r.bottom > line) id = s.id;   // later in DOM order = nested deeper
+      });
+      var max = document.documentElement.scrollHeight - innerHeight;
+      if (railPct) railPct.textContent = String(max > 0 ? Math.round(Math.min(1, Math.max(0, scrollY / max)) * 100) : 0);
+      if (id === lastId) return;
+      lastId = id;
+      railLinks.forEach(function (a) {
+        if (a.getAttribute("href") === "#" + id) a.setAttribute("aria-current", "location"); else a.removeAttribute("aria-current");
+      });
+      var group = id === "about" ? "about" : (id === "work" || $("#work").contains(document.getElementById(id))) ? "work" : "";
       $$("[data-nav]").forEach(function (a) {
         if (a.getAttribute("data-nav") === group) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
       });
-    }, { threshold: [0, 0.15, 0.3, 0.5, 0.7, 1] });
-    railSections.forEach(function (s) { railIO.observe(s); });
+    };
+    var onScroll = function () { if (!ticking) { ticking = true; requestAnimationFrame(updateRail); } };
+    addEventListener("scroll", onScroll, { passive: true });
+    addEventListener("resize", onScroll);
+    updateRail();
   }
 
   /* ---------- Case study tabs ---------- */

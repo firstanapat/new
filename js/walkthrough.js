@@ -496,7 +496,11 @@
           if (en.isIntersecting) far = Math.max(far, self.items.indexOf(en.target));
         });
         if (far >= 0 && far + 1 > self.target) self.play(far + 1, "scroll");
-      }, { rootMargin: "-49% 0px -49% 0px" });
+      }, {
+        /* on narrow screens the frame is pinned at the top (see style.css),
+           so the line sits lower, at ~72%, where the beats are visible */
+        rootMargin: matchMedia("(max-width: 700px)").matches ? "-71% 0px -28% 0px" : "-49% 0px -49% 0px"
+      });
       this.items.forEach(function (li) { io.observe(li); });
     },
 

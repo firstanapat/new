@@ -63,13 +63,20 @@
     </header>
   </div>
 
+  <!-- Rail: one entry per [data-rail] section, same order. The project
+       stories are chapters 01–04; the % is how far down the page you are. -->
   <nav class="rail" aria-label="ตำแหน่งในหน้า" data-i18n-aria="rail.label">
-    <div class="rail-count" aria-hidden="true"><span class="now" id="railNow">01</span><i></i><span>05</span></div>
-    <a href="#top" aria-label="หน้าแรก" data-i18n-aria="rail.top"></a>
-    <a href="#work" aria-label="ผลงาน" data-i18n-aria="rail.work"></a>
-    <a href="#about" aria-label="ทักษะ" data-i18n-aria="rail.skills"></a>
-    <a href="#demos" aria-label="ตัวอย่างการวิเคราะห์" data-i18n-aria="cases.tabs"></a>
-    <a href="#contact" aria-label="ติดต่อ" data-i18n-aria="rail.contact"></a>
+    <div class="rail-pct" aria-hidden="true"><span id="railPct">0</span>%</div>
+    <ol>
+      <li><a href="#top"><i aria-hidden="true"></i><span class="rail-n" aria-hidden="true">00</span><span class="rail-t" data-i18n="rail.top">หน้าแรก</span></a></li>
+      <li><a href="#work"><i aria-hidden="true"></i><span class="rail-n" aria-hidden="true">—</span><span class="rail-t" data-i18n="rail.work">ผลงาน</span></a></li>
+      <li><a href="#carbonmate-th"><i aria-hidden="true"></i><span class="rail-n" aria-hidden="true">01</span><span class="rail-t">CarbonMate TH</span></a></li>
+      <li><a href="#cfo-dashboard"><i aria-hidden="true"></i><span class="rail-n" aria-hidden="true">02</span><span class="rail-t">CFO Dashboard</span></a></li>
+      <li><a href="#farm-ef-workbook"><i aria-hidden="true"></i><span class="rail-n" aria-hidden="true">03</span><span class="rail-t">Farm EF Workbook</span></a></li>
+      <li><a href="#sroi-assessment"><i aria-hidden="true"></i><span class="rail-n" aria-hidden="true">04</span><span class="rail-t">SROI</span></a></li>
+      <li><a href="#about"><i aria-hidden="true"></i><span class="rail-n" aria-hidden="true">—</span><span class="rail-t" data-i18n="rail.skills">ทักษะ</span></a></li>
+      <li><a href="#contact"><i aria-hidden="true"></i><span class="rail-n" aria-hidden="true">—</span><span class="rail-t" data-i18n="rail.contact">ติดต่อ</span></a></li>
+    </ol>
   </nav>
 
   <main id="main">
@@ -77,14 +84,19 @@
       <div class="container intro-inner">
         <div class="intro-copy">
           <p class="intro-role">Sustainability × AI</p>
-          <h1>Anapat Tantikulanon<span class="dot-accent">.</span></h1>
+          <h1 class="intro-name"><span class="line"><span>Anapat</span></span> <span class="line"><span>Tantikulanon<span class="dot-accent">.</span></span></span></h1>
           <p data-i18n="hero.lead" class="lead">นักวิเคราะห์ความยั่งยืนที่มีประสบการณ์ 2.5 ปีในห่วงโซ่อุปทานอาหาร ผมสร้างเครื่องมือจัดการข้อมูลและกำลังนำ AI มาช่วยงานคาร์บอน</p>
+          <dl class="intro-stats">
+            <div><dt data-i18n="hero.stat.years">ปีในห่วงโซ่อุปทานอาหาร</dt><dd data-count="2.5" data-decimals="1">2.5</dd></div>
+            <div><dt data-i18n="hero.stat.farmers">เกษตรกรที่เก็บข้อมูลภาคสนาม</dt><dd data-count="60">60</dd></div>
+            <div><dt data-i18n="hero.stat.projects">เรื่องในพอร์ตนี้</dt><dd data-count="4">4</dd></div>
+          </dl>
           <div class="intro-actions">
             <a class="btn btn-dark" href="#work"><span data-i18n="hero.cta1">ดูผลงาน</span> <svg aria-hidden="true"><use href="#i-down"/></svg></a>
             <a class="btn btn-outline" href="resume.html">Resume <svg aria-hidden="true"><use href="#i-up-right"/></svg></a>
           </div>
         </div>
-        <img class="intro-photo" src="assets/img/profile.jpg" alt="" width="800" height="1000">
+        <div class="intro-figure"><img class="intro-photo" src="assets/img/profile.jpg" alt="" width="800" height="1000"></div>
       </div>
     </section>
 
@@ -154,15 +166,18 @@
           </a>
         </div>
         <div class="project-stories">
-          <article class="project-story" id="carbonmate-th" tabindex="-1" aria-labelledby="carbonmate-th-title">
+          <article class="project-story project-story--dark" id="carbonmate-th" tabindex="-1" aria-labelledby="carbonmate-th-title" data-rail>
             <div class="project-story-head">
+              <p class="story-chapter"><span class="story-num">01</span><span data-i18n="work.carbonmate-th.label">โปรเจกต์ส่วนตัว · กำลังพัฒนา</span></p>
               <h3 data-i18n="work.carbonmate-th.title" id="carbonmate-th-title">CarbonMate TH</h3>
               <p data-i18n="work.carbonmate-th.problem">เมื่อแต่ละหน่วยงานเรียกกิจกรรมเดียวกันต่างกัน การหาค่าการปล่อยที่ตรงกับกิจกรรมและหน่วยจึงต้องตรวจทีละรายการ</p>
             </div>
             <div class="project-story-grid">
               <figure class="project-figure">
-                <img src="assets/img/carbonmate-th.webp" alt="" width="1200" height="800" loading="lazy">
-                <figcaption data-i18n="work.carbonmate-th.caption">ภาพจำลองหน้าจอ แสดงการกรอกกิจกรรม การเลือกค่าอ้างอิง และการตรวจผล</figcaption>
+                <div class="wt-slot" data-walkthrough>
+                  <img src="assets/img/carbonmate-th.webp" alt="" width="1200" height="800" loading="lazy">
+                </div>
+                <figcaption data-i18n="work.carbonmate-th.caption">ภาพจำลองหน้าจอด้วยข้อมูลสมมติ ส่วนที่ใช้ AI ยังอยู่ระหว่างพัฒนา</figcaption>
               </figure>
               <ol class="project-steps">
                 <li>
@@ -170,12 +185,16 @@
                   <p data-i18n="work.carbonmate-th.step1.copy">รับคำอธิบายภาษาไทยพร้อมปริมาณและหน่วย เช่น การใช้ไฟฟ้าของโรงงานเป็น kWh</p>
                 </li>
                 <li>
-                  <h4 data-i18n="work.carbonmate-th.step2.title">จับคู่กับค่าอ้างอิง</h4>
-                  <p data-i18n="work.carbonmate-th.step2.copy">พัฒนาส่วนจับคู่ด้วย Claude API ให้เลือกได้จากตารางของ อบก. หากข้อมูลไม่พอ ระบบจะถามเพิ่มหรือแจ้งว่าไม่พบค่า</p>
+                  <h4 data-i18n="work.carbonmate-th.step2.title">เลือกค่าอ้างอิง</h4>
+                  <p data-i18n="work.carbonmate-th.step2.copy">เลือกค่าการปล่อย (EF) จากตารางของ อบก. ที่ตรงทั้งกิจกรรมและหน่วย แล้วเก็บรหัสค่าไว้กับรายการ</p>
                 </li>
                 <li>
                   <h4 data-i18n="work.carbonmate-th.step3.title">ตรวจแล้วคำนวณ</h4>
                   <p data-i18n="work.carbonmate-th.step3.copy">ใช้ Python ตรวจหน่วย ขอบเขต และรหัสค่าอ้างอิงก่อนคำนวณ พร้อมบันทึกแหล่งที่มาและเวอร์ชันของค่า</p>
+                </li>
+                <li>
+                  <h4><span data-i18n="work.carbonmate-th.step4.title">ให้ AI ช่วยจับคู่</span> <span class="tag-dev" data-i18n="work.status.dev">กำลังพัฒนา</span></h4>
+                  <p data-i18n="work.carbonmate-th.step4.copy">กำลังพัฒนาส่วนที่ใช้ Claude API เสนอค่าอ้างอิงจากตาราง อบก. ให้ผู้ใช้ยืนยัน หากข้อมูลไม่พอ ระบบจะถามเพิ่มหรือแจ้งว่าไม่พบค่า</p>
                 </li>
               </ol>
             </div>
@@ -185,8 +204,9 @@
             </div>
           </article>
 
-          <article class="project-story" id="cfo-dashboard" tabindex="-1" aria-labelledby="cfo-dashboard-title">
+          <article class="project-story" id="cfo-dashboard" tabindex="-1" aria-labelledby="cfo-dashboard-title" data-rail>
             <div class="project-story-head">
+              <p class="story-chapter"><span class="story-num">02</span><span data-i18n="work.cfo-dashboard.label">คาร์บอนฟุตพริ้นท์องค์กร</span></p>
               <h3 data-i18n="work.cfo-dashboard.title" id="cfo-dashboard-title">CFO Dashboard</h3>
               <p data-i18n="work.cfo-dashboard.problem">การเปรียบเทียบการปล่อยระหว่างหน่วยงานต้องเปิดไฟล์ Excel หลายชุดและเทียบข้อมูลข้ามปี</p>
             </div>
@@ -216,8 +236,9 @@
             </div>
           </article>
 
-          <article class="project-story" id="farm-ef-workbook" tabindex="-1" aria-labelledby="farm-ef-workbook-title">
+          <article class="project-story" id="farm-ef-workbook" tabindex="-1" aria-labelledby="farm-ef-workbook-title" data-rail>
             <div class="project-story-head">
+              <p class="story-chapter"><span class="story-num">03</span><span data-i18n="work.farm-ef-workbook.label">ข้อมูลภาคสนาม · Excel</span></p>
               <h3 data-i18n="work.farm-ef-workbook.title" id="farm-ef-workbook-title">Farm EF Workbook</h3>
               <p data-i18n="work.farm-ef-workbook.problem">การคำนวณค่าการปล่อยเฉพาะของมะเขือเทศสดต้องทำให้ข้อมูลปุ๋ย เชื้อเพลิง และผลผลิตจากแต่ละแปลงเทียบกันได้</p>
             </div>
@@ -247,8 +268,9 @@
             </div>
           </article>
 
-          <article class="project-story" id="sroi-assessment" tabindex="-1" aria-labelledby="sroi-assessment-title">
+          <article class="project-story" id="sroi-assessment" tabindex="-1" aria-labelledby="sroi-assessment-title" data-rail>
             <div class="project-story-head">
+              <p class="story-chapter"><span class="story-num">04</span><span data-i18n="work.sroi-assessment.label">การประเมินผลกระทบ</span></p>
               <h3 data-i18n="work.sroi-assessment.title" id="sroi-assessment-title">การประเมิน SROI</h3>
               <p data-i18n="work.sroi-assessment.problem">โจทย์คือการประเมินว่าการรับซื้อมะเขือเทศและกิจกรรมชุมชนสร้างผลลัพธ์อะไร และเกิดกับใครบ้าง</p>
             </div>
@@ -321,7 +343,7 @@
       </div>
     </section>
 
-    <section class="section demo-section" id="demos" data-rail>
+    <section class="section demo-section" id="demos">
       <div class="container">
         <h2 data-i18n="cases.title" class="showcase-title">ตัวอย่างการวิเคราะห์</h2>
         <details class="demo-disclosure" id="caseDemos">
@@ -510,6 +532,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <script src="js/lang-en.js"></script>
   <script src="js/i18n.js"></script>
+  <script src="js/walkthrough.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/stories.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/motion.js"></script>
 </body>
 </html>
