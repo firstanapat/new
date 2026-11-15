@@ -356,7 +356,7 @@ html.i18n-wait body { visibility: hidden; }
 .project-story-head .story-chapter { margin-top: 0; max-width: none; color: var(--accent-ink); font-size: 14px; }
 .tag-dev { display: inline-block; margin-left: 6px; padding: 2px 9px; border-radius: var(--r-full); border: 1px solid currentColor; color: #b4501f; font-size: 12px; font-weight: 600; vertical-align: 3px; }
 
-/* ---------- Dark chapter (CarbonMate TH, later Contact) ----------
+/* ---------- Dark chapter (Carbon Calculator, later Contact) ----------
    Full-bleed deep forest green behind one story; the frame stays white. */
 .project-story--dark {
   --story-bg: #0d2a1c;
@@ -405,7 +405,7 @@ html.i18n-wait body { visibility: hidden; }
   .wt-on .project-steps { padding-top: 8vh; padding-bottom: 18vh; gap: 22vh; }
 }
 
-/* ---------- CarbonMate TH screens (inside the 600 × 400 canvas) ---------- */
+/* ---------- Carbon Calculator screens (inside the 600 × 400 canvas) ---------- */
 .cm { position: absolute; inset: 0; display: flex; flex-direction: column; background: #f4f8f5; color: #17251c; }
 .cm-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 50px; padding: 0 18px; background: #14432a; color: #fff; flex: none; }
 .cm-brand { font-size: 15px; letter-spacing: .01em; }
@@ -597,7 +597,7 @@ html.i18n-wait body { visibility: hidden; }
 @media (max-width: 520px) { .skills { grid-template-columns: 1fr; } }
 
 /* ---------- Start / contact ---------- */
-/* closing dark chapter, same leaf texture as CarbonMate TH */
+/* closing dark chapter, same leaf texture as Carbon Calculator */
 .start {
   text-align: center; padding: clamp(96px, 12vw, 150px) 0 clamp(80px, 10vw, 120px); color: #fff;
   background:
@@ -933,7 +933,7 @@ a.visually-hidden:focus { position: fixed !important; z-index: 100; left: 16px; 
 .wt-host[data-size="compact"] .wt-chip { font-size: 12px; padding: 5px 10px; }
 .wt-host[data-size="compact"] .wt-hl { outline-offset: 2px; box-shadow: 0 0 0 5px var(--mark-glow) !important; }
 
-/* CarbonMate TH */
+/* Carbon Calculator */
 [data-size="compact"] .cm-head { height: 42px; padding: 0 10px; gap: 6px; }
 [data-size="compact"] .cm-brand { font-size: 13px; white-space: nowrap; }
 [data-size="compact"] .cm-steps { gap: 2px; }

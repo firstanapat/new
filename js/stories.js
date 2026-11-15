@@ -8,7 +8,7 @@
   if (!window.Walkthrough) return;
 
   /* ---------------------------------------------------------------------
-     01 CarbonMate TH
+     01 Carbon Calculator
      Beats 1–3 show what is built (the calculator, tested on sample data).
      Beat 4 shows the AI matching as "in development", with no working
      suggestion on screen. The activity text stays Thai in both languages
@@ -46,7 +46,7 @@
   };
 
   function cmHead(stage, h) {
-    return '<div class="cm-head"><b class="cm-brand">CarbonMate <span>TH</span></b><ol class="cm-steps">' +
+    return '<div class="cm-head"><b class="cm-brand">Carbon <span>Calculator</span></b><ol class="cm-steps">' +
       CM.steps.map(function (s, i) {
         var n = i + 1;
         var cls = (n < stage ? "done" : n === stage ? "on" : "") + (n === 4 ? " dev" : "");
@@ -120,14 +120,14 @@
     }
   };
 
-  window.Walkthrough.register("carbonmate-th", {
-    url: "localhost:8501 · CarbonMate TH",
+  window.Walkthrough.register("carbon-calculator", {
+    url: "localhost:8501 · Carbon Calculator",
     label: {
-      th: "ภาพจำลองหน้าจอ CarbonMate TH ด้วยข้อมูลสมมติ: กรอกการใช้ไฟฟ้าโรงงาน 12,000 kWh เลือกค่า ELEC-001 0.475 kgCO₂e/kWh ได้ผล 5.70 tCO₂e และส่วน AI ที่กำลังพัฒนา",
-      en: "CarbonMate TH screen mockup with sample data: 12,000 kWh of factory electricity, factor ELEC-001 at 0.475 kgCO₂e/kWh, a result of 5.70 tCO₂e, and the AI part still in development"
+      th: "ภาพจำลองหน้าจอ Carbon Calculator ด้วยข้อมูลสมมติ: กรอกการใช้ไฟฟ้าโรงงาน 12,000 kWh เลือกค่า ELEC-001 0.475 kgCO₂e/kWh ได้ผล 5.70 tCO₂e และส่วน AI ที่กำลังพัฒนา",
+      en: "Carbon Calculator screen mockup with sample data: 12,000 kWh of factory electricity, factor ELEC-001 at 0.475 kgCO₂e/kWh, a result of 5.70 tCO₂e, and the AI part still in development"
     },
     start: "input",
-    cover: 3,          // card image = the result after beat 3 (assets/img/card-carbonmate-th*.webp)
+    cover: 3,          // card image = the result after beat 3 (assets/img/card-carbon-calculator*.webp)
     state: { activity: "", amount: "", unit: "", efRows: false, picked: false, checked: false, t: 0, ai: "", aiShown: false },
     screens: cmScreens,
     steps: [

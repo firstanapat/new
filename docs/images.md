@@ -9,22 +9,22 @@ Where each image comes from, so it can be remade.
 | `card-<story>-m.webp`, `card-<story>-m-en.webp` | The same screens on the compact 400 × 300 canvas phones use, at 2× (TH and EN) | Project cards on screens 700 px wide or less (`<picture>` source) |
 | `card-thai-document-guide*.webp` | Final beat of the guide walkthrough (thai-docx → Word), wide and compact, TH and EN | Guide card on the home page and the no-JS fallback on `thai-document-guide.html` |
 | `assets/thai-document-guide/*` | Fictional memo scan, OCR output, reviewed JSON and Word draft | Guide hero (the two papers), walkthrough screens and downloads |
-| `scene-carbonmate.webp` | ImageGen, prompt "carbonmate-scene", version 2 of 3 | CarbonMate TH story head |
+| `scene-carbon-calculator.webp` | ImageGen, prompt "carbon-calculator-scene", version 2 of 3 | Carbon Calculator story head |
 | `scene-cfo.webp` | ImageGen, prompt "cfo-scene", version 3 of 3 | CFO Dashboard story head |
 | `farm-ef-workbook.webp` | ImageGen (first redesign round) | Farm EF Workbook story head |
 | `sroi-assessment.webp` | ImageGen (first redesign round) | SROI story head |
-| `texture-leaf.webp` | ImageGen, prompt "chapter-texture", version 2 of 3 | Background of the two dark chapters (CarbonMate TH, Contact) |
+| `texture-leaf.webp` | ImageGen, prompt "chapter-texture", version 2 of 3 | Background of the two dark chapters (Carbon Calculator, Contact) |
 | `og-cover.jpg` | HTML page rendered at 1200 × 630 (name, role, numbers, portrait) | `og:image` |
 
 All ImageGen pictures are illustrations and carry an "ภาพประกอบ / Illustration" label on the page. The walkthrough screens and card captures use sample data and are labelled "ภาพจำลองหน้าจอ / Screen mockup".
 
 ## Card captures
 
-The cards show the same state the card click opens (`cover` in `js/stories.js`): CarbonMate TH after beat 3, CFO Dashboard after beat 2, Farm EF Workbook and SROI after their last beat. Rings are removed before capture. Recapture after changing a screen or its Thai/English text, otherwise the card and the story will differ.
+The cards show the same state the card click opens (`cover` in `js/stories.js`): Carbon Calculator after beat 3, CFO Dashboard after beat 2, Farm EF Workbook and SROI after their last beat. Rings are removed before capture. Recapture after changing a screen or its Thai/English text, otherwise the card and the story will differ.
 
 ## ImageGen prompts (3:2, 1536 × 1024)
 
-**carbonmate-scene**
+**carbon-calculator-scene**
 
 > Photorealistic 3:2 landscape editorial photograph for a sustainability × AI portfolio, illustrative fictional scene. Close view of a modern digital kWh electricity meter and main switchboard mounted on a deep forest-green painted wall inside a Thai food-processing factory. Behind it, softly out of focus, a clean stainless-steel food processing line under cool industrial light. Calm dusk mood, low-key lighting, deep forest green and muted sage tones with one soft warm highlight on the meter display. Subject placed in the right third; the left 45% of the frame is quiet, dark and uncluttered so white headline text can sit over it. Meter display shows only abstract glowing segments, no readable numbers. No people, no logos, no brand names, no signage, no readable text, no watermark. Sharp, restrained, contemporary industrial photography.
 
