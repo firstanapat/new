@@ -188,7 +188,7 @@ window.I18N_EN = {
   "res.experience": "Professional Experience",
   "res.projects": "Selected Projects",
   "res.projectsNote": "Details &amp; demos: <a href=\"index.html#work\">anapat-portfolio.vercel.app</a>",
-  "res.projectList": "<li><strong>CarbonMate TH</strong> <span class=\"r-muted\">(in progress)</span> — An auditable carbon footprint calculator following TGO guidelines. An LLM matches Thai activity text to emission factors, choosing only from the EF table. Designed the prompts and a 113-case test set.</li><li><strong>CFO Dashboard</strong> — Combines every site's CFO workbook into one web dashboard with site and year filters and a Scope 1–3 breakdown.</li><li><strong>Portfolio website</strong> — Bilingual Thai/English site built with AI coding agents and deployed automatically from GitHub.</li>",
+  "res.projectList": "<li><strong>Carbon Calculator</strong> <span class=\"r-muted\">(in progress)</span> — An auditable carbon footprint calculator following TGO guidelines. An LLM matches Thai activity text to emission factors, choosing only from the EF table. Designed the prompts and a 113-case test set.</li><li><strong>CFO Dashboard</strong> — Combines every site's CFO workbook into one web dashboard with site and year filters and a Scope 1–3 breakdown.</li><li><strong>Portfolio website</strong> — Bilingual Thai/English site built with AI coding agents and deployed automatically from GitHub.</li>",
   "res.company": "Doi Kham Food Products Company, Limited",
   "res.jobDate": "Jan 2024 – Jun 2026",
   "res.jobRole": "Social Enterprise and Sustainability Information Officer",
