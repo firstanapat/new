@@ -484,7 +484,7 @@
     bindBeats: function () {
       var self = this;
       this.items.forEach(function (li, i) {
-        var h = li.querySelector("h4");
+        var h = li.querySelector("h3, h4");   // h4 under a story's h3; h3 on pages where the story heading is an h2
         if (h && !h.id) h.id = self.article.id + "-beat-" + (i + 1);
         var b = document.createElement("button");
         b.type = "button";
