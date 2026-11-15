@@ -46,12 +46,17 @@
 
   /* ---------- card images follow the language ---------- */
   (function () {
-    var imgs = Array.prototype.slice.call(document.querySelectorAll("img[data-src-en]"));
-    imgs.forEach(function (img) { img.setAttribute("data-src-th", img.getAttribute("src")); });
+    /* <img src> plus the phone-size <source srcset> inside the card <picture> */
+    var swaps = [];
+    Array.prototype.forEach.call(document.querySelectorAll("img[data-src-en], source[data-srcset-en]"), function (el) {
+      var attr = el.tagName === "SOURCE" ? "srcset" : "src";
+      el.setAttribute("data-" + attr + "-th", el.getAttribute(attr));
+      swaps.push([el, attr]);
+    });
     var swap = function () {
-      imgs.forEach(function (img) {
-        var src = img.getAttribute("data-src-" + lang());
-        if (src && img.getAttribute("src") !== src) img.setAttribute("src", src);
+      swaps.forEach(function (s) {
+        var url = s[0].getAttribute("data-" + s[1] + "-" + lang());
+        if (url && s[0].getAttribute(s[1]) !== url) s[0].setAttribute(s[1], url);
       });
     };
     document.addEventListener("langchange", swap);

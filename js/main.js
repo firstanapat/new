@@ -33,6 +33,7 @@
   var railPct = $("#railPct");
   var railSections = $$("[data-rail]");
   var work = $("#work");
+  var nav = $(".nav");
   if (railLinks.length && railSections.length) {
     var lastId = null, ticking = false;
     var updateRail = function () {
@@ -43,8 +44,10 @@
         if (r.top <= line && r.bottom > line) id = s.id;   // later in DOM order = nested deeper
       });
       var max = document.documentElement.scrollHeight - innerHeight;
-      if (railPct) railPct.textContent = String(max > 0 ? Math.round(Math.min(1, Math.max(0, scrollY / max)) * 100) : 0);
-      if (id === lastId) return;
+      var read = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+      if (railPct) railPct.textContent = String(Math.round(read * 100));
+      if (nav) nav.style.setProperty("--read", read.toFixed(3));   // mobile progress bar (style.css)
+      if (id === lastId) return;   // the bar above still updates on every scroll
       lastId = id;
       railLinks.forEach(function (a) {
         if (a.getAttribute("href") === "#" + id) a.setAttribute("aria-current", "location"); else a.removeAttribute("aria-current");

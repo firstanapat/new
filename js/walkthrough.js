@@ -33,6 +33,11 @@
   /* Design size of the screen canvas; the frame scales it to fit. 3:2 matches
      the fallback images and the 1200 × 800 card captures. */
   var W = 600, H = 400;
+  /* Narrow frames (phones) switch to a 400 × 300 canvas, so text is drawn
+     about half again as large as a scaled-down 600 × 400 one. Screens adapt
+     through .wt-host[data-size="compact"] rules in style.css. */
+  var SIZES = { wide: { w: 600, h: 400 }, compact: { w: 400, h: 300 } };
+  var COMPACT_BELOW = 520;   // frame width in CSS px
 
   var lang = function () { return (window.I18N && window.I18N.lang) || document.documentElement.lang || "th"; };
   /* {th, en} → string in the current language; anything else passes through */
@@ -113,7 +118,18 @@
 
     fit: function () {
       var w = this.viewport.clientWidth;
-      if (w) this.canvas.style.setProperty("--wt-scale", String(w / W));
+      if (!w) return;
+      var size = w < COMPACT_BELOW ? "compact" : "wide";
+      if (size !== this.size) {
+        this.size = size;
+        this.W = SIZES[size].w;
+        this.H = SIZES[size].h;
+        this.host.setAttribute("data-size", size);
+        this.canvas.style.width = this.W + "px";
+        this.canvas.style.height = this.H + "px";
+        if (this.screenEl.firstChild) this.refresh(false);   // redraw for the new layout
+      }
+      this.canvas.style.setProperty("--wt-scale", String(w / this.W));
     },
 
     label: function () {
@@ -193,7 +209,7 @@
     pos: function (el, fx, fy) {
       var c = this.canvas.getBoundingClientRect();
       var r = el.getBoundingClientRect();
-      var s = c.width / W || 1;
+      var s = c.width / (this.W || W) || 1;
       return { x: (r.left + r.width * (fx == null ? 0.5 : fx) - c.left) / s, y: (r.top + r.height * (fy == null ? 0.5 : fy) - c.top) / s };
     },
 
@@ -538,6 +554,6 @@
     tx: tx,
     esc: esc,
     reduced: REDUCED,
-    size: { w: W, h: H }
+    sizes: SIZES
   };
 })();
