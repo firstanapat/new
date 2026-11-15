@@ -1066,3 +1066,7 @@ a.visually-hidden:focus { position: fixed !important; z-index: 100; left: 16px; 
     pointer-events: none;
   }
 }
+
+/* Resume: selected projects */
+.r-muted { color: var(--muted); font-weight: 400; }
+.r-role a { color: var(--accent-ink); font-weight: 600; }
