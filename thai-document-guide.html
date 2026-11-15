@@ -30,7 +30,7 @@
     <div class="rail-pct" aria-hidden="true"><span id="railPct">0</span>%</div>
     <ol>
       <li><a href="#top"><i aria-hidden="true"></i><span class="rail-n" aria-hidden="true">00</span><span class="rail-t" data-i18n="guide.rail.top">ภาพรวม</span></a></li>
-      <li><a href="#docs"><i aria-hidden="true"></i><span class="rail-n" aria-hidden="true">—</span><span class="rail-t" data-i18n="guide.rail.docs">ต้นฉบับกับร่าง</span></a></li>
+      <li><a href="#flow"><i aria-hidden="true"></i><span class="rail-n" aria-hidden="true">—</span><span class="rail-t" data-i18n="guide.rail.flow">3 ขั้นตอน</span></a></li>
       <li><a href="#s-extract"><i aria-hidden="true"></i><span class="rail-n" aria-hidden="true">01</span><span class="rail-t" data-i18n="guide.rail.extract">เก็บคำจาก OCR</span></a></li>
       <li><a href="#s-review"><i aria-hidden="true"></i><span class="rail-n" aria-hidden="true">02</span><span class="rail-t" data-i18n="guide.rail.review">ตรวจสำนวน</span></a></li>
       <li><a href="#s-export"><i aria-hidden="true"></i><span class="rail-n" aria-hidden="true">03</span><span class="rail-t" data-i18n="guide.rail.export">ร่าง Word</span></a></li>
@@ -41,35 +41,79 @@
   <main id="main" class="guide-shell">
     <a class="guide-back" href="index.html#work" data-i18n="guide.back">← กลับไปที่ผลงาน</a>
     <article>
-      <header class="guide-heading" id="top" data-rail>
-        <p class="guide-kicker" data-i18n="guide.kicker">คู่มือจากการทดลอง</p>
-        <h1 data-i18n="guide.title">ใช้ AI ช่วยตรวจแก้<br>เอกสารราชการไทย</h1>
-        <p class="guide-deck" data-i18n="guide.deck">เปลี่ยนบันทึกข้อความสแกนเป็นร่าง Word พร้อมวิธีตรวจเทียบต้นฉบับ</p>
-        <p class="guide-byline">Anapat Tantikulanon</p>
+      <header class="guide-hero" id="top" data-rail>
+        <div class="guide-heading">
+          <p class="story-chapter"><span data-i18n="guide.kicker">คู่มือจากการทดลอง</span></p>
+          <h1 data-i18n="guide.title">ใช้ AI ช่วยตรวจแก้<br>เอกสารราชการไทย</h1>
+          <p class="guide-deck" data-i18n="guide.deck">เปลี่ยนบันทึกข้อความสแกนเป็นร่าง Word พร้อมวิธีตรวจเทียบต้นฉบับ</p>
+          <ul class="guide-tools" aria-label="เครื่องมือ" data-i18n-aria="guide.tools">
+            <li>Typhoon OCR V2</li>
+            <li data-i18n="guide.tool.ai">AI ช่วยปรับสำนวน</li>
+            <li>thai-docx</li>
+          </ul>
+          <div class="intro-actions">
+            <a class="btn btn-dark" href="#flow"><span data-i18n="guide.cta.flow">ดู 3 ขั้นตอน</span> <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+            <a class="btn btn-outline" href="assets/thai-document-guide/reviewed-memo.docx" download data-i18n="guide.export.download">ดาวน์โหลดร่าง Word</a>
+          </div>
+          <p class="guide-byline">Anapat Tantikulanon</p>
+        </div>
+        <div class="guide-docs">
+          <figure class="gd gd-scan">
+            <a href="assets/thai-document-guide/scanned-memo.pdf" aria-label="เปิด PDF ต้นฉบับสมมติ" data-i18n-aria="guide.source.aria">
+              <img src="assets/thai-document-guide/scanned-memo.webp" width="1240" height="1754" alt="บันทึกข้อความสมมติที่ระบุหน่วย kWh ช่วงเดือนมกราคมถึงตุลาคม และกำหนดส่ง 20 พฤศจิกายน 2569" data-i18n-alt="guide.source.alt" fetchpriority="high">
+              <span class="scan-line" aria-hidden="true"></span>
+            </a>
+            <figcaption data-i18n="guide.source.caption"><strong>ต้นฉบับสแกน</strong> บันทึกข้อความสมมติ</figcaption>
+          </figure>
+          <figure class="gd gd-word">
+            <a href="assets/thai-document-guide/reviewed-memo.docx" download aria-label="ดาวน์โหลดร่าง Word สมมติ" data-i18n-aria="guide.word.aria">
+              <img src="assets/thai-document-guide/reviewed-memo.webp" width="1240" height="1754" alt="ร่าง Word ที่จัดวางหัวข้อ ส่วนราชการ เลขที่หนังสือ วันที่ และเนื้อหาที่ปรับสำนวนแล้ว" data-i18n-alt="guide.word.alt">
+            </a>
+            <figcaption data-i18n="guide.word.caption"><strong>ร่าง Word</strong> หลังตรวจเทียบต้นฉบับ</figcaption>
+          </figure>
+          <div class="guide-flow" aria-hidden="true"><span>OCR</span><i>→</i><span data-i18n="guide.flow.check">ตรวจ</span><i>→</i><span>Word</span></div>
+        </div>
       </header>
 
-      <div class="guide-copy">
+      <div class="guide-copy guide-lede">
         <p data-i18n="guide.intro">คำว่า “ข้อมูลค่าไฟ” อาจหมายถึงยอดเงินเป็นบาทหรือปริมาณไฟฟ้าเป็น kWh สำหรับบัญชีก๊าซเรือนกระจก ผมต้องการปริมาณการใช้ไฟฟ้า ผมจึงใช้บันทึกข้อความสมมติหนึ่งหน้าเพื่อทดลองว่า AI ช่วยถอดข้อความและปรับสำนวนได้อย่างไร โดยให้ต้นฉบับเป็นหลักในการตรวจข้อเท็จจริง</p>
       </div>
 
-      <div class="guide-specimens" id="docs" data-rail>
-        <figure>
-          <a href="assets/thai-document-guide/scanned-memo.pdf" aria-label="เปิด PDF ต้นฉบับสมมติ" data-i18n-aria="guide.source.aria">
-            <img src="assets/thai-document-guide/scanned-memo.webp" width="1240" height="1754" alt="บันทึกข้อความสมมติที่ระบุหน่วย kWh ช่วงเดือนมกราคมถึงตุลาคม และกำหนดส่ง 20 พฤศจิกายน 2569" data-i18n-alt="guide.source.alt">
-            <span class="scan-line" aria-hidden="true"></span>
-          </a>
-          <figcaption data-i18n="guide.source.caption"><strong>ต้นฉบับสแกน</strong> บันทึกข้อความสมมติ</figcaption>
-        </figure>
-        <div class="guide-flow" aria-hidden="true"><span>OCR</span><i>→</i><span data-i18n="guide.flow.check">ตรวจ</span><i>→</i><span>Word</span></div>
-        <figure>
-          <a href="assets/thai-document-guide/reviewed-memo.docx" download aria-label="ดาวน์โหลดร่าง Word สมมติ" data-i18n-aria="guide.word.aria">
-            <img src="assets/thai-document-guide/reviewed-memo.webp" width="1240" height="1754" alt="ร่าง Word ที่จัดวางหัวข้อ ส่วนราชการ เลขที่หนังสือ วันที่ และเนื้อหาที่ปรับสำนวนแล้ว" data-i18n-alt="guide.word.alt">
-          </a>
-          <figcaption data-i18n="guide.word.caption"><strong>ร่าง Word</strong> หลังตรวจเทียบต้นฉบับ</figcaption>
-        </figure>
-      </div>
+      <section class="project-story guide-story" id="flow" tabindex="-1" aria-labelledby="flow-title" data-rail>
+        <div class="guide-story-head">
+          <p class="story-chapter"><span class="story-num">01–03</span><span data-i18n="guide.flow.label">ภาพรวมขั้นตอน</span></p>
+          <h2 id="flow-title" data-i18n="guide.flow.title">จากภาพสแกนถึงร่าง Word ใน 3 ขั้น</h2>
+        </div>
+        <div class="project-story-grid">
+          <figure class="project-figure">
+            <div class="wt-slot" data-walkthrough>
+              <img src="assets/img/card-thai-document-guide.webp" alt="" width="1200" height="800" loading="lazy">
+            </div>
+            <figcaption data-i18n="guide.flow.caption">ภาพจำลองหน้าจอ ใช้เอกสารสมมติ</figcaption>
+          </figure>
+          <ol class="project-steps">
+            <li>
+              <h3 data-i18n="guide.flow.step1.title">อ่านด้วย OCR แล้วตรวจกับภาพ</h3>
+              <p data-i18n="guide.flow.step1.copy">Typhoon OCR V2 ถอดข้อความทีละบรรทัดพร้อมพิกัด ผมเทียบกับภาพทุกบรรทัด และแก้คำที่อ่านผิด</p>
+            </li>
+            <li>
+              <h3 data-i18n="guide.flow.step2.title">ให้ AI เสนอสำนวน แล้วเลือกเอง</h3>
+              <p data-i18n="guide.flow.step2.copy">ใช้ข้อเสนอที่คงความหมายเดิม และไม่ใช้ข้อเสนอที่อาจทำให้ได้ยอดเงินบาทกลับมาแทน kWh</p>
+            </li>
+            <li>
+              <h3 data-i18n="guide.flow.step3.title">สร้างร่าง Word จากช่องที่ตรวจแล้ว</h3>
+              <p data-i18n="guide.flow.step3.copy">ใส่ข้อมูลที่ตรวจแล้วลง JSON แล้วรัน thai-docx ได้ไฟล์ .docx ไว้ตรวจทานต่อ</p>
+            </li>
+          </ol>
+        </div>
+        <div class="project-result">
+          <strong data-i18n="work.result">ผลที่ได้</strong>
+          <p data-i18n="guide.flow.result">ร่าง Word หนึ่งหน้าที่ทุกช่องตรวจเทียบกับภาพสแกนแล้ว พร้อมผล OCR และ JSON ไว้ตรวจย้อนหลัง</p>
+        </div>
+      </section>
 
       <div class="guide-copy">
+        <p class="guide-kicker guide-detail" data-i18n="guide.detail">ขั้นตอนแบบละเอียด</p>
         <section id="s-extract" aria-labelledby="extract" data-rail>
           <h2 id="extract" data-i18n="guide.extract.title">1. เก็บคำที่ OCR อ่านได้</h2>
           <p data-i18n="guide.extract.copy">ผมใช้ Typhoon OCR V2 รุ่น 0.8B อ่านภาพจาก PDF แล้วเก็บข้อความดิบไว้เทียบกับภาพ สังเกตทั้งคำที่อ่านได้และตำแหน่งที่อ่านมา เวลาแก้คำหรือเลข ผมจึงย้อนดูแถวเดิมได้</p>
@@ -128,6 +172,8 @@
   </main>
   <script src="js/lang-en.js"></script>
   <script src="js/i18n.js"></script>
+  <script src="js/walkthrough.js"></script>
+  <script src="js/guide-story.js"></script>
   <script src="js/main.js"></script>
   <script src="js/guide.js"></script>
 </body>

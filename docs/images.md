@@ -7,6 +7,8 @@ Where each image comes from, so it can be remade.
 | `profile.jpg` | Portrait from the Resume (real photo) | Hero, OG image |
 | `card-<story>.webp`, `card-<story>-en.webp` | Captures of each walkthrough screen, 600 × 400 at 2× (TH and EN) | Project cards and the no-JS fallback in each story frame |
 | `card-<story>-m.webp`, `card-<story>-m-en.webp` | The same screens on the compact 400 × 300 canvas phones use, at 2× (TH and EN) | Project cards on screens 700 px wide or less (`<picture>` source) |
+| `card-thai-document-guide*.webp` | Final beat of the guide walkthrough (thai-docx → Word), wide and compact, TH and EN | Guide card on the home page and the no-JS fallback on `thai-document-guide.html` |
+| `assets/thai-document-guide/*` | Fictional memo scan, OCR output, reviewed JSON and Word draft | Guide hero (the two papers), walkthrough screens and downloads |
 | `scene-carbonmate.webp` | ImageGen, prompt "carbonmate-scene", version 2 of 3 | CarbonMate TH story head |
 | `scene-cfo.webp` | ImageGen, prompt "cfo-scene", version 3 of 3 | CFO Dashboard story head |
 | `farm-ef-workbook.webp` | ImageGen (first redesign round) | Farm EF Workbook story head |

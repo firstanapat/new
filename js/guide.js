@@ -1,9 +1,10 @@
 /* ==========================================================================
    Motion for the Thai document guide (thai-document-guide.html)
-   - Heading entrance is CSS only (document-guide.css).
-   - Blocks rise in as they reach the viewport.
-   - Source → draft: a scan line reads the memo, the OCR → check → Word
-     chip pops, then the Word draft opens from the top.
+   - Hero entrance is CSS only (document-guide.css): the scan comes in and a
+     scan line reads it, the OCR → check → Word chip pops, the Word draft
+     lands on top.
+   - The three-step walkthrough runs on walkthrough.js (js/guide-story.js).
+   - Long-form steps rise in as they reach the viewport.
    - Step 1: the misread character gets a wavy mark, then the fix slides in.
    - Step 2: removed words are struck through and added words highlighted,
      one at a time, like tracked changes.
@@ -56,5 +57,5 @@
       typers.forEach(function (t) { if (t.pre === en.target) type(t); });
     });
   }, { rootMargin: "0px 0px -12% 0px" });
-  $$(".rv, .guide-specimens").forEach(function (el) { io.observe(el); });
+  $$(".rv").forEach(function (el) { io.observe(el); });
 })();

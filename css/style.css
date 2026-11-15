@@ -287,6 +287,11 @@ html.i18n-wait body { visibility: hidden; }
 .project-card-media picture { display: contents; }
 .project-card-media img, .project-figure img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; }
 .project-card-featured .project-card-media { grid-column: 2; grid-row: 1; }
+/* the guide card: same layout as the featured card, white, image on the left */
+.project-card-featured.project-card-guide { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); background: #fff; border-color: var(--line); }
+.project-card-guide .project-card-media { grid-column: 1; }
+.project-card-featured.project-card-guide .project-card-copy { grid-column: 2; }
+.project-card-featured.project-card-guide h3 { font-size: clamp(24px, 2.8vw, 34px); }
 .media-label {
   position: absolute; bottom: 10px; left: 10px; padding: 4px 10px; border-radius: var(--r-full);
   background: #fff; color: var(--ink-2); font-size: 12px; font-weight: 600;
@@ -319,7 +324,7 @@ html.i18n-wait body { visibility: hidden; }
 .project-steps { margin: 0; padding: 0 0 0 30px; display: grid; gap: 12px; }
 .project-steps li { padding: 0 0 12px 8px; border-bottom: 1px solid var(--line); }
 .project-steps li::marker { color: var(--accent-ink); font-weight: 700; }
-.project-steps h4 { font-size: 18px; }
+.project-steps :is(h3, h4) { font-size: 18px; }
 .project-steps p { margin-top: 5px; color: var(--ink-2); font-size: 15px; }
 .project-result { margin-top: 24px; padding: 14px 18px; border-left: 3px solid var(--accent); background: var(--bg-tint); }
 .project-result strong { color: var(--accent-ink); font-size: 14px; }
@@ -772,7 +777,7 @@ h1, h2, h3, h4 { font-weight: 600; color: var(--ink); letter-spacing: -0.01em; }
 .project-card h3 { letter-spacing: -0.015em; }
 .project-card-featured h3 { font-size: clamp(28px, 3.8vw, 46px); letter-spacing: -0.025em; }
 .start h2 { font-weight: 600; letter-spacing: -0.03em; }
-.project-steps h4 { font-size: 17px; font-weight: 600; }
+.project-steps :is(h3, h4) { font-size: 17px; font-weight: 600; }
 .project-steps p, .project-story-head p { color: var(--ink-2); }
 
 /* micro labels: 11–12px, 600, tracked (Notion "micro-uppercase") */
@@ -834,7 +839,7 @@ a.visually-hidden:focus { position: fixed !important; z-index: 100; left: 16px; 
 .project-card { border-radius: var(--r-lg); border-color: var(--line); transition: background-color .15s ease, border-color .15s ease; }
 .project-card:hover { border-color: var(--line-strong); box-shadow: none; background: var(--bg-softer); }
 .project-card-featured { border-color: #d7e7dc; }
-.project-card-featured:hover { background: #ecf6ef; }
+.project-card-featured:not(.project-card-guide):hover { background: #ecf6ef; }
 .project-card-media img { transition: transform .4s var(--ease); }
 .project-card:hover .project-card-media img { transform: scale(1.015); }
 .project-card-media { overflow: hidden; }
@@ -853,7 +858,7 @@ a.visually-hidden:focus { position: fixed !important; z-index: 100; left: 16px; 
 .project-steps li.wt-beat-item { border-radius: var(--r-sm); transition: background-color .15s ease; }
 /* steps not played yet: grey text instead of opacity (keeps 4.5:1) */
 .wt-on .project-steps li.wt-beat-item:not(.is-done):not(.is-current) { opacity: 1; }
-.wt-on .project-steps li.wt-beat-item:not(.is-done):not(.is-current) h4,
+.wt-on .project-steps li.wt-beat-item:not(.is-done):not(.is-current) :is(h3, h4),
 .wt-on .project-steps li.wt-beat-item:not(.is-done):not(.is-current) p { color: var(--muted); }
 .project-steps li.wt-beat-item:hover { background: var(--hover); }
 .project-steps li.is-current, .project-steps li.is-current:hover { background: var(--accent-soft); }
