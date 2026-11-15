@@ -170,7 +170,7 @@ window.I18N_EN = {
   "res.download": "Download PDF",
   "res.contact": "Contact",
   "res.expertise": "Core Expertise",
-  "res.s1": "<li>CFO: Scope 1, 2 &amp; selected Scope 3</li><li>Life Cycle Inventory (LCI)</li><li>Emission factor assessment</li><li>System boundary setting</li><li>IPCC AR5 GWP100</li>",
+  "res.s1": "<li>CFO: Scope 1, 2 &amp; selected Scope 3</li><li>Life Cycle Inventory (LCI)</li><li>Emission factor assessment</li><li>System boundary setting</li>",
   "res.s2": "<li>Social Return on Investment (SROI)</li><li>Questionnaire design</li><li>Field data collection</li>",
   "res.s3": "<li>Primary data validation</li><li>Cross-checking &amp; source tracking</li><li>Excel, PivotTables &amp; dashboards</li>",
   "res.s5": "<li>AI coding agents: Claude Code, Codex, Antigravity</li><li>Prompt design &amp; AI output testing</li><li>Google Apps Script automation</li>",
