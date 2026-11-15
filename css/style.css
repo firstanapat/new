@@ -909,6 +909,7 @@ a.visually-hidden:focus { position: fixed !important; z-index: 100; left: 16px; 
 /* reduced motion wins over the hover/step transitions above */
 @media (prefers-reduced-motion: reduce) {
   .project-steps li.wt-beat-item, .project-card, .project-card-media img, .skill, .cred { transition: none; }
+  .rail a i, .rail-n, .rail-t { transition: none; }
 }
 
 /* ==========================================================================

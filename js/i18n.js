@@ -1,7 +1,7 @@
 /* ==========================================================================
    Thai / English switch
    - Thai text lives in the HTML. English text lives in js/lang-en.js.
-   - Mark text with data-i18n="key", an aria-label with data-i18n-aria="key".
+   - Mark text with data-i18n="key", an aria-label with data-i18n-aria="key", or alt text with data-i18n-alt="key".
    - Language order: ?lang= in the URL → saved choice → browser language.
    - Fires a "langchange" event on document so other scripts can re-render.
    ========================================================================== */
@@ -28,10 +28,12 @@
   var meta = document.querySelector('meta[name="description"]');
   var textEls = Array.prototype.slice.call(document.querySelectorAll("[data-i18n]"));
   var ariaEls = Array.prototype.slice.call(document.querySelectorAll("[data-i18n-aria]"));
+  var altEls = Array.prototype.slice.call(document.querySelectorAll("[data-i18n-alt]"));
 
   // Capture the Thai copy that is already in the page.
   textEls.forEach(function (el) { TH[el.getAttribute("data-i18n")] = el.innerHTML; });
   ariaEls.forEach(function (el) { TH[el.getAttribute("data-i18n-aria")] = el.getAttribute("aria-label"); });
+  altEls.forEach(function (el) { TH[el.getAttribute("data-i18n-alt")] = el.getAttribute("alt"); });
   TH.__title = document.title;
   TH.__desc = meta ? meta.getAttribute("content") : "";
 
@@ -50,6 +52,10 @@
     ariaEls.forEach(function (el) {
       var v = pick(el.getAttribute("data-i18n-aria"));
       if (v != null) el.setAttribute("aria-label", v);
+    });
+    altEls.forEach(function (el) {
+      var v = pick(el.getAttribute("data-i18n-alt"));
+      if (v != null) el.setAttribute("alt", v);
     });
     var page = document.body.getAttribute("data-page") || "home";
     var t = current === "en" ? EN["__title_" + page] : TH.__title;

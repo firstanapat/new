@@ -1,0 +1,197 @@
+.nav.guide-nav {
+  display: flex;
+  justify-content: space-between;
+}
+.guide-shell {
+  width: min(100% - 40px, 940px);
+  margin: 0 auto;
+  padding: clamp(36px, 6vw, 76px) 0 clamp(56px, 8vw, 100px);
+}
+.guide-back, .guide-excerpt a, .guide-references a {
+  color: var(--accent-ink);
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+.guide-back { display: inline-block; font-size: .95rem; font-weight: 600; }
+.guide-heading {
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 28px;
+  padding: clamp(25px, 5vw, 53px) 0 28px;
+}
+.guide-kicker, .guide-small-label { color: var(--accent-ink); font-size: .86rem; font-weight: 700; }
+.guide-heading h1 {
+  max-width: 20ch;
+  font-size: clamp(2.35rem, 7vw, 5.25rem);
+  line-height: 1.1;
+  letter-spacing: -.045em;
+  margin: 12px 0 18px;
+}
+.guide-deck { color: var(--ink-2); font-size: clamp(1.1rem, 2.4vw, 1.5rem); max-width: 53ch; text-wrap: pretty; }
+.guide-byline { margin-top: 19px; color: var(--muted); font-size: .92rem; }
+.guide-copy { max-width: 700px; margin-inline: auto; font-size: 1.065rem; line-height: 1.8; }
+.guide-copy > p, .guide-copy section > p { margin-block: 0 16px; color: var(--ink-2); }
+.guide-specimens {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 3vw, 24px);
+  margin-block: 28px 40px;
+}
+.guide-specimens figure {
+  margin: 0;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.guide-specimens a { display: block; }
+.guide-specimens a:focus-visible { outline-offset: -3px; }
+.guide-specimens img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  object-position: center top;
+  border-bottom: 1px solid var(--line);
+}
+.guide-specimens figcaption { padding: 12px 16px; color: var(--muted); font-size: .9rem; }
+.guide-specimens figcaption strong { color: var(--ink); display: block; }
+.guide-copy section { margin-bottom: 40px; }
+.guide-copy h2 {
+  margin: 0 0 14px;
+  font-size: clamp(1.36rem, 3vw, 1.85rem);
+  line-height: 1.35;
+}
+.guide-excerpt, .guide-prompt {
+  background: var(--bg-tint);
+  border-left: 3px solid var(--accent);
+  margin: 20px 0;
+  padding: 16px 20px;
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+}
+.guide-excerpt blockquote, .guide-prompt blockquote { margin: 6px 0; }
+.guide-excerpt a { font-size: .9rem; }
+.guide-prompt figcaption { color: var(--accent-ink); font-weight: 700; font-size: .9rem; }
+.guide-revisions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 22px 0;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.guide-revisions div { padding: 15px 18px; }
+.guide-revisions div + div { background: var(--bg-tint); }
+.guide-revisions dt { color: var(--muted); font-weight: 700; font-size: .85rem; }
+.guide-revisions dd { margin: 5px 0 0; }
+.guide-command {
+  margin: 20px 0;
+  padding: 14px 16px;
+  overflow: auto;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  font-size: .84rem;
+  line-height: 1.6;
+}
+.guide-downloads { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.guide-references { padding-top: 22px; border-top: 1px solid var(--line); }
+.guide-references ul { margin: 0; padding-inline-start: 22px; }
+@media (max-width: 550px) {
+  .guide-specimens, .guide-revisions { grid-template-columns: 1fr; }
+}
+
+/* ---------- static pieces (final state, shown without JS) ---------- */
+.guide-specimens { position: relative; }
+.guide-specimens a { position: relative; }
+.guide-flow {
+  position: absolute; left: 50%; top: 38%; z-index: 2; transform: translate(-50%, -50%);
+  display: flex; align-items: center; gap: 6px; padding: 7px 13px; border-radius: 999px;
+  background: var(--ink); color: #fff; font-size: 12px; font-weight: 600; line-height: 1; white-space: nowrap;
+  box-shadow: 0 6px 20px rgba(15, 15, 15, .18); pointer-events: none;
+}
+.guide-flow i { font-style: normal; color: #7fd9a8; }
+.scan-line {
+  position: absolute; left: 0; right: 0; top: -18%; height: 18%; pointer-events: none; opacity: 0;
+  background: linear-gradient(to bottom, rgba(18, 160, 92, 0), rgba(18, 160, 92, .2));
+  border-bottom: 2px solid var(--accent);
+}
+.ocr-err { background: none; color: inherit; text-decoration: underline wavy #d9480f; text-decoration-thickness: 1.5px; text-underline-offset: .28em; }
+.ocr-fix { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; margin: 0 0 8px; font-weight: 600; }
+.ocr-fix > span:first-child { color: var(--accent-ink); }
+.ocr-fix small { color: var(--muted); font-size: .8rem; font-weight: 500; }
+.guide-excerpt ins, .guide-revisions ins {
+  text-decoration: none; color: var(--accent-ink); border-radius: 3px; padding: 0 .08em;
+  background: linear-gradient(var(--accent-soft), var(--accent-soft)) 0 0 / 100% 100% no-repeat;
+}
+.guide-revisions del {
+  text-decoration: none; color: var(--muted);
+  background: linear-gradient(#d9480f, #d9480f) 0 58% / 100% 1.5px no-repeat;
+}
+.type-caret { display: none; }
+
+@media (max-width: 550px) {
+  .guide-flow { top: 50%; }
+}
+
+/* ---------- motion: heading entrance (CSS only) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .guide-back, .guide-kicker, .guide-heading h1, .guide-deck, .guide-byline { animation: rise var(--dur-3) var(--ease) both; }
+  .guide-kicker { animation-delay: .08s; }
+  .guide-heading h1 { animation-delay: .16s; }
+  .guide-deck { animation-delay: .3s; }
+  .guide-byline { animation-delay: .42s; }
+  .guide-heading { background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 2px no-repeat; animation: g-underline 1.2s var(--ease) .5s both; }
+}
+@keyframes g-underline { to { background-size: 72px 2px; } }
+
+/* ---------- motion: on scroll (guide.js adds .guide-motion) ---------- */
+@media screen {
+  .guide-motion .rv { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+  .guide-motion .rv.is-in { opacity: 1; transform: none; }
+
+  /* source → draft */
+  .guide-motion .guide-specimens figure:first-child { opacity: 0; transform: translateY(18px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+  .guide-motion .guide-specimens figure:last-of-type { clip-path: inset(0 0 100% 0 round var(--r-md)); transition: clip-path 1s var(--ease-emph) 1.55s; }
+  .guide-motion .guide-flow { opacity: 0; transform: translate(-50%, -50%) scale(.7); transition: opacity .35s ease 1.3s, transform .5s var(--ease-emph) 1.3s; }
+  .guide-motion .guide-specimens.is-in figure:first-child { opacity: 1; transform: none; }
+  .guide-motion .guide-specimens.is-in figure:last-of-type { clip-path: inset(0 0 0 0 round var(--r-md)); }
+  .guide-motion .guide-specimens.is-in .guide-flow { opacity: 1; transform: translate(-50%, -50%); }
+  .guide-motion .guide-specimens.is-in .scan-line { animation: g-scan 1.5s cubic-bezier(.45, 0, .4, 1) .25s both; }
+
+  /* step 1: misread → fix */
+  .guide-motion .guide-excerpt { border-left-color: transparent; position: relative; }
+  .guide-motion .guide-excerpt::before { content: ""; position: absolute; left: -3px; top: 0; bottom: 0; width: 3px; background: var(--accent); transform: scaleY(0); transform-origin: top; transition: transform .6s var(--ease) .15s; }
+  .guide-motion .guide-excerpt.is-in::before { transform: none; }
+  .guide-motion .ocr-err { text-decoration-color: transparent; transition: text-decoration-color .4s ease .6s; }
+  .guide-motion .guide-excerpt.is-in .ocr-err { text-decoration-color: #d9480f; }
+  .guide-motion .ocr-fix { opacity: 0; transform: translateX(-10px); transition: opacity .5s var(--ease) 1.05s, transform .5s var(--ease) 1.05s; }
+  .guide-motion .guide-excerpt.is-in .ocr-fix { opacity: 1; transform: none; }
+  .guide-motion .guide-excerpt ins { background-size: 0 100%; transition: background-size .45s var(--ease) 1.45s; }
+  .guide-motion .guide-excerpt.is-in ins { background-size: 100% 100%; }
+
+  /* prompt: the bar draws, then the text */
+  .guide-motion .guide-prompt { border-left-color: transparent; position: relative; }
+  .guide-motion .guide-prompt::before { content: ""; position: absolute; left: -3px; top: 0; bottom: 0; width: 3px; background: var(--accent); transform: scaleY(0); transform-origin: top; transition: transform .6s var(--ease) .15s; }
+  .guide-motion .guide-prompt.is-in::before { transform: none; }
+
+  /* step 2: tracked changes */
+  .guide-motion .guide-revisions del { background-size: 0 1.5px; color: var(--ink); transition: background-size .4s var(--ease) var(--d, .3s), color .4s ease var(--d, .3s); }
+  .guide-motion .guide-revisions ins { background-size: 0 100%; transition: background-size .45s var(--ease) var(--d, .3s); }
+  .guide-motion .guide-revisions.is-in del { background-size: 100% 1.5px; color: var(--muted); }
+  .guide-motion .guide-revisions.is-in ins { background-size: 100% 100%; }
+
+  /* step 3: typing caret, gone once the command is complete */
+  .guide-motion .type-caret { display: inline-block; width: .55em; height: 1.15em; margin-left: 1px; vertical-align: -.22em; background: var(--accent); animation: wt-caret 1s steps(1) infinite; }
+  .guide-motion .guide-command.is-typed .type-caret { animation: g-caret-end 2.4s steps(1) forwards; }
+}
+@keyframes g-scan {
+  0% { top: -18%; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+@keyframes g-caret-end { 0% { opacity: 1; } 25% { opacity: 0; } 50% { opacity: 1; } 75%, 100% { opacity: 0; } }
+
+/* grey text on the tinted panels needs a darker grey than --muted (4.2:1) */
+.guide-specimens figcaption, .guide-revisions dt, .ocr-fix small { color: #6f6d68; }

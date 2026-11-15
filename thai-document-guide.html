@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ใช้ AI ช่วยตรวจแก้เอกสารราชการไทย · Anapat Tantikulanon</title>
+  <meta name="description" content="คู่มือใช้ Typhoon OCR V2 อ่านบันทึกข้อความภาษาไทย ตรวจคำแนะนำของ AI และสร้างร่าง Word ด้วย thai-docx">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Anuphan:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/document-guide.css">
+</head>
+<body data-page="document-guide">
+  <a class="visually-hidden" href="#main" data-i18n="skip">ข้ามไปเนื้อหา</a>
+  <div class="nav-wrap">
+    <header class="nav guide-nav">
+      <a class="brand" href="index.html" aria-label="Anapat"><span class="brand-dot" aria-hidden="true"></span>ANAPAT</a>
+      <div class="nav-right">
+        <div class="lang" role="group" aria-label="Language / ภาษา">
+          <button type="button" data-lang-btn="th" aria-pressed="true">TH</button>
+          <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <nav class="rail" aria-label="ตำแหน่งในหน้า" data-i18n-aria="rail.label">
+    <div class="rail-pct" aria-hidden="true"><span id="railPct">0</span>%</div>
+    <ol>
+      <li><a href="#top"><i aria-hidden="true"></i><span class="rail-n" aria-hidden="true">00</span><span class="rail-t" data-i18n="guide.rail.top">ภาพรวม</span></a></li>
+      <li><a href="#docs"><i aria-hidden="true"></i><span class="rail-n" aria-hidden="true">—</span><span class="rail-t" data-i18n="guide.rail.docs">ต้นฉบับกับร่าง</span></a></li>
+      <li><a href="#s-extract"><i aria-hidden="true"></i><span class="rail-n" aria-hidden="true">01</span><span class="rail-t" data-i18n="guide.rail.extract">เก็บคำจาก OCR</span></a></li>
+      <li><a href="#s-review"><i aria-hidden="true"></i><span class="rail-n" aria-hidden="true">02</span><span class="rail-t" data-i18n="guide.rail.review">ตรวจสำนวน</span></a></li>
+      <li><a href="#s-export"><i aria-hidden="true"></i><span class="rail-n" aria-hidden="true">03</span><span class="rail-t" data-i18n="guide.rail.export">ร่าง Word</span></a></li>
+      <li><a href="#refs"><i aria-hidden="true"></i><span class="rail-n" aria-hidden="true">—</span><span class="rail-t" data-i18n="guide.rail.refs">อ้างอิง</span></a></li>
+    </ol>
+  </nav>
+
+  <main id="main" class="guide-shell">
+    <a class="guide-back" href="index.html#work" data-i18n="guide.back">← กลับไปที่ผลงาน</a>
+    <article>
+      <header class="guide-heading" id="top" data-rail>
+        <p class="guide-kicker" data-i18n="guide.kicker">คู่มือจากการทดลอง</p>
+        <h1 data-i18n="guide.title">ใช้ AI ช่วยตรวจแก้<br>เอกสารราชการไทย</h1>
+        <p class="guide-deck" data-i18n="guide.deck">เปลี่ยนบันทึกข้อความสแกนเป็นร่าง Word พร้อมวิธีตรวจเทียบต้นฉบับ</p>
+        <p class="guide-byline">Anapat Tantikulanon</p>
+      </header>
+
+      <div class="guide-copy">
+        <p data-i18n="guide.intro">คำว่า “ข้อมูลค่าไฟ” อาจหมายถึงยอดเงินเป็นบาทหรือปริมาณไฟฟ้าเป็น kWh สำหรับบัญชีก๊าซเรือนกระจก ผมต้องการปริมาณการใช้ไฟฟ้า ผมจึงใช้บันทึกข้อความสมมติหนึ่งหน้าเพื่อทดลองว่า AI ช่วยถอดข้อความและปรับสำนวนได้อย่างไร โดยให้ต้นฉบับเป็นหลักในการตรวจข้อเท็จจริง</p>
+      </div>
+
+      <div class="guide-specimens" id="docs" data-rail>
+        <figure>
+          <a href="assets/thai-document-guide/scanned-memo.pdf" aria-label="เปิด PDF ต้นฉบับสมมติ" data-i18n-aria="guide.source.aria">
+            <img src="assets/thai-document-guide/scanned-memo.webp" width="1240" height="1754" alt="บันทึกข้อความสมมติที่ระบุหน่วย kWh ช่วงเดือนมกราคมถึงตุลาคม และกำหนดส่ง 20 พฤศจิกายน 2569" data-i18n-alt="guide.source.alt">
+            <span class="scan-line" aria-hidden="true"></span>
+          </a>
+          <figcaption data-i18n="guide.source.caption"><strong>ต้นฉบับสแกน</strong> บันทึกข้อความสมมติ</figcaption>
+        </figure>
+        <div class="guide-flow" aria-hidden="true"><span>OCR</span><i>→</i><span data-i18n="guide.flow.check">ตรวจ</span><i>→</i><span>Word</span></div>
+        <figure>
+          <a href="assets/thai-document-guide/reviewed-memo.docx" download aria-label="ดาวน์โหลดร่าง Word สมมติ" data-i18n-aria="guide.word.aria">
+            <img src="assets/thai-document-guide/reviewed-memo.webp" width="1240" height="1754" alt="ร่าง Word ที่จัดวางหัวข้อ ส่วนราชการ เลขที่หนังสือ วันที่ และเนื้อหาที่ปรับสำนวนแล้ว" data-i18n-alt="guide.word.alt">
+          </a>
+          <figcaption data-i18n="guide.word.caption"><strong>ร่าง Word</strong> หลังตรวจเทียบต้นฉบับ</figcaption>
+        </figure>
+      </div>
+
+      <div class="guide-copy">
+        <section id="s-extract" aria-labelledby="extract" data-rail>
+          <h2 id="extract" data-i18n="guide.extract.title">1. เก็บคำที่ OCR อ่านได้</h2>
+          <p data-i18n="guide.extract.copy">ผมใช้ Typhoon OCR V2 รุ่น 0.8B อ่านภาพจาก PDF แล้วเก็บข้อความดิบไว้เทียบกับภาพ สังเกตทั้งคำที่อ่านได้และตำแหน่งที่อ่านมา เวลาแก้คำหรือเลข ผมจึงย้อนดูแถวเดิมได้</p>
+          <div class="guide-excerpt">
+            <p class="guide-small-label" data-i18n="guide.extract.excerpt">ข้อความจาก Typhoon OCR V2</p>
+            <blockquote lang="th">บันทึก<mark class="ocr-err">ช้</mark>อความ</blockquote>
+            <p class="ocr-fix"><span aria-hidden="true">→</span> <span lang="th">บันทึก<ins>ข้</ins>อความ</span> <small data-i18n="guide.extract.fixed">แก้หลังตรวจกับภาพสแกน</small></p>
+            <a href="assets/thai-document-guide/ocr-output.json" data-i18n="guide.extract.download">ดูผล OCR พร้อมพิกัดข้อความ</a>
+          </div>
+          <p data-i18n="guide.extract.review">OCR อ่านหัวเอกสารว่า “บันทึกช้อความ” ผมตรวจภาพแล้วแก้เป็น “บันทึกข้อความ” จากนั้นตรวจเลขที่หนังสือ วันที่ และหน่วยแยกอีกครั้ง ในฉบับนี้ช่วงข้อมูลคือมกราคมถึงตุลาคม 2569 ส่วนกำหนดส่งคือ 20 พฤศจิกายน 2569</p>
+        </section>
+
+        <section id="s-review" aria-labelledby="review" data-rail>
+          <h2 id="review" data-i18n="guide.review.title">2. ให้ AI เสนอแก้สำนวน แล้วตรวจความหมาย</h2>
+          <p data-i18n="guide.review.copy">ให้ AI แสดงข้อความเดิมคู่กับข้อความที่เสนอแก้ พร้อมระบุช่องที่อ่านไม่ชัด วิธีนี้ช่วยให้ตรวจเฉพาะสิ่งที่เปลี่ยนได้ โดยยังเห็นคำเดิมจากต้นฉบับ</p>
+          <figure class="guide-prompt">
+            <figcaption data-i18n="guide.prompt.label">ตัวอย่างพรอมต์ขอคำแนะนำ</figcaption>
+            <blockquote data-i18n="guide.prompt.text">ปรับสำนวนให้เหมาะกับบันทึกข้อความ แสดงข้อความเดิม ข้อความที่เสนอ และเหตุผล คงผู้รับ หน่วย ช่วงเดือน และกำหนดส่งตามต้นฉบับ ถ้าข้อมูลคลุมเครือให้ระบุว่าต้องตรวจ</blockquote>
+          </figure>
+          <dl class="guide-revisions">
+            <div>
+              <dt data-i18n="guide.review.before">ข้อความเดิม</dt>
+              <dd lang="th"><del>ขอให้</del>แต่ละอาคารส่งข้อมูลการใช้ไฟฟ้า<del>รายเดือน</del> (kWh)</dd>
+            </div>
+            <div>
+              <dt data-i18n="guide.review.after">ข้อความที่เลือกใช้</dt>
+              <dd lang="th"><ins>ขอความอนุเคราะห์</ins>แต่ละอาคาร<ins>จัด</ins>ส่งข้อมูล<ins>ปริมาณ</ins>การใช้ไฟฟ้า (kWh) <ins>แยกเป็นรายเดือน</ins></dd>
+            </div>
+          </dl>
+          <p data-i18n="guide.review.reject">ถ้า AI เสนอใช้คำว่า “ส่งยอดค่าไฟรายเดือน” ให้ปฏิเสธ เพราะคนอ่านอาจส่งยอดเงินบาทแทน kWh ผมตรวจชื่อผู้รับ เลขที่หนังสือ วันที่ และกำหนดส่งซ้ำจากภาพก่อนส่งออก</p>
+        </section>
+
+        <section id="s-export" aria-labelledby="export" data-rail>
+          <h2 id="export" data-i18n="guide.export.title">3. สร้างร่าง Word จากข้อมูลที่ตรวจแล้ว</h2>
+          <p data-i18n="guide.export.copy">ผมแยกส่วนราชการ เลขที่ วันที่ เรื่อง ผู้รับ และเนื้อหาเป็นช่องใน JSON แล้วส่งให้สคริปต์ thai-docx สร้างร่าง Word สคริปต์ใช้วันที่ปัจจุบันเมื่อช่องวันที่ว่าง จึงต้องกรอกวันที่ที่ตรวจแล้วเป็น ค.ศ. เช่น <code>2026-11-10</code> สคริปต์จะแสดงผลเป็น พ.ศ. ใน Word</p>
+          <p data-i18n="guide.export.setup">ดาวน์โหลดสคริปต์จาก repo ของ thai-docx และติดตั้ง <code>python-docx</code> ก่อนรันคำสั่งนี้กับ JSON ตัวอย่าง</p>
+          <pre class="guide-command" tabindex="0"><code>python generate_docx.py --type internal --data reviewed-memo.json --out reviewed-memo.docx</code></pre>
+          <p data-i18n="guide.export.check">เปิดไฟล์ Word เพื่อตรวจหัวหนังสือ การตัดบรรทัด และตำแหน่งลงชื่อ ผมแทนช่องตราครุฑของสคริปต์ด้วยข้อความ “เอกสารสมมติสำหรับสาธิต” และเว้นช่องลายเซ็นไว้ในไฟล์ตัวอย่าง</p>
+          <div class="guide-downloads">
+            <a class="btn btn-dark" href="assets/thai-document-guide/reviewed-memo.docx" download data-i18n="guide.export.download">ดาวน์โหลดร่าง Word</a>
+            <a class="btn btn-outline" href="assets/thai-document-guide/reviewed-memo.json" download data-i18n="guide.export.json">ดาวน์โหลด JSON ตัวอย่าง</a>
+          </div>
+        </section>
+
+        <footer class="guide-references" id="refs" data-rail>
+          <h2 data-i18n="guide.refs.title">เครื่องมือและแบบอ้างอิง</h2>
+          <ul>
+            <li><a href="https://github.com/srn-source/typhoon-ocr2">Typhoon OCR V2</a></li>
+            <li><a href="https://huggingface.co/typhoon-ai/typhoon-ocr2-0.8b-GGUF#usage-with-llamacpp" data-i18n="guide.refs.local">วิธีรันโมเดลบนเครื่องและพรอมต์ถอดข้อความ</a></li>
+            <li><a href="https://github.com/thanthi-del/thai-docx-for-a-thai-civil-servant-eager-to-learn">thai-docx</a></li>
+            <li><a href="https://www.nacc.go.th/bapm/categorydetail/2023040418293534/20240222153443" data-i18n="guide.refs.memo">ตัวอย่างบันทึกข้อความของ ป.ป.ช.</a></li>
+          </ul>
+        </footer>
+      </div>
+    </article>
+  </main>
+  <script src="js/lang-en.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/guide.js"></script>
+</body>
+</html>
