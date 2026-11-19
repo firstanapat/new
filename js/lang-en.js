@@ -3,7 +3,7 @@
 window.I18N_EN = {
   /* page meta */
   "__title_resume": "Resume · Anapat Tantikulanon",
-  "__desc_resume": "Resume of Anapat Tantikulanon — Sustainability | ESG | GHG & Impact Assessment",
+  "__desc_resume": "Resume of Anapat Tantikulanon — Sustainability & ESG | GHG & Social Impact | Data & Reporting",
   "__title_document-guide": "Editing Thai government documents with AI · Anapat Tantikulanon",
   "__desc_document-guide": "A worked guide to reading a Thai memo with Typhoon OCR V2, reviewing AI edits, and creating a Word draft with thai-docx.",
   "guide.back": "← Back to selected work",
